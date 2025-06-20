@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - SuperMart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-shopping-cart"></i>
+                <span>SuperMart</span>
+            </div>
+            
+            <div class="nav-search">
+                <input type="text" id="searchInput" placeholder="Search products...">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="products.html" class="nav-link active">Products</a>
+                <a href="cart.html" class="nav-link">
+                    Cart <span id="cartCount" class="cart-count">0</span>
+                </a>
+                <a href="profile.html" class="nav-link">Profile</a>
+                <button id="themeToggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="authBtn" class="auth-btn">Login</button>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="/" class="mobile-link">Home</a>
+            <a href="products.html" class="mobile-link">Products</a>
+            <a href="cart.html" class="mobile-link">Cart</a>
+            <a href="profile.html" class="mobile-link">Profile</a>
+            <button id="mobileAuthBtn" class="mobile-auth-btn">Login</button>
+        </div>
+    </nav>
+
+    <!-- Products Header -->
+    <section class="products-header">
+        <div class="container">
+            <h1>Our Products</h1>
+            <p>Fresh quality products at your fingertips</p>
+        </div>
+    </section>
+
+    <!-- Filters and Search -->
+    <section class="filters">
+        <div class="container">
+            <div class="filters-row">
+                <div class="filter-group">
+                    <label>Category:</label>
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="fruits">Fruits</option>
+                        <option value="vegetables">Vegetables</option>
+                        <option value="dairy">Dairy</option>
+                        <option value="meat">Meat</option>
+                        <option value="bakery">Bakery</option>
+                        <option value="beverages">Beverages</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Sort by:</label>
+                    <select id="sortFilter">
+                        <option value="name">Name</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Rating</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Price Range:</label>
+                    <input type="range" id="priceRange" min="0" max="100" value="100">
+                    <span id="priceValue">$100</span>
+                </div>
+                
+                <button id="clearFilters" class="clear-filters">Clear Filters</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-info">
+                <span id="productsCount">Loading products...</span>
+                <div class="view-toggle">
+                    <button id="gridView" class="view-btn active">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button id="listView" class="view-btn">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="loadingSpinner" class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Loading products...</p>
+            </div>
+            
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here -->
+            </div>
+            
+            <div class="pagination" id="pagination">
+                <!-- Pagination will be generated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Detail Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content product-modal">
+            <span class="close-btn">&times;</span>
+            <div class="product-detail">
+                <div class="product-image">
+                    <img id="modalProductImage" src="" alt="">
+                </div>
+                <div class="product-info">
+                    <h2 id="modalProductName"></h2>
+                    <div class="product-rating" id="modalProductRating"></div>
+                    <div class="product-price" id="modalProductPrice"></div>
+                    <p class="product-description" id="modalProductDescription"></p>
+                    
+                    <div class="product-details">
+                        <h4>Product Details</h4>
+                        <ul id="modalProductDetails"></ul>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <label>Quantity:</label>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" id="decreaseQty">-</button>
+                            <span id="selectedQty">1</span>
+                            <button class="qty-btn" id="increaseQty">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button id="addToCartModal" class="add-to-cart-btn">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                        <button id="addToWishlist" class="wishlist-btn">
+                            <i class="fas fa-heart"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>SuperMart</span>
+                    </div>
+                    <p>Your premium supermarket for fresh groceries and daily essentials.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> info@supermart.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Market Street</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SuperMart. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="register">Register</button>
+            </div>
+            
+            <form id="loginForm" class="auth-form active">
+                <h3>Login to Your Account</h3>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            
+            <form id="registerForm" class="auth-form">
+                <h3>Create New Account</h3>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/products.js"></script>
+</body>
+</html>

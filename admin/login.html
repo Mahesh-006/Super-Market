@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - SuperMart</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-login-body">
+    <div class="admin-login-container">
+        <div class="admin-login-card">
+            <div class="admin-logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>Admin Portal</h1>
+                <p>SuperMart Administration</p>
+            </div>
+            
+            <form class="admin-login-form" id="adminLoginForm">
+                <h2>Admin Login</h2>
+                
+                <div class="form-group">
+                    <input type="email" id="adminEmail" placeholder="Admin Email" required>
+                    <i class="fas fa-envelope"></i>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="adminPassword" placeholder="Password" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+                
+                <button type="submit" class="admin-login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login to Dashboard
+                </button>
+                
+                <div class="demo-credentials">
+                    <h4>Demo Credentials:</h4>
+                    <p><strong>Email:</strong> admin@supermart.com</p>
+                    <p><strong>Password:</strong> admin123</p>
+                </div>
+            </form>
+            
+            <div class="back-to-site">
+                <a href="../index.html">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to SuperMart
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/admin-auth.js"></script>
+</body>
+</html>

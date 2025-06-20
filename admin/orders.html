@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Management - SuperMart Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <!-- Admin Navigation -->
+    <nav class="admin-nav">
+        <div class="admin-nav-container">
+            <div class="admin-brand">
+                <i class="fas fa-shield-alt"></i>
+                <span>SuperMart Admin</span>
+            </div>
+            
+            <div class="admin-nav-links">
+                <a href="dashboard.html" class="admin-nav-link">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="products.html" class="admin-nav-link">
+                    <i class="fas fa-box"></i> Products
+                </a>
+                <a href="orders.html" class="admin-nav-link active">
+                    <i class="fas fa-receipt"></i> Orders
+                </a>
+                <a href="settings.html" class="admin-nav-link">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+            </div>
+            
+            <div class="admin-user-menu">
+                <div class="admin-user-info">
+                    <span id="adminUserName">Admin</span>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <button class="admin-logout-btn" id="adminLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-menu">
+            <a href="dashboard.html" class="sidebar-link">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="products.html" class="sidebar-link">
+                <i class="fas fa-box"></i>
+                <span>Products</span>
+            </a>
+            <a href="orders.html" class="sidebar-link active">
+                <i class="fas fa-receipt"></i>
+                <span>Orders</span>
+            </a>
+            <a href="customers.html" class="sidebar-link">
+                <i class="fas fa-users"></i>
+                <span>Customers</span>
+            </a>
+            <a href="analytics.html" class="sidebar-link">
+                <i class="fas fa-chart-bar"></i>
+                <span>Analytics</span>
+            </a>
+            <a href="settings.html" class="sidebar-link">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <div class="admin-container">
+            <!-- Orders Header -->
+            <div class="orders-header">
+                <h1>Order Management</h1>
+                <div class="orders-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="pendingOrders">0</span>
+                        <span class="stat-label">Pending</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="processingOrders">0</span>
+                        <span class="stat-label">Processing</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="deliveredOrders">0</span>
+                        <span class="stat-label">Delivered</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Filter -->
+            <div class="orders-filter">
+                <div class="filter-group">
+                    <input type="text" id="orderSearch" placeholder="Search by Order ID or Customer...">
+                    <button id="searchOrderBtn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="filter-group">
+                    <select id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="processing">Processing</option>
+                        <option value="delivered">Delivered</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <input type="date" id="dateFilter">
+                </div>
+                
+                <button class="refresh-btn" id="refreshOrders">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="orders-table-container">
+                <table class="orders-table" id="ordersTable">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersTableBody">
+                        <!-- Orders will be loaded here -->
+                    </tbody>
+                </table>
+                
+                <div class="no-orders" id="noOrders" style="display: none;">
+                    <i class="fas fa-receipt"></i>
+                    <h3>No Orders Found</h3>
+                    <p>No orders match your current filters.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Order Detail Modal -->
+    <div id="orderDetailModal" class="modal">
+        <div class="modal-content order-detail-modal">
+            <span class="close-btn">&times;</span>
+            <div class="order-detail-content">
+                <div class="order-header">
+                    <h2>Order Details</h2>
+                    <div class="order-id" id="modalOrderId"></div>
+                </div>
+                
+                <div class="order-info-grid">
+                    <div class="order-customer">
+                        <h4>Customer Information</h4>
+                        <div id="customerInfo"></div>
+                    </div>
+                    
+                    <div class="order-delivery">
+                        <h4>Delivery Information</h4>
+                        <div id="deliveryInfo"></div>
+                    </div>
+                </div>
+                
+                <div class="order-items">
+                    <h4>Order Items</h4>
+                    <div class="items-list" id="orderItemsList"></div>
+                </div>
+                
+                <div class="order-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="orderSubtotal"></span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax:</span>
+                        <span id="orderTax"></span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery:</span>
+                        <span id="orderDelivery"></span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total:</span>
+                        <span id="orderTotal"></span>
+                    </div>
+                </div>
+                
+                <div class="order-actions">
+                    <select id="statusUpdate">
+                        <option value="pending">Pending</option>
+                        <option value="processing">Processing</option>
+                        <option value="delivered">Delivered</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                    <button class="update-btn" id="updateOrderStatus">Update Status</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/admin-auth.js"></script>
+    <script src="../js/admin-orders.js"></script>
+</body>
+</html>
