@@ -14,17 +14,17 @@ function showToast(message, type = 'success') {
     }, 3000);
 }
 
-// Format currency
+// Format currency in Indian Rupees
 function formatCurrency(amount) {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IN', {
         style: 'currency',
-        currency: 'USD'
+        currency: 'INR'
     }).format(amount);
 }
 
 // Format date
 function formatDate(date) {
-    return new Intl.DateTimeFormat('en-US', {
+    return new Intl.DateTimeFormat('en-IN', {
         year: 'numeric',
         month: 'short',
         day: 'numeric'

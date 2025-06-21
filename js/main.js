@@ -1,13 +1,13 @@
 // Main JavaScript file for SuperMart
 
-// Sample product data
+// Sample product data with Indian pricing
 const sampleProducts = [
     {
         id: 'prod-1',
         name: 'Fresh Organic Apples',
         category: 'fruits',
-        price: 4.99,
-        originalPrice: 5.99,
+        price: 199,
+        originalPrice: 249,
         image: 'https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg?auto=compress&cs=tinysrgb&w=400',
         rating: 4.5,
         stock: 50,
@@ -20,12 +20,12 @@ const sampleProducts = [
         id: 'prod-2',
         name: 'Premium Bananas',
         category: 'fruits',
-        price: 2.99,
-        originalPrice: 3.49,
+        price: 89,
+        originalPrice: 109,
         image: 'https://images.pexels.com/photos/61127/pexels-photo-61127.jpeg?auto=compress&cs=tinysrgb&w=400',
         rating: 4.3,
         stock: 75,
-        unit: 'bunch',
+        unit: 'dozen',
         description: 'Sweet, ripe bananas packed with potassium and natural energy.',
         details: ['High in potassium', 'Natural energy boost', 'Perfect ripeness', 'Great for smoothies'],
         featured: true
@@ -34,8 +34,8 @@ const sampleProducts = [
         id: 'prod-3',
         name: 'Fresh Spinach',
         category: 'vegetables',
-        price: 3.49,
-        originalPrice: 3.99,
+        price: 49,
+        originalPrice: 59,
         image: 'https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg?auto=compress&cs=tinysrgb&w=400',
         rating: 4.7,
         stock: 30,
@@ -48,8 +48,8 @@ const sampleProducts = [
         id: 'prod-4',
         name: 'Organic Milk',
         category: 'dairy',
-        price: 5.99,
-        originalPrice: 6.49,
+        price: 65,
+        originalPrice: 75,
         image: 'https://images.pexels.com/photos/236010/pexels-photo-236010.jpeg?auto=compress&cs=tinysrgb&w=400',
         rating: 4.6,
         stock: 25,
@@ -62,8 +62,8 @@ const sampleProducts = [
         id: 'prod-5',
         name: 'Fresh Salmon Fillet',
         category: 'meat',
-        price: 12.99,
-        originalPrice: 14.99,
+        price: 899,
+        originalPrice: 999,
         image: 'https://images.pexels.com/photos/725991/pexels-photo-725991.jpeg?auto=compress&cs=tinysrgb&w=400',
         rating: 4.8,
         stock: 15,
@@ -76,8 +76,8 @@ const sampleProducts = [
         id: 'prod-6',
         name: 'Artisan Bread',
         category: 'bakery',
-        price: 3.99,
-        originalPrice: 4.49,
+        price: 89,
+        originalPrice: 109,
         image: 'https://images.pexels.com/photos/209206/pexels-photo-209206.jpeg?auto=compress&cs=tinysrgb&w=400',
         rating: 4.4,
         stock: 20,
@@ -90,8 +90,8 @@ const sampleProducts = [
         id: 'prod-7',
         name: 'Orange Juice',
         category: 'beverages',
-        price: 4.49,
-        originalPrice: 4.99,
+        price: 149,
+        originalPrice: 179,
         image: 'https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&cs=tinysrgb&w=400',
         rating: 4.2,
         stock: 40,
@@ -104,8 +104,8 @@ const sampleProducts = [
         id: 'prod-8',
         name: 'Cherry Tomatoes',
         category: 'vegetables',
-        price: 3.99,
-        originalPrice: 4.49,
+        price: 79,
+        originalPrice: 99,
         image: 'https://images.pexels.com/photos/533280/pexels-photo-533280.jpeg?auto=compress&cs=tinysrgb&w=400',
         rating: 4.5,
         stock: 35,
@@ -305,8 +305,8 @@ class SuperMartApp {
                     </div>
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex items-center space-x-2">
-                            <span class="text-xl font-bold text-green-400">$${product.price}</span>
-                            ${product.originalPrice ? `<span class="text-gray-500 line-through">$${product.originalPrice}</span>` : ''}
+                            <span class="text-xl font-bold text-green-400">₹${product.price}</span>
+                            ${product.originalPrice ? `<span class="text-gray-500 line-through">₹${product.originalPrice}</span>` : ''}
                         </div>
                         <span class="text-gray-400 text-sm">${product.unit}</span>
                     </div>
@@ -478,8 +478,8 @@ class SuperMartApp {
             <span class="text-gray-400 ml-2">(${product.rating})</span>
         `;
         document.getElementById('modalProductPrice').innerHTML = `
-            <span class="text-2xl font-bold text-green-400">$${product.price}</span>
-            ${product.originalPrice ? `<span class="text-gray-500 line-through ml-2">$${product.originalPrice}</span>` : ''}
+            <span class="text-2xl font-bold text-green-400">₹${product.price}</span>
+            ${product.originalPrice ? `<span class="text-gray-500 line-through ml-2">₹${product.originalPrice}</span>` : ''}
         `;
         document.getElementById('modalProductDescription').textContent = product.description;
         

@@ -98,14 +98,14 @@ class CartManager {
     
     getTax(subtotal = null) {
         const amount = subtotal || this.getSubtotal();
-        const taxRate = Storage.get('taxRate', 8) / 100;
+        const taxRate = Storage.get('taxRate', 18) / 100; // 18% GST in India
         return amount * taxRate;
     }
     
     getDeliveryFee() {
         const subtotal = this.getSubtotal();
-        const freeDeliveryMin = Storage.get('freeDeliveryMin', 50);
-        const standardFee = Storage.get('standardDeliveryFee', 2.99);
+        const freeDeliveryMin = Storage.get('freeDeliveryMin', 500); // ₹500 for free delivery
+        const standardFee = Storage.get('standardDeliveryFee', 49); // ₹49 delivery fee
         
         return subtotal >= freeDeliveryMin ? 0 : standardFee;
     }
@@ -156,7 +156,7 @@ class CartManager {
                 <img src="${item.image}" alt="${item.name}">
                 <div class="cart-item-info">
                     <h4>${item.name}</h4>
-                    <p class="price">${formatCurrency(item.price)} each</p>
+                    <p class="price">₹${item.price} each</p>
                 </div>
                 <div class="cart-item-controls">
                     <div class="quantity-controls">
@@ -164,7 +164,7 @@ class CartManager {
                         <span class="quantity">${item.quantity}</span>
                         <button class="qty-btn increase-qty" data-id="${item.id}">+</button>
                     </div>
-                    <div class="item-total">${formatCurrency(item.price * item.quantity)}</div>
+                    <div class="item-total">₹${item.price * item.quantity}</div>
                     <button class="remove-item" data-id="${item.id}">
                         <i class="fas fa-trash"></i>
                     </button>
@@ -224,7 +224,7 @@ class CartManager {
         const coupons = {
             'SAVE10': { discount: 0.1, type: 'percentage', description: '10% off' },
             'SAVE20': { discount: 0.2, type: 'percentage', description: '20% off' },
-            'FIRST5': { discount: 5, type: 'fixed', description: '$5 off' },
+            'FIRST50': { discount: 50, type: 'fixed', description: '₹50 off' },
             'WELCOME': { discount: 0.15, type: 'percentage', description: '15% off' }
         };
         

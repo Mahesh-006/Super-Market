@@ -19,15 +19,15 @@ class AdminSettings {
                 name: 'SuperMart',
                 status: true,
                 description: 'Your premium supermarket for fresh groceries and daily essentials.',
-                phone: '+1 234 567 8900',
+                phone: '+91 98765 43210',
                 email: 'info@supermart.com',
-                address: '123 Market Street, City, State 12345'
+                address: '123 Market Street, Mumbai, Maharashtra 400001'
             },
             delivery: {
-                standardFee: 2.99,
-                expressFee: 5.99,
-                freeDeliveryMin: 50,
-                taxRate: 8
+                standardFee: 49,
+                expressFee: 99,
+                freeDeliveryMin: 500,
+                taxRate: 18
             },
             integrations: {
                 blinkit: false,
