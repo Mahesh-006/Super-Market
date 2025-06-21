@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -81,92 +81,6 @@
         .stagger-2 { animation-delay: 0.2s; }
         .stagger-3 { animation-delay: 0.3s; }
         .stagger-4 { animation-delay: 0.4s; }
-        
-        /* Dark mode styles */
-        html.dark {
-            color-scheme: dark;
-        }
-        
-        html.dark body {
-            background-color: #111827;
-            color: #f3f4f6;
-        }
-        
-        html.dark .navbar-glass {
-            background: rgba(17, 24, 39, 0.95);
-            border-bottom: 1px solid rgba(55, 65, 81, 0.2);
-        }
-        
-        html.dark .product-card {
-            background: rgba(31, 41, 55, 0.95);
-            border: 1px solid rgba(55, 65, 81, 0.2);
-        }
-        
-        html.dark .bg-white {
-            background-color: #1f2937;
-        }
-        
-        html.dark .text-gray-900 {
-            color: #f3f4f6;
-        }
-        
-        html.dark .text-gray-700 {
-            color: #e5e7eb;
-        }
-        
-        html.dark .text-gray-600 {
-            color: #d1d5db;
-        }
-        
-        html.dark .bg-gray-50 {
-            background-color: #111827;
-        }
-        
-        html.dark .bg-gradient-to-br.from-blue-50.to-blue-100 {
-            background: linear-gradient(to bottom right, #1e3a8a, #1e40af);
-        }
-        
-        html.dark .bg-gradient-to-br.from-green-50.to-green-100 {
-            background: linear-gradient(to bottom right, #065f46, #047857);
-        }
-        
-        html.dark .bg-gradient-to-br.from-purple-50.to-purple-100 {
-            background: linear-gradient(to bottom right, #4c1d95, #5b21b6);
-        }
-        
-        html.dark .text-gray-900 {
-            color: #f9fafb;
-        }
-        
-        .theme-toggle {
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .theme-toggle:hover {
-            background-color: rgba(0, 0, 0, 0.1);
-        }
-        
-        html.dark .theme-toggle:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .fruit-logo {
-            width: 32px;
-            height: 32px;
-        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -176,10 +90,10 @@
             <div class="flex justify-between items-center h-16">
                 <!-- Brand -->
                 <div class="flex items-center space-x-3">
-                    <div class="logo-container">
-                        <img src="https://cdn-icons-png.flaticon.com/512/415/415682.png" alt="Fruit Logo" class="fruit-logo">
-                        <span class="text-2xl font-bold text-gradient">SuperMart</span>
+                    <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center">
+                        <span class="material-icons text-white text-xl">shopping_cart</span>
                     </div>
+                    <span class="text-2xl font-bold text-gradient">SuperMart</span>
                 </div>
 
                 <!-- Desktop Navigation -->
@@ -194,20 +108,12 @@
                     <button class="btn-primary text-white px-6 py-2 rounded-full font-semibold">
                         Login
                     </button>
-                    <div class="theme-toggle" id="themeToggle">
-                        <span class="material-icons text-gray-700 dark:text-gray-300" id="themeIcon">light_mode</span>
-                    </div>
                 </nav>
 
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center gap-2">
-                    <div class="theme-toggle" id="mobileThemeToggle">
-                        <span class="material-icons text-gray-700 dark:text-gray-300" id="mobileThemeIcon">light_mode</span>
-                    </div>
-                    <button class="p-2 text-gray-700 dark:text-gray-300" id="mobileMenuBtn">
-                        <span class="material-icons">menu</span>
-                    </button>
-                </div>
+                <button class="md:hidden p-2 text-gray-700" id="mobileMenuBtn">
+                    <span class="material-icons">menu</span>
+                </button>
             </div>
         </div>
     </header>
@@ -238,11 +144,11 @@
     </section>
 
     <!-- Categories Section -->
-    <section class="py-20 bg-white dark:bg-gray-800">
+    <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Shop by Category</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-300">Discover fresh products across all categories</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Shop by Category</h2>
+                <p class="text-xl text-gray-600">Discover fresh products across all categories</p>
             </div>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -274,11 +180,11 @@
     </section>
 
     <!-- Featured Products Section -->
-    <section class="py-20 bg-gray-50 dark:bg-gray-900">
+    <section class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Featured Products</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-300">Handpicked fresh products just for you</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Featured Products</h2>
+                <p class="text-xl text-gray-600">Handpicked fresh products just for you</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="featuredProducts">
@@ -287,12 +193,12 @@
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Organic Apples" class="w-full h-48 object-cover">
                         <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">20% OFF</div>
-                        <button class="absolute top-3 right-3 w-10 h-10 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-red-500 transition-colors">
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
                             <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Fresh Organic Apples</h3>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Fresh Organic Apples</h3>
                         <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
@@ -301,14 +207,14 @@
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star_half</span>
                             </div>
-                            <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">(4.5)</span>
+                            <span class="text-gray-500 text-sm ml-2">(4.5)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-2xl font-bold text-green-600 dark:text-green-400">₹200</span>
+                                <span class="text-2xl font-bold text-green-600">₹200</span>
                                 <span class="text-gray-400 line-through">₹250</span>
                             </div>
-                            <span class="text-gray-500 dark:text-gray-400 text-sm">per kg</span>
+                            <span class="text-gray-500 text-sm">per kg</span>
                         </div>
                         <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
                             <span class="material-icons">add_shopping_cart</span>
@@ -322,12 +228,12 @@
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/61127/pexels-photo-61127.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Premium Bananas" class="w-full h-48 object-cover">
                         <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">18% OFF</div>
-                        <button class="absolute top-3 right-3 w-10 h-10 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-red-500 transition-colors">
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
                             <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Premium Bananas</h3>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Premium Bananas</h3>
                         <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
@@ -336,14 +242,14 @@
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star_border</span>
                             </div>
-                            <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">(4.3)</span>
+                            <span class="text-gray-500 text-sm ml-2">(4.3)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-2xl font-bold text-green-600 dark:text-green-400">₹90</span>
+                                <span class="text-2xl font-bold text-green-600">₹90</span>
                                 <span class="text-gray-400 line-through">₹110</span>
                             </div>
-                            <span class="text-gray-500 dark:text-gray-400 text-sm">per dozen</span>
+                            <span class="text-gray-500 text-sm">per dozen</span>
                         </div>
                         <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
                             <span class="material-icons">add_shopping_cart</span>
@@ -357,12 +263,12 @@
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Spinach" class="w-full h-48 object-cover">
                         <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">17% OFF</div>
-                        <button class="absolute top-3 right-3 w-10 h-10 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-red-500 transition-colors">
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
                             <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Fresh Spinach</h3>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Fresh Spinach</h3>
                         <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
@@ -371,14 +277,14 @@
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                             </div>
-                            <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">(4.7)</span>
+                            <span class="text-gray-500 text-sm ml-2">(4.7)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-2xl font-bold text-green-600 dark:text-green-400">₹50</span>
+                                <span class="text-2xl font-bold text-green-600">₹50</span>
                                 <span class="text-gray-400 line-through">₹60</span>
                             </div>
-                            <span class="text-gray-500 dark:text-gray-400 text-sm">per bunch</span>
+                            <span class="text-gray-500 text-sm">per bunch</span>
                         </div>
                         <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
                             <span class="material-icons">add_shopping_cart</span>
@@ -392,12 +298,12 @@
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/236010/pexels-photo-236010.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Organic Milk" class="w-full h-48 object-cover">
                         <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">13% OFF</div>
-                        <button class="absolute top-3 right-3 w-10 h-10 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-red-500 transition-colors">
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
                             <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Organic Milk</h3>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Organic Milk</h3>
                         <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
@@ -406,14 +312,14 @@
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                             </div>
-                            <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">(4.6)</span>
+                            <span class="text-gray-500 text-sm ml-2">(4.6)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-2xl font-bold text-green-600 dark:text-green-400">₹70</span>
+                                <span class="text-2xl font-bold text-green-600">₹70</span>
                                 <span class="text-gray-400 line-through">₹80</span>
                             </div>
-                            <span class="text-gray-500 dark:text-gray-400 text-sm">per liter</span>
+                            <span class="text-gray-500 text-sm">per liter</span>
                         </div>
                         <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
                             <span class="material-icons">add_shopping_cart</span>
@@ -433,36 +339,36 @@
     </section>
 
     <!-- Features Section -->
-    <section class="py-20 bg-white dark:bg-gray-800">
+    <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Why Choose SuperMart?</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-300">Experience the best grocery shopping with our premium services</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Why Choose SuperMart?</h2>
+                <p class="text-xl text-gray-600">Experience the best grocery shopping with our premium services</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 dark:bg-gradient-to-br dark:from-blue-900/40 dark:to-blue-800/40 card-hover">
+                <div class="text-center p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 card-hover">
                     <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                         <span class="material-icons text-3xl text-white">local_shipping</span>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Fast Delivery</h3>
-                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Get your groceries delivered within 30 minutes or schedule for later</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Fast Delivery</h3>
+                    <p class="text-gray-600 leading-relaxed">Get your groceries delivered within 30 minutes or schedule for later</p>
                 </div>
                 
-                <div class="text-center p-8 rounded-2xl bg-gradient-to-br from-green-50 to-green-100 dark:bg-gradient-to-br dark:from-green-900/40 dark:to-green-800/40 card-hover">
+                <div class="text-center p-8 rounded-2xl bg-gradient-to-br from-green-50 to-green-100 card-hover">
                     <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                         <span class="material-icons text-3xl text-white">verified</span>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Fresh Quality</h3>
-                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Hand-picked fresh produce and quality guaranteed products</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Fresh Quality</h3>
+                    <p class="text-gray-600 leading-relaxed">Hand-picked fresh produce and quality guaranteed products</p>
                 </div>
                 
-                <div class="text-center p-8 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 dark:bg-gradient-to-br dark:from-purple-900/40 dark:to-purple-800/40 card-hover">
+                <div class="text-center p-8 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 card-hover">
                     <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                         <span class="material-icons text-3xl text-white">savings</span>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Best Prices</h3>
-                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Competitive prices with regular discounts and special offers</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Best Prices</h3>
+                    <p class="text-gray-600 leading-relaxed">Competitive prices with regular discounts and special offers</p>
                 </div>
             </div>
         </div>
@@ -489,7 +395,9 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 <div>
                     <div class="flex items-center space-x-3 mb-6">
-                        <img src="https://cdn-icons-png.flaticon.com/512/415/415682.png" alt="Fruit Logo" class="w-10 h-10">
+                        <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center">
+                            <span class="material-icons text-white text-xl">shopping_cart</span>
+                        </div>
                         <span class="text-2xl font-bold">SuperMart</span>
                     </div>
                     <p class="text-gray-400 leading-relaxed">Your premium supermarket for fresh groceries and daily essentials delivered to your doorstep.</p>
@@ -548,98 +456,15 @@
     <script src="js/modern-interactions.js"></script>
     
     <script>
-        // Theme toggle functionality
-        function setupThemeToggle() {
-            const html = document.documentElement;
-            const themeToggle = document.getElementById('themeToggle');
-            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
-            const themeIcon = document.getElementById('themeIcon');
-            const mobileThemeIcon = document.getElementById('mobileThemeIcon');
-            
-            // Check for saved theme preference or use system preference
-            const savedTheme = localStorage.getItem('theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-                html.classList.add('dark');
-                themeIcon.textContent = 'dark_mode';
-                mobileThemeIcon.textContent = 'dark_mode';
-            } else {
-                html.classList.remove('dark');
-                themeIcon.textContent = 'light_mode';
-                mobileThemeIcon.textContent = 'light_mode';
-            }
-            
-            // Toggle theme function
-            function toggleTheme() {
-                if (html.classList.contains('dark')) {
-                    html.classList.remove('dark');
-                    localStorage.setItem('theme', 'light');
-                    themeIcon.textContent = 'light_mode';
-                    mobileThemeIcon.textContent = 'light_mode';
-                } else {
-                    html.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                    themeIcon.textContent = 'dark_mode';
-                    mobileThemeIcon.textContent = 'dark_mode';
-                }
-            }
-            
-            // Add event listeners
-            themeToggle.addEventListener('click', toggleTheme);
-            mobileThemeToggle.addEventListener('click', toggleTheme);
-        }
-        
         // Mobile menu toggle
-        function setupMobileMenu() {
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileMenu = document.createElement('div');
-            mobileMenu.className = 'mobile-menu hidden md:hidden bg-gray-800 dark:bg-gray-900 border-t border-gray-700 p-4 fixed w-full z-40';
-            mobileMenu.innerHTML = `
-                <div class="flex flex-col gap-2">
-                    <a href="index.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all text-gray-300 hover:bg-gray-700">
-                        <span class="material-icons">home</span>
-                        Home
-                    </a>
-                    <a href="products.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all text-gray-300 hover:bg-gray-700">
-                        <span class="material-icons">inventory_2</span>
-                        Products
-                    </a>
-                    <a href="cart.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all text-gray-300 hover:bg-gray-700 relative">
-                        <span class="material-icons">shopping_cart</span>
-                        Cart
-                        <span id="mobileCartCount" class="cart-count hidden bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">0</span>
-                    </a>
-                    <a href="profile.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all text-gray-300 hover:bg-gray-700">
-                        <span class="material-icons">account_circle</span>
-                        Profile
-                    </a>
-                    <button id="mobileAuthBtn" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-3 px-4 rounded-lg text-center transition-all">
-                        <span class="material-icons mr-2">login</span>
-                        Login
-                    </button>
-                </div>
-            `;
-            
-            document.body.appendChild(mobileMenu);
-            
-            let isMenuOpen = false;
-            
-            mobileMenuBtn.addEventListener('click', function() {
-                isMenuOpen = !isMenuOpen;
-                if (isMenuOpen) {
-                    mobileMenu.classList.remove('hidden');
-                    mobileMenu.style.top = '64px'; // Height of the navbar
-                } else {
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        }
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            // Add mobile menu functionality here
+        });
 
         // Initialize cart count
         function updateCartCount() {
             const count = 0; // This will be updated by cart.js
-            const cartCountElements = document.querySelectorAll('#cartCount, #mobileCartCount');
+            const cartCountElements = document.querySelectorAll('#cartCount');
             cartCountElements.forEach(element => {
                 if (count > 0) {
                     element.textContent = count;
@@ -652,8 +477,6 @@
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            setupThemeToggle();
-            setupMobileMenu();
             updateCartCount();
             
             // Add smooth scrolling for anchor links
