@@ -3,92 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SuperMart - Your Premium Supermarket</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>SuperMart - Fresh Groceries Delivered</title>
+    <meta name="description" content="Get fresh groceries and daily essentials delivered to your doorstep. Premium quality products at unbeatable prices.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/modern-style.css">
+    <link rel="stylesheet" href="css/components.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
+        <div class="nav-container container">
+            <a href="/" class="nav-brand">
                 <i class="fas fa-shopping-cart"></i>
                 <span>SuperMart</span>
-            </div>
+            </a>
             
             <div class="nav-search">
-                <input type="text" id="searchInput" placeholder="Search products...">
-                <button id="searchBtn"><i class="fas fa-search"></i></button>
+                <input type="text" id="searchInput" placeholder="Search for fresh groceries, daily essentials..." autocomplete="off">
+                <button id="searchBtn" type="button" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
             </div>
             
             <div class="nav-links">
-                <a href="/" class="nav-link active">Home</a>
-                <a href="products.html" class="nav-link">Products</a>
+                <a href="/" class="nav-link active">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="products.html" class="nav-link">
+                    <i class="fas fa-th-large"></i>
+                    <span>Products</span>
+                </a>
                 <a href="cart.html" class="nav-link">
-                    Cart <span id="cartCount" class="cart-count">0</span>
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                    <span id="cartCount" class="cart-count" style="display: none;">0</span>
                 </a>
-                <a href="profile.html" class="nav-link">Profile</a>
+                <a href="profile.html" class="nav-link">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
                 <a href="admin/login.html" class="nav-link admin-access">
-                    <i class="fas fa-shield-alt"></i> Admin
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Admin</span>
                 </a>
-                <button id="themeToggle" class="theme-toggle">
+                
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button id="authBtn" class="auth-btn">Login</button>
+                
+                <button id="authBtn" class="auth-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </button>
             </div>
             
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
         
         <div class="mobile-menu" id="mobileMenu">
-            <a href="/" class="mobile-link">Home</a>
-            <a href="products.html" class="mobile-link">Products</a>
-            <a href="cart.html" class="mobile-link">Cart</a>
-            <a href="profile.html" class="mobile-link">Profile</a>
-            <a href="admin/login.html" class="mobile-link admin-access">
-                <i class="fas fa-shield-alt"></i> Admin Portal
+            <a href="/" class="mobile-link">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
             </a>
-            <button id="mobileAuthBtn" class="mobile-auth-btn">Login</button>
+            <a href="products.html" class="mobile-link">
+                <i class="fas fa-th-large"></i>
+                <span>Products</span>
+            </a>
+            <a href="cart.html" class="mobile-link">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Cart</span>
+            </a>
+            <a href="profile.html" class="mobile-link">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+            <a href="admin/login.html" class="mobile-link admin-access">
+                <i class="fas fa-shield-alt"></i>
+                <span>Admin Portal</span>
+            </a>
+            <button id="mobileAuthBtn" class="mobile-auth-btn">
+                <i class="fas fa-sign-in-alt"></i>
+                <span>Login</span>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>Fresh Groceries Delivered to Your Door</h1>
-            <p>Discover premium quality products at unbeatable prices</p>
-            <button class="cta-btn" onclick="window.location.href='products.html'">
-                Shop Now <i class="fas fa-arrow-right"></i>
-            </button>
-        </div>
-        <div class="hero-image">
-            <img src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Fresh Groceries">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Fresh Groceries Delivered to Your Door</h1>
+                <p>Discover premium quality products at unbeatable prices. From farm-fresh produce to daily essentials, we've got everything you need.</p>
+                <button class="cta-btn" onclick="window.location.href='products.html'">
+                    <span>Shop Now</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
         </div>
     </section>
 
-    <!-- Featured Categories -->
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Fast Delivery</h3>
+                    <p>Get your groceries delivered in 30 minutes or less</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Fresh & Organic</h3>
+                    <p>Handpicked fresh produce and organic products</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Quality Guaranteed</h3>
+                    <p>100% satisfaction guarantee on all products</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3>Best Prices</h3>
+                    <p>Competitive prices with regular discounts and offers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
     <section class="categories">
         <div class="container">
             <h2 class="section-title">Shop by Category</h2>
             <div class="category-grid">
                 <div class="category-card" data-category="fruits">
-                    <img src="https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Fruits">
+                    <img src="https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Fruits" loading="lazy">
                     <h3>Fresh Fruits</h3>
+                    <p>Seasonal and exotic fruits</p>
                 </div>
                 <div class="category-card" data-category="vegetables">
-                    <img src="https://images.pexels.com/photos/1300972/pexels-photo-1300972.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Vegetables">
+                    <img src="https://images.pexels.com/photos/1300972/pexels-photo-1300972.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Vegetables" loading="lazy">
                     <h3>Vegetables</h3>
+                    <p>Farm-fresh vegetables</p>
                 </div>
                 <div class="category-card" data-category="dairy">
-                    <img src="https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Dairy">
+                    <img src="https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Dairy Products" loading="lazy">
                     <h3>Dairy Products</h3>
+                    <p>Fresh milk, cheese & more</p>
                 </div>
                 <div class="category-card" data-category="meat">
-                    <img src="https://images.pexels.com/photos/361184/asparagus-steak-veal-steak-veal-361184.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Meat">
+                    <img src="https://images.pexels.com/photos/361184/asparagus-steak-veal-steak-veal-361184.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Meat" loading="lazy">
                     <h3>Fresh Meat</h3>
+                    <p>Premium quality meat</p>
+                </div>
+                <div class="category-card" data-category="bakery">
+                    <img src="https://images.pexels.com/photos/209206/pexels-photo-209206.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Bakery" loading="lazy">
+                    <h3>Bakery</h3>
+                    <p>Fresh baked goods daily</p>
+                </div>
+                <div class="category-card" data-category="beverages">
+                    <img src="https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Beverages" loading="lazy">
+                    <h3>Beverages</h3>
+                    <p>Refreshing drinks & juices</p>
                 </div>
             </div>
         </div>
@@ -97,9 +195,18 @@
     <!-- Featured Products -->
     <section class="featured-products">
         <div class="container">
-            <h2 class="section-title">Featured Products</h2>
+            <div class="section-header">
+                <h2 class="section-title">Featured Products</h2>
+                <p class="section-subtitle">Handpicked favorites that our customers love</p>
+            </div>
             <div class="products-grid" id="featuredProducts">
                 <!-- Products will be loaded here -->
+            </div>
+            <div class="section-footer">
+                <button class="view-all-btn" onclick="window.location.href='products.html'">
+                    <span>View All Products</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -111,47 +218,55 @@
             <div class="offers-grid">
                 <div class="offer-card">
                     <div class="offer-badge">50% OFF</div>
-                    <h3>Weekend Special</h3>
-                    <p>Get 50% off on selected fresh fruits</p>
-                    <button class="offer-btn">Shop Now</button>
+                    <div class="offer-content">
+                        <h3>Weekend Special</h3>
+                        <p>Get 50% off on selected fresh fruits and vegetables</p>
+                        <button class="offer-btn">Shop Now</button>
+                    </div>
+                    <div class="offer-image">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
                 </div>
                 <div class="offer-card">
                     <div class="offer-badge">Buy 2 Get 1</div>
-                    <h3>Dairy Deal</h3>
-                    <p>Buy 2 dairy products and get 1 free</p>
-                    <button class="offer-btn">Shop Now</button>
+                    <div class="offer-content">
+                        <h3>Dairy Deal</h3>
+                        <p>Buy 2 dairy products and get 1 absolutely free</p>
+                        <button class="offer-btn">Shop Now</button>
+                    </div>
+                    <div class="offer-image">
+                        <i class="fas fa-cheese"></i>
+                    </div>
                 </div>
                 <div class="offer-card">
                     <div class="offer-badge">Free Delivery</div>
-                    <h3>Orders Above $50</h3>
-                    <p>Free home delivery on orders above $50</p>
-                    <button class="offer-btn">Shop Now</button>
+                    <div class="offer-content">
+                        <h3>Orders Above $50</h3>
+                        <p>Free home delivery on orders above $50. No hidden charges</p>
+                        <button class="offer-btn">Shop Now</button>
+                    </div>
+                    <div class="offer-image">
+                        <i class="fas fa-truck"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Admin Access Section -->
-    <section class="admin-access-section">
+    <!-- Newsletter Section -->
+    <section class="newsletter">
         <div class="container">
-            <div class="admin-access-card">
-                <div class="admin-access-content">
-                    <div class="admin-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="admin-info">
-                        <h3>Store Management</h3>
-                        <p>Access admin dashboard to manage products, orders, and store settings</p>
-                        <div class="admin-credentials">
-                            <small><strong>Demo Login:</strong> admin@supermart.com / admin123</small>
-                        </div>
-                    </div>
-                    <div class="admin-actions">
-                        <a href="admin/login.html" class="admin-login-btn">
-                            <i class="fas fa-sign-in-alt"></i>
-                            Admin Login
-                        </a>
-                    </div>
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Stay Updated</h2>
+                    <p>Get the latest offers, new product launches, and exclusive deals delivered to your inbox</p>
+                </div>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" id="newsletterEmail">
+                    <button type="button" id="subscribeBtn">
+                        <span>Subscribe</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -166,7 +281,13 @@
                         <i class="fas fa-shopping-cart"></i>
                         <span>SuperMart</span>
                     </div>
-                    <p>Your premium supermarket for fresh groceries and daily essentials.</p>
+                    <p>Your trusted partner for fresh groceries and daily essentials. Quality products, fast delivery, and exceptional service.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
@@ -179,218 +300,157 @@
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Contact</h4>
+                    <h4>Categories</h4>
                     <ul>
-                        <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
-                        <li><i class="fas fa-envelope"></i> info@supermart.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Market Street</li>
+                        <li><a href="products.html?category=fruits">Fruits</a></li>
+                        <li><a href="products.html?category=vegetables">Vegetables</a></li>
+                        <li><a href="products.html?category=dairy">Dairy</a></li>
+                        <li><a href="products.html?category=meat">Meat</a></li>
+                        <li><a href="products.html?category=bakery">Bakery</a></li>
+                        <li><a href="products.html?category=beverages">Beverages</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 234 567 8900</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@supermart.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Market Street, City, State 12345</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>24/7 Customer Support</span>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 SuperMart. All rights reserved.</p>
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 SuperMart. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- Auth Modal -->
     <div id="authModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
+        <div class="modal-overlay"></div>
+        <div class="modal-content auth-modal">
+            <button class="modal-close" aria-label="Close modal">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="auth-header">
+                <h2 id="authTitle">Welcome Back</h2>
+                <p id="authSubtitle">Sign in to your account to continue</p>
+            </div>
+            
             <div class="auth-tabs">
-                <button class="tab-btn active" data-tab="login">Login</button>
-                <button class="tab-btn" data-tab="register">Register</button>
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="register">Register</button>
             </div>
             
             <form id="loginForm" class="auth-form active">
-                <h3>Login to Your Account</h3>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Password" required>
-                <button type="submit">Login</button>
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="rememberMe">
+                        <span class="checkmark"></span>
+                        Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                <button type="submit" class="auth-submit-btn">
+                    <span>Sign In</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
             </form>
             
             <form id="registerForm" class="auth-form">
-                <h3>Create New Account</h3>
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Password" required>
-                <input type="password" placeholder="Confirm Password" required>
-                <button type="submit">Register</button>
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email Address</label>
+                    <input type="email" id="registerEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="#">Terms & Conditions</a>
+                    </label>
+                </div>
+                <button type="submit" class="auth-submit-btn">
+                    <span>Create Account</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
             </form>
         </div>
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="toast"></div>
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <div class="toast-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="toast-message">
+                <div class="toast-title">Success!</div>
+                <div class="toast-text">Your action was completed successfully.</div>
+            </div>
+            <button class="toast-close" aria-label="Close notification">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
 
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+        <div class="spinner">
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+        </div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Scripts -->
     <script src="js/utils.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/main.js"></script>
-
-    <style>
-    /* Admin Access Styles */
-    .admin-access-section {
-        padding: var(--space-xl) 0;
-        background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-        border-top: 1px solid var(--border-color);
-    }
-
-    .admin-access-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border-color);
-        border-radius: var(--radius-xl);
-        box-shadow: var(--shadow-lg);
-        overflow: hidden;
-        transition: all var(--transition-normal);
-    }
-
-    .admin-access-card:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-xl);
-    }
-
-    .admin-access-content {
-        display: flex;
-        align-items: center;
-        gap: var(--space-xl);
-        padding: var(--space-xl);
-    }
-
-    .admin-icon {
-        flex-shrink: 0;
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 2rem;
-        box-shadow: var(--shadow-md);
-    }
-
-    .admin-info {
-        flex: 1;
-    }
-
-    .admin-info h3 {
-        color: var(--text-primary);
-        font-size: var(--font-size-xl);
-        font-weight: 700;
-        margin-bottom: var(--space-sm);
-    }
-
-    .admin-info p {
-        color: var(--text-secondary);
-        margin-bottom: var(--space-md);
-        line-height: 1.6;
-    }
-
-    .admin-credentials {
-        background: var(--bg-tertiary);
-        padding: var(--space-sm) var(--space-md);
-        border-radius: var(--radius-md);
-        border-left: 4px solid var(--primary-color);
-    }
-
-    .admin-credentials small {
-        color: var(--text-muted);
-        font-size: var(--font-size-sm);
-    }
-
-    .admin-actions {
-        flex-shrink: 0;
-    }
-
-    .admin-login-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: var(--space-sm);
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
-        color: white;
-        text-decoration: none;
-        padding: var(--space-md) var(--space-lg);
-        border-radius: var(--radius-lg);
-        font-weight: 600;
-        transition: all var(--transition-normal);
-        box-shadow: var(--shadow-md);
-    }
-
-    .admin-login-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-lg);
-        background: linear-gradient(135deg, var(--primary-hover), var(--primary-color));
-    }
-
-    .admin-login-btn i {
-        font-size: 1.1rem;
-    }
-
-    /* Navigation Admin Link Styles */
-    .nav-link.admin-access {
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
-        color: white !important;
-        border-radius: var(--radius-md);
-        padding: var(--space-sm) var(--space-md);
-        font-weight: 600;
-        transition: all var(--transition-fast);
-    }
-
-    .nav-link.admin-access:hover {
-        transform: translateY(-1px);
-        box-shadow: var(--shadow-md);
-    }
-
-    .mobile-link.admin-access {
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
-        color: white !important;
-        border-radius: var(--radius-md);
-        margin: var(--space-sm) 0;
-        font-weight: 600;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .admin-access-content {
-            flex-direction: column;
-            text-align: center;
-            gap: var(--space-lg);
-        }
-
-        .admin-icon {
-            width: 60px;
-            height: 60px;
-            font-size: 1.5rem;
-        }
-
-        .admin-info h3 {
-            font-size: var(--font-size-lg);
-        }
-
-        .admin-login-btn {
-            padding: var(--space-sm) var(--space-md);
-            font-size: var(--font-size-sm);
-        }
-    }
-
-    @media (max-width: 480px) {
-        .admin-access-section {
-            padding: var(--space-lg) 0;
-        }
-
-        .admin-access-content {
-            padding: var(--space-lg);
-        }
-    }
-    </style>
+    <script src="js/enhanced-features.js"></script>
+    <script src="js/microinteractions.js"></script>
+    <script src="js/search-autocomplete.js"></script>
+</body>
+</html>
