@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>SuperMart - Fresh Groceries Delivered</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .navbar-glass {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <header class="navbar-glass fixed top-0 w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Brand -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center">
+                        <span class="material-icons text-white text-xl">shopping_cart</span>
+                    </div>
+                    <span class="text-2xl font-bold text-gradient">SuperMart</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-purple-600 font-medium transition-colors">Home</a>
+                    <a href="products.html" class="text-gray-700 hover:text-purple-600 font-medium transition-colors">Products</a>
+                    <a href="cart.html" class="text-gray-700 hover:text-purple-600 font-medium transition-colors relative">
+                        Cart
+                        <span id="cartCount" class="hidden absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full min-w-5 text-center">0</span>
+                    </a>
+                    <a href="profile.html" class="text-gray-700 hover:text-purple-600 font-medium transition-colors">Profile</a>
+                    <button class="btn-primary text-white px-6 py-2 rounded-full font-semibold">
+                        Login
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 text-gray-700" id="mobileMenuBtn">
+                    <span class="material-icons">menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-20 pb-16 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in-up">
+                    Fresh Groceries
+                    <span class="block">Delivered Fast</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto animate-fade-in-up stagger-1">
+                    Get the freshest produce and everyday essentials delivered to your doorstep in minutes
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up stagger-2">
+                    <button onclick="window.location.href='products.html'" class="bg-white text-purple-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105">
+                        <span class="material-icons mr-2">shopping_bag</span>
+                        Shop Now
+                    </button>
+                    <button class="glass-effect text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition-all">
+                        <span class="material-icons mr-2">play_circle</span>
+                        Watch Demo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Shop by Category</h2>
+                <p class="text-xl text-gray-600">Discover fresh products across all categories</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="category-card card-hover bg-gradient-to-br from-green-400 to-green-600 rounded-2xl p-8 text-center cursor-pointer" onclick="window.location.href='products.html?category=fruits'">
+                    <span class="material-icons text-5xl text-white mb-4 block">apple</span>
+                    <h3 class="text-xl font-bold text-white">Fruits</h3>
+                    <p class="text-green-100 mt-2">Fresh & Organic</p>
+                </div>
+                
+                <div class="category-card card-hover bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl p-8 text-center cursor-pointer" onclick="window.location.href='products.html?category=vegetables'">
+                    <span class="material-icons text-5xl text-white mb-4 block">eco</span>
+                    <h3 class="text-xl font-bold text-white">Vegetables</h3>
+                    <p class="text-emerald-100 mt-2">Farm Fresh</p>
+                </div>
+                
+                <div class="category-card card-hover bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl p-8 text-center cursor-pointer" onclick="window.location.href='products.html?category=dairy'">
+                    <span class="material-icons text-5xl text-white mb-4 block">egg</span>
+                    <h3 class="text-xl font-bold text-white">Dairy</h3>
+                    <p class="text-yellow-100 mt-2">Pure & Fresh</p>
+                </div>
+                
+                <div class="category-card card-hover bg-gradient-to-br from-red-400 to-red-600 rounded-2xl p-8 text-center cursor-pointer" onclick="window.location.href='products.html?category=meat'">
+                    <span class="material-icons text-5xl text-white mb-4 block">kebab_dining</span>
+                    <h3 class="text-xl font-bold text-white">Meat</h3>
+                    <p class="text-red-100 mt-2">Premium Quality</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Featured Products</h2>
+                <p class="text-xl text-gray-600">Handpicked fresh products just for you</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="featuredProducts">
+                <!-- Product 1: Fresh Organic Apples -->
+                <div class="product-card card-hover rounded-2xl overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Organic Apples" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">20% OFF</div>
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                            <span class="material-icons text-lg">favorite_border</span>
+                        </button>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Fresh Organic Apples</h3>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400">
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star_half</span>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">(4.5)</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-2xl font-bold text-green-600">₹200</span>
+                                <span class="text-gray-400 line-through">₹250</span>
+                            </div>
+                            <span class="text-gray-500 text-sm">per kg</span>
+                        </div>
+                        <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
+                            <span class="material-icons">add_shopping_cart</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2: Premium Bananas -->
+                <div class="product-card card-hover rounded-2xl overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/61127/pexels-photo-61127.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Premium Bananas" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">18% OFF</div>
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                            <span class="material-icons text-lg">favorite_border</span>
+                        </button>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Premium Bananas</h3>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400">
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star_border</span>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">(4.3)</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-2xl font-bold text-green-600">₹90</span>
+                                <span class="text-gray-400 line-through">₹110</span>
+                            </div>
+                            <span class="text-gray-500 text-sm">per dozen</span>
+                        </div>
+                        <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
+                            <span class="material-icons">add_shopping_cart</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3: Fresh Spinach -->
+                <div class="product-card card-hover rounded-2xl overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Spinach" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">17% OFF</div>
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                            <span class="material-icons text-lg">favorite_border</span>
+                        </button>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Fresh Spinach</h3>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400">
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">(4.7)</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-2xl font-bold text-green-600">₹50</span>
+                                <span class="text-gray-400 line-through">₹60</span>
+                            </div>
+                            <span class="text-gray-500 text-sm">per bunch</span>
+                        </div>
+                        <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
+                            <span class="material-icons">add_shopping_cart</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 4: Organic Milk -->
+                <div class="product-card card-hover rounded-2xl overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/236010/pexels-photo-236010.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Organic Milk" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">13% OFF</div>
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                            <span class="material-icons text-lg">favorite_border</span>
+                        </button>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Organic Milk</h3>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400">
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">(4.6)</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-2xl font-bold text-green-600">₹70</span>
+                                <span class="text-gray-400 line-through">₹80</span>
+                            </div>
+                            <span class="text-gray-500 text-sm">per liter</span>
+                        </div>
+                        <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
+                            <span class="material-icons">add_shopping_cart</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button onclick="window.location.href='products.html'" class="btn-primary text-white px-8 py-4 rounded-full font-bold text-lg">
+                    View All Products
+                    <span class="material-icons ml-2">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Why Choose SuperMart?</h2>
+                <p class="text-xl text-gray-600">Experience the best grocery shopping with our premium services</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 card-hover">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <span class="material-icons text-3xl text-white">local_shipping</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Fast Delivery</h3>
+                    <p class="text-gray-600 leading-relaxed">Get your groceries delivered within 30 minutes or schedule for later</p>
+                </div>
+                
+                <div class="text-center p-8 rounded-2xl bg-gradient-to-br from-green-50 to-green-100 card-hover">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <span class="material-icons text-3xl text-white">verified</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Fresh Quality</h3>
+                    <p class="text-gray-600 leading-relaxed">Hand-picked fresh produce and quality guaranteed products</p>
+                </div>
+                
+                <div class="text-center p-8 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 card-hover">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <span class="material-icons text-3xl text-white">savings</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Best Prices</h3>
+                    <p class="text-gray-600 leading-relaxed">Competitive prices with regular discounts and special offers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-20 gradient-bg">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Stay Updated</h2>
+            <p class="text-xl text-white/90 mb-8">Get the latest offers and updates delivered to your inbox</p>
+            <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input type="email" placeholder="Enter your email" 
+                       class="flex-1 px-6 py-4 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
+                <button class="bg-white text-purple-600 font-bold py-4 px-8 rounded-full hover:bg-gray-100 transition-all transform hover:scale-105">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center">
+                            <span class="material-icons text-white text-xl">shopping_cart</span>
+                        </div>
+                        <span class="text-2xl font-bold">SuperMart</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">Your premium supermarket for fresh groceries and daily essentials delivered to your doorstep.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white transition-colors">Products</a></li>
+                        <li><a href="cart.html" class="text-gray-400 hover:text-white transition-colors">Cart</a></li>
+                        <li><a href="profile.html" class="text-gray-400 hover:text-white transition-colors">Profile</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Categories</h4>
+                    <ul class="space-y-3">
+                        <li><a href="products.html?category=fruits" class="text-gray-400 hover:text-white transition-colors">Fruits</a></li>
+                        <li><a href="products.html?category=vegetables" class="text-gray-400 hover:text-white transition-colors">Vegetables</a></li>
+                        <li><a href="products.html?category=dairy" class="text-gray-400 hover:text-white transition-colors">Dairy</a></li>
+                        <li><a href="products.html?category=meat" class="text-gray-400 hover:text-white transition-colors">Meat</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Contact</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <span class="material-icons text-purple-400">phone</span>
+                            <span class="text-gray-400">+91 98765 43210</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="material-icons text-purple-400">email</span>
+                            <span class="text-gray-400">info@supermart.com</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="material-icons text-purple-400">location_on</span>
+                            <span class="text-gray-400">Mumbai, Maharashtra</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-400">© 2025 SuperMart. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/modern-interactions.js"></script>
+    
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            // Add mobile menu functionality here
+        });
+
+        // Initialize cart count
+        function updateCartCount() {
+            const count = 0; // This will be updated by cart.js
+            const cartCountElements = document.querySelectorAll('#cartCount');
+            cartCountElements.forEach(element => {
+                if (count > 0) {
+                    element.textContent = count;
+                    element.classList.remove('hidden');
+                } else {
+                    element.classList.add('hidden');
+                }
+            });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
