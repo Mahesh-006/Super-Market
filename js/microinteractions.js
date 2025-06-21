@@ -361,7 +361,8 @@ class MicroInteractions {
     
     setupNotificationAnimations() {
         // Enhanced toast notifications
-        const originalShowToast = window.showToast;
+        const originalShowToast = window.show
+
         window.showToast = (message, type = 'success') => {
             this.showEnhancedToast(message, type);
         };
