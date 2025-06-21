@@ -131,24 +131,34 @@ class SuperMartApp {
         this.renderFeaturedProducts();
         this.setupSearch();
         
-        // Force render products if on products page
-        if (window.location.pathname.includes('products.html')) {
-            setTimeout(() => {
+        // Initialize products display immediately
+        this.initializeProductsDisplay();
+    }
+    
+    initializeProductsDisplay() {
+        // Force render products on any page
+        setTimeout(() => {
+            if (window.location.pathname.includes('products.html')) {
                 this.renderProducts();
-            }, 100);
-        }
+            }
+            this.renderFeaturedProducts();
+        }, 100);
     }
     
     loadProducts() {
         // Always use sample data to ensure products are visible
-        this.products = sampleProducts;
-        Storage.set('products', this.products);
+        this.products = [...sampleProducts];
         this.filteredProducts = [...this.products];
+        
+        // Store in localStorage for other components
+        Storage.set('products', this.products);
         
         // Emit event for other components
         if (window.eventEmitter) {
             window.eventEmitter.emit('productsLoaded', this.products);
         }
+        
+        console.log('Products loaded:', this.products.length);
     }
     
     setupEventListeners() {
@@ -253,6 +263,12 @@ class SuperMartApp {
             featuredContainer.innerHTML = featuredProducts.map(product => 
                 this.createProductCard(product)
             ).join('');
+        } else {
+            // Fallback: show first 4 products if no featured products
+            const fallbackProducts = this.products.slice(0, 4);
+            featuredContainer.innerHTML = fallbackProducts.map(product => 
+                this.createProductCard(product)
+            ).join('');
         }
     }
     
@@ -262,7 +278,12 @@ class SuperMartApp {
         const loadingSpinner = document.getElementById('loadingSpinner');
         const noProducts = document.getElementById('noProducts');
         
-        if (!productsGrid) return;
+        console.log('Rendering products:', this.filteredProducts.length);
+        
+        if (!productsGrid) {
+            console.log('Products grid not found');
+            return;
+        }
         
         // Hide loading spinner
         if (loadingSpinner) {
@@ -283,9 +304,14 @@ class SuperMartApp {
         const endIndex = startIndex + this.productsPerPage;
         const productsToShow = this.filteredProducts.slice(startIndex, endIndex);
         
-        productsGrid.innerHTML = productsToShow.map(product => 
+        console.log('Products to show:', productsToShow.length);
+        
+        // Generate product cards HTML
+        const productsHTML = productsToShow.map(product => 
             this.createProductCard(product)
         ).join('');
+        
+        productsGrid.innerHTML = productsHTML;
         
         if (productsCount) {
             productsCount.textContent = `Showing ${productsToShow.length} of ${this.filteredProducts.length} products`;
@@ -642,30 +668,42 @@ window.app = app;
 
 // Handle page-specific initialization
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if we're on the products page
-    if (window.location.pathname.includes('products.html')) {
-        // Parse URL parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const category = urlParams.get('category');
-        const search = urlParams.get('search');
-        
-        // Apply filters from URL
-        const filters = {};
-        if (category) filters.category = category;
-        if (search) filters.search = search;
-        
-        if (Object.keys(filters).length > 0) {
-            app.filterProducts(filters);
-        } else {
-            app.renderProducts();
+    console.log('DOM loaded, initializing app...');
+    
+    // Force initialization after a short delay
+    setTimeout(() => {
+        // Check if we're on the products page
+        if (window.location.pathname.includes('products.html')) {
+            console.log('On products page, rendering products...');
+            
+            // Parse URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category');
+            const search = urlParams.get('search');
+            
+            // Apply filters from URL
+            const filters = {};
+            if (category) filters.category = category;
+            if (search) filters.search = search;
+            
+            if (Object.keys(filters).length > 0) {
+                app.filterProducts(filters);
+            } else {
+                app.renderProducts();
+            }
+            
+            // Update search input if search parameter exists
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput && search) {
+                searchInput.value = search;
+            }
         }
         
-        // Update search input if search parameter exists
-        const searchInput = document.getElementById('searchInput');
-        if (searchInput && search) {
-            searchInput.value = search;
+        // Always render featured products on home page
+        if (window.location.pathname === '/' || window.location.pathname.includes('index.html')) {
+            app.renderFeaturedProducts();
         }
-    }
+    }, 200);
 });
 
 // Export for use in other modules
