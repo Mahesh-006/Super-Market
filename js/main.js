@@ -70,7 +70,7 @@ const sampleProducts = [
         unit: 'kg',
         description: 'Fresh Atlantic salmon fillet, rich in omega-3 fatty acids.',
         details: ['Wild caught', 'Rich in omega-3', 'Sustainably sourced', 'Fresh daily'],
-        featured: true
+        featured: false
     },
     {
         id: 'prod-6',
@@ -700,7 +700,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Always render featured products on home page
-        if (window.location.pathname === '/' || window.location.pathname.includes('index.html')) {
+        if (window.location.pathname === '/' || window.location.pathname.includes('index.html') || window.location.pathname === '/index.html') {
+            console.log('On home page, rendering featured products...');
             app.renderFeaturedProducts();
         }
     }, 200);
