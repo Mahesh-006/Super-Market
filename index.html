@@ -178,7 +178,7 @@
             <div class="container mx-auto px-4">
                 <h2 class="section-title text-4xl font-bold text-center mb-12 text-white">Featured Products</h2>
                 <div class="products-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="featuredProducts">
-                    <!-- Featured Products - Always Visible -->
+                    <!-- Featured Product 1: Fresh Organic Apples -->
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card" data-product='{"id":"prod-1","name":"Fresh Organic Apples","category":"fruits","price":200,"originalPrice":250,"image":"https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg?auto=compress&cs=tinysrgb&w=400","rating":4.5,"stock":50,"unit":"kg","description":"Fresh, crispy organic apples perfect for snacking or baking.","details":["Organic certified","Rich in fiber","No pesticides","Locally sourced"],"featured":true}'>
                         <div class="relative">
                             <img src="https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Organic Apples" class="w-full h-48 object-cover">
@@ -213,6 +213,7 @@
                         </div>
                     </div>
 
+                    <!-- Featured Product 2: Premium Bananas -->
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card" data-product='{"id":"prod-2","name":"Premium Bananas","category":"fruits","price":90,"originalPrice":110,"image":"https://images.pexels.com/photos/61127/pexels-photo-61127.jpeg?auto=compress&cs=tinysrgb&w=400","rating":4.3,"stock":75,"unit":"dozen","description":"Sweet, ripe bananas packed with potassium and natural energy.","details":["High in potassium","Natural energy boost","Perfect ripeness","Great for smoothies"],"featured":true}'>
                         <div class="relative">
                             <img src="https://images.pexels.com/photos/61127/pexels-photo-61127.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Premium Bananas" class="w-full h-48 object-cover">
@@ -247,6 +248,7 @@
                         </div>
                     </div>
 
+                    <!-- Featured Product 3: Fresh Spinach -->
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card" data-product='{"id":"prod-3","name":"Fresh Spinach","category":"vegetables","price":50,"originalPrice":60,"image":"https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg?auto=compress&cs=tinysrgb&w=400","rating":4.7,"stock":30,"unit":"bunch","description":"Fresh, tender spinach leaves perfect for salads and cooking.","details":["Rich in iron","Fresh daily","Pesticide-free","Perfect for salads"],"featured":true}'>
                         <div class="relative">
                             <img src="https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Spinach" class="w-full h-48 object-cover">
@@ -281,6 +283,7 @@
                         </div>
                     </div>
 
+                    <!-- Featured Product 4: Organic Milk -->
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card" data-product='{"id":"prod-4","name":"Organic Milk","category":"dairy","price":70,"originalPrice":80,"image":"https://images.pexels.com/photos/236010/pexels-photo-236010.jpeg?auto=compress&cs=tinysrgb&w=400","rating":4.6,"stock":25,"unit":"liter","description":"Pure organic milk from grass-fed cows.","details":["Organic certified","Grass-fed cows","No hormones","Rich in calcium"],"featured":true}'>
                         <div class="relative">
                             <img src="https://images.pexels.com/photos/236010/pexels-photo-236010.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Organic Milk" class="w-full h-48 object-cover">
@@ -724,8 +727,6 @@
 
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Landing page loaded - Featured products should be visible');
-            
             // Update cart count
             function updateCartCount() {
                 if (cartManager) {
