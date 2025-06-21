@@ -1,164 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Products - SuperMart</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/modern-style.css">
+    <link rel="stylesheet" href="css/components.css">
 </head>
-<body>
+<body class="bg-gray-900 text-gray-100">
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <i class="fas fa-shopping-cart"></i>
-                <span>SuperMart</span>
-            </div>
-            
-            <div class="nav-search">
-                <input type="text" id="searchInput" placeholder="Search products...">
-                <button id="searchBtn"><i class="fas fa-search"></i></button>
-            </div>
-            
-            <div class="nav-links">
-                <a href="/" class="nav-link">Home</a>
-                <a href="products.html" class="nav-link active">Products</a>
-                <a href="cart.html" class="nav-link">
-                    Cart <span id="cartCount" class="cart-count">0</span>
-                </a>
-                <a href="profile.html" class="nav-link">Profile</a>
-                <button id="themeToggle" class="theme-toggle">
-                    <i class="fas fa-moon"></i>
+    <header class="navbar bg-gray-900/95 backdrop-blur-xl border-b border-gray-800 sticky top-0 z-50">
+        <div class="container mx-auto">
+            <div class="nav-container flex justify-between items-center h-20 px-4">
+                <!-- Brand -->
+                <div class="nav-brand flex items-center gap-3">
+                    <span class="material-icons text-3xl bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">shopping_cart</span>
+                    <span class="text-2xl font-bold text-white">SuperMart</span>
+                </div>
+
+                <!-- Desktop Search -->
+                <div class="nav-search hidden md:flex flex-1 max-w-md mx-8 relative">
+                    <input type="text" id="searchInput" placeholder="Search products..." 
+                           class="w-full h-12 pl-12 pr-4 bg-gray-800 border border-gray-700 rounded-full text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all">
+                    <button class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-500 transition-colors">
+                        <span class="material-icons">search</span>
+                    </button>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="desktop-nav hidden md:flex items-center gap-6">
+                    <a href="index.html" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-800">
+                        <span class="material-icons text-lg">home</span>
+                        Home
+                    </a>
+                    <a href="products.html" class="nav-button active flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all bg-gray-800">
+                        <span class="material-icons text-lg">inventory_2</span>
+                        Products
+                    </a>
+                    <a href="cart.html" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-800 relative">
+                        <span class="material-icons text-lg">shopping_cart</span>
+                        Cart
+                        <span id="cartCount" class="cart-count hidden absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full min-w-5 text-center">0</span>
+                    </a>
+                    <a href="profile.html" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-800">
+                        <span class="material-icons text-lg">account_circle</span>
+                        Profile
+                    </a>
+                    <button id="authBtn" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-2 px-6 rounded-full text-sm transition-all transform hover:scale-105">
+                        <span class="material-icons mr-2 text-sm">login</span>
+                        Login
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn md:hidden p-2 text-gray-400 hover:text-white transition-colors" id="mobileMenuBtn">
+                    <span class="material-icons">menu</span>
                 </button>
-                <button id="authBtn" class="auth-btn">Login</button>
             </div>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu hidden md:hidden bg-gray-800 border-t border-gray-700 p-4" id="mobileMenu">
+                <!-- Mobile Search -->
+                <div class="mb-4 relative">
+                    <input type="text" id="mobileSearchInput" placeholder="Search products..." 
+                           class="w-full h-12 pl-12 pr-4 bg-gray-700 border border-gray-600 rounded-full text-white placeholder-gray-400 focus:border-blue-500 transition-all">
+                    <span class="material-icons absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">search</span>
+                </div>
+                
+                <!-- Mobile Navigation Links -->
+                <div class="flex flex-col gap-2">
+                    <a href="index.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all">
+                        <span class="material-icons">home</span>
+                        Home
+                    </a>
+                    <a href="products.html" class="nav-button active flex items-center gap-3 p-3 rounded-lg transition-all bg-gray-700">
+                        <span class="material-icons">inventory_2</span>
+                        Products
+                    </a>
+                    <a href="cart.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all relative">
+                        <span class="material-icons">shopping_cart</span>
+                        Cart
+                        <span id="mobileCartCount" class="cart-count hidden bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">0</span>
+                    </a>
+                    <a href="profile.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all">
+                        <span class="material-icons">account_circle</span>
+                        Profile
+                    </a>
+                    <button id="mobileAuthBtn" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-3 px-4 rounded-lg text-center transition-all">
+                        <span class="material-icons mr-2">login</span>
+                        Login
+                    </button>
+                </div>
+            </div>
         </div>
-        
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="/" class="mobile-link">Home</a>
-            <a href="products.html" class="mobile-link">Products</a>
-            <a href="cart.html" class="mobile-link">Cart</a>
-            <a href="profile.html" class="mobile-link">Profile</a>
-            <button id="mobileAuthBtn" class="mobile-auth-btn">Login</button>
-        </div>
-    </nav>
+    </header>
 
     <!-- Products Header -->
-    <section class="products-header">
-        <div class="container">
-            <h1>Our Products</h1>
-            <p>Fresh quality products at your fingertips</p>
-        </div>
-    </section>
-
-    <!-- Filters and Search -->
-    <section class="filters">
-        <div class="container">
-            <div class="filters-row">
-                <div class="filter-group">
-                    <label>Category:</label>
-                    <select id="categoryFilter">
-                        <option value="">All Categories</option>
-                        <option value="fruits">Fruits</option>
-                        <option value="vegetables">Vegetables</option>
-                        <option value="dairy">Dairy</option>
-                        <option value="meat">Meat</option>
-                        <option value="bakery">Bakery</option>
-                        <option value="beverages">Beverages</option>
-                    </select>
-                </div>
-                
-                <div class="filter-group">
-                    <label>Sort by:</label>
-                    <select id="sortFilter">
-                        <option value="name">Name</option>
-                        <option value="price-low">Price: Low to High</option>
-                        <option value="price-high">Price: High to Low</option>
-                        <option value="rating">Rating</option>
-                    </select>
-                </div>
-                
-                <div class="filter-group">
-                    <label>Price Range:</label>
-                    <input type="range" id="priceRange" min="0" max="100" value="100">
-                    <span id="priceValue">$100</span>
-                </div>
-                
-                <button id="clearFilters" class="clear-filters">Clear Filters</button>
+    <section class="bg-gradient-to-r from-gray-800 to-gray-900 py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Products</h1>
+                <p class="text-xl text-gray-300">Fresh quality products at your fingertips</p>
             </div>
         </div>
     </section>
 
-    <!-- Products Grid -->
-    <section class="products-section">
-        <div class="container">
-            <div class="products-info">
-                <span id="productsCount">Loading products...</span>
-                <div class="view-toggle">
-                    <button id="gridView" class="view-btn active">
-                        <i class="fas fa-th"></i>
-                    </button>
-                    <button id="listView" class="view-btn">
-                        <i class="fas fa-list"></i>
+    <!-- Filters Section -->
+    <section class="bg-gray-800 border-b border-gray-700 py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-4 items-center justify-between">
+                <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+                    <!-- Category Filter -->
+                    <div class="filter-group">
+                        <select id="categoryFilter" class="bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all">
+                            <option value="">All Categories</option>
+                            <option value="fruits">Fruits</option>
+                            <option value="vegetables">Vegetables</option>
+                            <option value="dairy">Dairy</option>
+                            <option value="meat">Meat</option>
+                            <option value="bakery">Bakery</option>
+                            <option value="beverages">Beverages</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Sort Filter -->
+                    <div class="filter-group">
+                        <select id="sortFilter" class="bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all">
+                            <option value="name">Sort by Name</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Price Range -->
+                    <div class="filter-group flex items-center gap-2">
+                        <span class="text-gray-300 text-sm">Price:</span>
+                        <input type="range" id="priceRange" min="0" max="100" value="100" class="flex-1">
+                        <span id="priceValue" class="text-blue-400 font-medium text-sm">$100</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <!-- View Toggle -->
+                    <div class="view-toggle flex bg-gray-700 rounded-lg p-1">
+                        <button id="gridView" class="view-btn active p-2 rounded-md transition-all bg-gray-600">
+                            <span class="material-icons">grid_view</span>
+                        </button>
+                        <button id="listView" class="view-btn p-2 rounded-md transition-all hover:bg-gray-600">
+                            <span class="material-icons">view_list</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Clear Filters -->
+                    <button id="clearFilters" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-all">
+                        <span class="material-icons mr-2">clear</span>
+                        Clear
                     </button>
                 </div>
             </div>
-            
-            <div id="loadingSpinner" class="loading-spinner">
-                <div class="spinner"></div>
-                <p>Loading products...</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-12 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <!-- Products Info -->
+            <div class="flex justify-between items-center mb-8">
+                <span id="productsCount" class="text-gray-400">Loading products...</span>
             </div>
             
-            <div class="products-grid" id="productsGrid">
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="text-center py-12 hidden">
+                <div class="inline-flex items-center gap-3">
+                    <div class="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                    <span class="text-gray-400">Loading products...</span>
+                </div>
+            </div>
+            
+            <!-- Products Grid -->
+            <div class="products-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="productsGrid">
                 <!-- Products will be loaded here -->
             </div>
             
-            <div class="pagination" id="pagination">
+            <!-- No Products -->
+            <div id="noProducts" class="text-center py-16 hidden">
+                <span class="material-icons text-6xl text-gray-600 mb-4 block">inventory_2</span>
+                <h3 class="text-xl font-semibold text-gray-400 mb-2">No products found</h3>
+                <p class="text-gray-500">Try adjusting your search or filters</p>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination flex justify-center mt-12" id="pagination">
                 <!-- Pagination will be generated here -->
             </div>
         </div>
     </section>
 
     <!-- Product Detail Modal -->
-    <div id="productModal" class="modal">
-        <div class="modal-content product-modal">
-            <span class="close-btn">&times;</span>
-            <div class="product-detail">
+    <div id="productModal" class="modal fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="modal-content bg-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
+            <button class="modal-close absolute top-4 right-4 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-600 transition-all z-10">
+                <span class="material-icons">close</span>
+            </button>
+            
+            <div class="product-detail grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
                 <div class="product-image">
-                    <img id="modalProductImage" src="" alt="">
+                    <img id="modalProductImage" src="" alt="" class="w-full h-96 object-cover rounded-xl">
                 </div>
-                <div class="product-info">
-                    <h2 id="modalProductName"></h2>
-                    <div class="product-rating" id="modalProductRating"></div>
-                    <div class="product-price" id="modalProductPrice"></div>
-                    <p class="product-description" id="modalProductDescription"></p>
+                <div class="product-info space-y-6">
+                    <div>
+                        <h2 id="modalProductName" class="text-3xl font-bold text-white mb-4"></h2>
+                        <div id="modalProductRating" class="flex items-center gap-2 mb-4"></div>
+                        <div id="modalProductPrice" class="text-2xl font-bold text-green-400 mb-4"></div>
+                        <p id="modalProductDescription" class="text-gray-300 leading-relaxed"></p>
+                    </div>
                     
                     <div class="product-details">
-                        <h4>Product Details</h4>
-                        <ul id="modalProductDetails"></ul>
+                        <h4 class="text-lg font-semibold text-white mb-3">Product Details</h4>
+                        <ul id="modalProductDetails" class="space-y-2 text-gray-300"></ul>
                     </div>
                     
                     <div class="quantity-selector">
-                        <label>Quantity:</label>
-                        <div class="quantity-controls">
-                            <button class="qty-btn" id="decreaseQty">-</button>
-                            <span id="selectedQty">1</span>
-                            <button class="qty-btn" id="increaseQty">+</button>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Quantity:</label>
+                        <div class="flex items-center gap-3">
+                            <button id="decreaseQty" class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center text-white hover:bg-gray-600 transition-all">
+                                <span class="material-icons">remove</span>
+                            </button>
+                            <span id="selectedQty" class="text-xl font-semibold text-white min-w-8 text-center">1</span>
+                            <button id="increaseQty" class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center text-white hover:bg-gray-600 transition-all">
+                                <span class="material-icons">add</span>
+                            </button>
                         </div>
                     </div>
                     
-                    <div class="modal-actions">
-                        <button id="addToCartModal" class="add-to-cart-btn">
-                            <i class="fas fa-cart-plus"></i> Add to Cart
+                    <div class="modal-actions flex gap-4">
+                        <button id="addToCartModal" class="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+                            <span class="material-icons">add_shopping_cart</span>
+                            Add to Cart
                         </button>
-                        <button id="addToWishlist" class="wishlist-btn">
-                            <i class="fas fa-heart"></i> Add to Wishlist
+                        <button id="addToWishlist" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2">
+                            <span class="material-icons">favorite</span>
+                            Wishlist
                         </button>
                     </div>
                 </div>
@@ -166,83 +254,89 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-brand">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>SuperMart</span>
-                    </div>
-                    <p>Your premium supermarket for fresh groceries and daily essentials.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="products.html">Products</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li><a href="profile.html">Profile</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
-                        <li><i class="fas fa-envelope"></i> info@supermart.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Market Street</li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 SuperMart. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
     <!-- Auth Modal -->
-    <div id="authModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <div class="auth-tabs">
-                <button class="tab-btn active" data-tab="login">Login</button>
-                <button class="tab-btn" data-tab="register">Register</button>
+    <div id="authModal" class="modal fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="modal-content bg-gray-800 rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto relative">
+            <button class="modal-close absolute top-4 right-4 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-600 transition-all" onclick="closeAuthModal()">
+                <span class="material-icons">close</span>
+            </button>
+            
+            <div class="auth-header text-center mb-8">
+                <h2 id="authTitle" class="text-3xl font-bold text-white mb-2">Welcome Back</h2>
+                <p class="text-gray-400">Sign in to your account</p>
             </div>
             
-            <form id="loginForm" class="auth-form active">
-                <h3>Login to Your Account</h3>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Password" required>
-                <button type="submit">Login</button>
+            <div class="auth-tabs flex bg-gray-700 rounded-xl p-1 mb-8">
+                <button id="loginTab" class="auth-tab flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all bg-gray-600 text-white" onclick="switchAuthTab('login')">
+                    Login
+                </button>
+                <button id="registerTab" class="auth-tab flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all text-gray-300 hover:text-white" onclick="switchAuthTab('register')">
+                    Register
+                </button>
+            </div>
+            
+            <form id="loginForm" class="auth-form space-y-6">
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                    <input type="email" id="loginEmail" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
+                </div>
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Password</label>
+                    <input type="password" id="loginPassword" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
+                </div>
+                <button type="submit" class="auth-submit-btn w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-4 rounded-xl transition-all transform hover:scale-105">
+                    <span class="material-icons mr-2">login</span>
+                    Sign In
+                </button>
             </form>
             
-            <form id="registerForm" class="auth-form">
-                <h3>Create New Account</h3>
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Password" required>
-                <input type="password" placeholder="Confirm Password" required>
-                <button type="submit">Register</button>
+            <form id="registerForm" class="auth-form space-y-6 hidden">
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+                    <input type="text" id="registerName" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
+                </div>
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                    <input type="email" id="registerEmail" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
+                </div>
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Password</label>
+                    <input type="password" id="registerPassword" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
+                </div>
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Confirm Password</label>
+                    <input type="password" id="confirmPassword" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
+                </div>
+                <button type="submit" class="auth-submit-btn w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-4 rounded-xl transition-all transform hover:scale-105">
+                    <span class="material-icons mr-2">person_add</span>
+                    Create Account
+                </button>
             </form>
         </div>
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="toast"></div>
+    <div id="toast" class="toast fixed bottom-6 right-6 bg-gray-800 border border-gray-700 rounded-xl shadow-2xl transform translate-x-full transition-transform duration-300 z-50 max-w-sm">
+        <div class="toast-content flex items-start gap-4 p-4">
+            <div class="toast-icon w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="material-icons text-green-600">check_circle</span>
+            </div>
+            <div class="toast-message flex-1">
+                <div class="toast-title font-semibold text-white mb-1">Success!</div>
+                <div class="toast-text text-gray-300 text-sm" id="toastMessage">Operation completed successfully</div>
+            </div>
+            <button class="toast-close p-1 text-gray-400 hover:text-white transition-colors">
+                <span class="material-icons text-sm">close</span>
+            </button>
+        </div>
+    </div>
 
+    <!-- Scripts -->
     <script src="js/utils.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/products.js"></script>
+    <script src="js/modern-interactions.js"></script>
 </body>
 </html>

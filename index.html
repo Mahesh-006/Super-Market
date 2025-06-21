@@ -3,276 +3,368 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>SuperMart</title>
+    <title>SuperMart - Fresh Groceries Delivered</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #111827;
-            color: #F9FAFB;
-        }
-        .nav-button {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: background-color 0.2s;
-            text-decoration: none;
-        }
-        .nav-button:hover {
-            background-color: #374151;
-        }
-        .nav-button.active {
-            background-color: #4B5563;
-        }
-        .nav-button .material-icons {
-            margin-right: 0.5rem;
-            font-size: 1.25rem;
-        }
-        .category-card {
-            background-color: #1F2937;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            transition: transform 0.2s;
-            cursor: pointer;
-        }
-        .category-card:hover {
-            transform: translateY(-0.25rem);
-        }
-        .category-card .material-icons {
-            font-size: 2.5rem;
-            color: #9CA3AF;
-            margin-bottom: 0.75rem;
-        }
-        .cart-count {
-            background: #DC2626;
-            color: white;
-            border-radius: 9999px;
-            padding: 0.125rem 0.375rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-left: 0.25rem;
-            min-width: 1.25rem;
-            text-align: center;
-        }
-        .mobile-menu {
-            display: none;
-        }
-        .mobile-menu.show {
-            display: block;
-        }
-        @media (max-width: 768px) {
-            .desktop-nav {
-                display: none;
-            }
-            .mobile-menu-btn {
-                display: block;
-            }
-        }
-        @media (min-width: 769px) {
-            .mobile-menu-btn {
-                display: none;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/modern-style.css">
+    <link rel="stylesheet" href="css/components.css">
 </head>
-<body>
-    <header class="py-4 px-6 shadow-md bg-gray-900 sticky top-0 z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-white">SuperMart</h1>
-            <nav class="desktop-nav flex items-center space-x-4">
-                <a class="nav-button active" href="index.html">
-                    <span class="material-icons">home</span>
-                    Home
-                </a>
-                <a class="nav-button" href="products.html">
-                    <span class="material-icons">inventory_2</span>
-                    Products
-                </a>
-                <a class="nav-button" href="cart.html">
-                    <span class="material-icons">shopping_cart</span>
-                    Cart
-                    <span id="cartCount" class="cart-count" style="display: none;">0</span>
-                </a>
-                <a class="nav-button" href="profile.html">
-                    <span class="material-icons">receipt_long</span>
-                    Orders
-                </a>
-                <a class="nav-button" href="profile.html">
-                    <span class="material-icons">account_circle</span>
-                    Profile
-                </a>
-                <button id="themeToggle" class="text-gray-400 hover:text-white focus:outline-none">
-                    <span class="material-icons">brightness_6</span>
+<body class="bg-gray-900 text-gray-100">
+    <!-- Navigation -->
+    <header class="navbar bg-gray-900/95 backdrop-blur-xl border-b border-gray-800 sticky top-0 z-50">
+        <div class="container mx-auto">
+            <div class="nav-container flex justify-between items-center h-20 px-4">
+                <!-- Brand -->
+                <div class="nav-brand flex items-center gap-3">
+                    <span class="material-icons text-3xl bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">shopping_cart</span>
+                    <span class="text-2xl font-bold text-white">SuperMart</span>
+                </div>
+
+                <!-- Desktop Search -->
+                <div class="nav-search hidden md:flex flex-1 max-w-md mx-8 relative">
+                    <input type="text" id="searchInput" placeholder="Search products..." 
+                           class="w-full h-12 pl-12 pr-4 bg-gray-800 border border-gray-700 rounded-full text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all">
+                    <button class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-500 transition-colors">
+                        <span class="material-icons">search</span>
+                    </button>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="desktop-nav hidden md:flex items-center gap-6">
+                    <a href="index.html" class="nav-button active flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-800">
+                        <span class="material-icons text-lg">home</span>
+                        Home
+                    </a>
+                    <a href="products.html" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-800">
+                        <span class="material-icons text-lg">inventory_2</span>
+                        Products
+                    </a>
+                    <a href="cart.html" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-800 relative">
+                        <span class="material-icons text-lg">shopping_cart</span>
+                        Cart
+                        <span id="cartCount" class="cart-count hidden absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full min-w-5 text-center">0</span>
+                    </a>
+                    <a href="profile.html" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-800">
+                        <span class="material-icons text-lg">account_circle</span>
+                        Profile
+                    </a>
+                    <a href="admin/login.html" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-800 text-yellow-400">
+                        <span class="material-icons text-lg">admin_panel_settings</span>
+                        Admin
+                    </a>
+                    <button id="themeToggle" class="p-2 text-gray-400 hover:text-white transition-colors">
+                        <span class="material-icons">brightness_6</span>
+                    </button>
+                    <button id="authBtn" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-2 px-6 rounded-full text-sm transition-all transform hover:scale-105">
+                        <span class="material-icons mr-2 text-sm">login</span>
+                        Login
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn md:hidden p-2 text-gray-400 hover:text-white transition-colors" id="mobileMenuBtn">
+                    <span class="material-icons">menu</span>
                 </button>
-                <a id="authBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md text-sm inline-flex items-center" href="#">
-                    <span class="material-icons mr-2">login</span>
-                    Login
-                </a>
-            </nav>
-            
-            <!-- Mobile Menu Button -->
-            <button class="mobile-menu-btn text-gray-400 hover:text-white focus:outline-none md:hidden" id="mobileMenuBtn">
-                <span class="material-icons">menu</span>
-            </button>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div class="mobile-menu mt-4 md:hidden" id="mobileMenu">
-            <div class="flex flex-col space-y-2">
-                <a class="nav-button active" href="index.html">
-                    <span class="material-icons">home</span>
-                    Home
-                </a>
-                <a class="nav-button" href="products.html">
-                    <span class="material-icons">inventory_2</span>
-                    Products
-                </a>
-                <a class="nav-button" href="cart.html">
-                    <span class="material-icons">shopping_cart</span>
-                    Cart
-                    <span id="mobileCartCount" class="cart-count" style="display: none;">0</span>
-                </a>
-                <a class="nav-button" href="profile.html">
-                    <span class="material-icons">receipt_long</span>
-                    Orders
-                </a>
-                <a class="nav-button" href="profile.html">
-                    <span class="material-icons">account_circle</span>
-                    Profile
-                </a>
-                <a id="mobileAuthBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md text-sm inline-flex items-center justify-center" href="#">
-                    <span class="material-icons mr-2">login</span>
-                    Login
-                </a>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu hidden md:hidden bg-gray-800 border-t border-gray-700 p-4" id="mobileMenu">
+                <!-- Mobile Search -->
+                <div class="mb-4 relative">
+                    <input type="text" placeholder="Search products..." 
+                           class="w-full h-12 pl-12 pr-4 bg-gray-700 border border-gray-600 rounded-full text-white placeholder-gray-400 focus:border-blue-500 transition-all">
+                    <span class="material-icons absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">search</span>
+                </div>
+                
+                <!-- Mobile Navigation Links -->
+                <div class="flex flex-col gap-2">
+                    <a href="index.html" class="nav-button active flex items-center gap-3 p-3 rounded-lg transition-all">
+                        <span class="material-icons">home</span>
+                        Home
+                    </a>
+                    <a href="products.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all">
+                        <span class="material-icons">inventory_2</span>
+                        Products
+                    </a>
+                    <a href="cart.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all relative">
+                        <span class="material-icons">shopping_cart</span>
+                        Cart
+                        <span id="mobileCartCount" class="cart-count hidden bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">0</span>
+                    </a>
+                    <a href="profile.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all">
+                        <span class="material-icons">account_circle</span>
+                        Profile
+                    </a>
+                    <a href="admin/login.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all text-yellow-400">
+                        <span class="material-icons">admin_panel_settings</span>
+                        Admin Portal
+                    </a>
+                    <button id="mobileAuthBtn" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-3 px-4 rounded-lg text-center transition-all">
+                        <span class="material-icons mr-2">login</span>
+                        Login
+                    </button>
+                </div>
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto mt-8 px-6">
-        <section class="bg-gray-800 rounded-lg p-8 md:p-12 mb-12">
-            <div class="md:w-3/4 lg:w-1/2">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Fresh Groceries Delivered</h2>
-                <p class="text-gray-300 mb-6 text-lg">
-                    Get the freshest produce and everyday essentials delivered to your doorstep
-                </p>
-                <button class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-md text-base transition duration-200" onclick="window.location.href='products.html'">
-                    Shop Now
-                </button>
+    <!-- Hero Section -->
+    <main>
+        <section class="hero bg-gradient-to-br from-gray-800 to-gray-900 py-20 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent leading-tight">
+                        Fresh Groceries Delivered
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+                        Get the freshest produce and everyday essentials delivered to your doorstep
+                    </p>
+                    <button onclick="window.location.href='products.html'" 
+                            class="cta-btn bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-all transform hover:scale-105 hover:shadow-2xl">
+                        <span class="material-icons mr-2">shopping_bag</span>
+                        Shop Now
+                    </button>
+                </div>
             </div>
         </section>
 
-        <section>
-            <h3 class="text-3xl font-bold text-white mb-8">Shop by Category</h3>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6" id="categoryGrid">
-                <div class="category-card" data-category="fruits">
-                    <span class="material-icons">apple</span>
-                    <span class="text-gray-200 font-medium">Fruits</span>
-                </div>
-                <div class="category-card" data-category="vegetables">
-                    <span class="material-icons">eco</span>
-                    <span class="text-gray-200 font-medium">Vegetables</span>
-                </div>
-                <div class="category-card" data-category="dairy">
-                    <span class="material-icons">egg</span>
-                    <span class="text-gray-200 font-medium">Dairy</span>
-                </div>
-                <div class="category-card" data-category="meat">
-                    <span class="material-icons">kebab_dining</span>
-                    <span class="text-gray-200 font-medium">Meat</span>
-                </div>
-                <div class="category-card" data-category="bakery">
-                    <span class="material-icons">bakery_dining</span>
-                    <span class="text-gray-200 font-medium">Bakery</span>
-                </div>
-                <div class="category-card" data-category="beverages">
-                    <span class="material-icons">local_bar</span>
-                    <span class="text-gray-200 font-medium">Beverages</span>
-                </div>
-                <div class="category-card" data-category="snacks">
-                    <span class="material-icons">icecream</span>
-                    <span class="text-gray-200 font-medium">Snacks</span>
+        <!-- Categories Section -->
+        <section class="categories py-20 bg-gray-800">
+            <div class="container mx-auto px-4">
+                <h2 class="section-title text-4xl font-bold text-center mb-12 text-white">Shop by Category</h2>
+                <div class="category-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6" id="categoryGrid">
+                    <div class="category-card bg-gray-700 hover:bg-gray-600 rounded-xl p-6 text-center cursor-pointer transition-all transform hover:-translate-y-2 hover:shadow-xl" data-category="fruits">
+                        <span class="material-icons text-5xl text-green-400 mb-4 block">apple</span>
+                        <span class="text-gray-200 font-medium text-lg">Fruits</span>
+                    </div>
+                    <div class="category-card bg-gray-700 hover:bg-gray-600 rounded-xl p-6 text-center cursor-pointer transition-all transform hover:-translate-y-2 hover:shadow-xl" data-category="vegetables">
+                        <span class="material-icons text-5xl text-green-500 mb-4 block">eco</span>
+                        <span class="text-gray-200 font-medium text-lg">Vegetables</span>
+                    </div>
+                    <div class="category-card bg-gray-700 hover:bg-gray-600 rounded-xl p-6 text-center cursor-pointer transition-all transform hover:-translate-y-2 hover:shadow-xl" data-category="dairy">
+                        <span class="material-icons text-5xl text-yellow-400 mb-4 block">egg</span>
+                        <span class="text-gray-200 font-medium text-lg">Dairy</span>
+                    </div>
+                    <div class="category-card bg-gray-700 hover:bg-gray-600 rounded-xl p-6 text-center cursor-pointer transition-all transform hover:-translate-y-2 hover:shadow-xl" data-category="meat">
+                        <span class="material-icons text-5xl text-red-400 mb-4 block">kebab_dining</span>
+                        <span class="text-gray-200 font-medium text-lg">Meat</span>
+                    </div>
+                    <div class="category-card bg-gray-700 hover:bg-gray-600 rounded-xl p-6 text-center cursor-pointer transition-all transform hover:-translate-y-2 hover:shadow-xl" data-category="bakery">
+                        <span class="material-icons text-5xl text-orange-400 mb-4 block">bakery_dining</span>
+                        <span class="text-gray-200 font-medium text-lg">Bakery</span>
+                    </div>
+                    <div class="category-card bg-gray-700 hover:bg-gray-600 rounded-xl p-6 text-center cursor-pointer transition-all transform hover:-translate-y-2 hover:shadow-xl" data-category="beverages">
+                        <span class="material-icons text-5xl text-blue-400 mb-4 block">local_bar</span>
+                        <span class="text-gray-200 font-medium text-lg">Beverages</span>
+                    </div>
+                    <div class="category-card bg-gray-700 hover:bg-gray-600 rounded-xl p-6 text-center cursor-pointer transition-all transform hover:-translate-y-2 hover:shadow-xl" data-category="snacks">
+                        <span class="material-icons text-5xl text-pink-400 mb-4 block">icecream</span>
+                        <span class="text-gray-200 font-medium text-lg">Snacks</span>
+                    </div>
+                    <div class="category-card bg-gray-700 hover:bg-gray-600 rounded-xl p-6 text-center cursor-pointer transition-all transform hover:-translate-y-2 hover:shadow-xl" data-category="all">
+                        <span class="material-icons text-5xl text-purple-400 mb-4 block">apps</span>
+                        <span class="text-gray-200 font-medium text-lg">View All</span>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Featured Products Section -->
-        <section class="mt-16">
-            <h3 class="text-3xl font-bold text-white mb-8">Featured Products</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="featuredProducts">
-                <!-- Products will be loaded here by JavaScript -->
+        <section class="featured-products py-20 bg-gray-900">
+            <div class="container mx-auto px-4">
+                <h2 class="section-title text-4xl font-bold text-center mb-12 text-white">Featured Products</h2>
+                <div class="products-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="featuredProducts">
+                    <!-- Products will be loaded here by JavaScript -->
+                </div>
+                <div class="text-center mt-12">
+                    <button onclick="window.location.href='products.html'" 
+                            class="view-all-btn bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-full transition-all transform hover:scale-105">
+                        View All Products
+                        <span class="material-icons ml-2">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features py-20 bg-gray-800">
+            <div class="container mx-auto px-4">
+                <h2 class="section-title text-4xl font-bold text-center mb-12 text-white">Why Choose SuperMart?</h2>
+                <div class="features-grid grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="feature-card bg-gray-700 rounded-2xl p-8 text-center transition-all transform hover:-translate-y-2 hover:shadow-xl">
+                        <div class="feature-icon w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <span class="material-icons text-3xl text-white">local_shipping</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-4">Fast Delivery</h3>
+                        <p class="text-gray-300 leading-relaxed">Get your groceries delivered within 2 hours or schedule for later</p>
+                    </div>
+                    <div class="feature-card bg-gray-700 rounded-2xl p-8 text-center transition-all transform hover:-translate-y-2 hover:shadow-xl">
+                        <div class="feature-icon w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <span class="material-icons text-3xl text-white">verified</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-4">Fresh Quality</h3>
+                        <p class="text-gray-300 leading-relaxed">Hand-picked fresh produce and quality guaranteed products</p>
+                    </div>
+                    <div class="feature-card bg-gray-700 rounded-2xl p-8 text-center transition-all transform hover:-translate-y-2 hover:shadow-xl">
+                        <div class="feature-icon w-20 h-20 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <span class="material-icons text-3xl text-white">savings</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-4">Best Prices</h3>
+                        <p class="text-gray-300 leading-relaxed">Competitive prices with regular discounts and special offers</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-4xl font-bold text-white mb-4">Stay Updated</h2>
+                    <p class="text-xl text-blue-100 mb-8">Get the latest offers and updates delivered to your inbox</p>
+                    <div class="newsletter-form flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                        <input type="email" id="newsletterEmail" placeholder="Enter your email" 
+                               class="flex-1 px-6 py-4 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
+                        <button id="subscribeBtn" 
+                                class="bg-white text-blue-600 font-semibold py-4 px-8 rounded-full hover:bg-gray-100 transition-all transform hover:scale-105">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-8 mt-12 border-t border-gray-700">
-        <div class="container mx-auto px-6 text-center text-gray-400 text-sm">
-            © 2025 SuperMart. All rights reserved.
+    <!-- Footer -->
+    <footer class="footer bg-gray-900 border-t border-gray-800 py-16">
+        <div class="container mx-auto px-4">
+            <div class="footer-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="footer-section">
+                    <div class="footer-brand flex items-center gap-3 mb-6">
+                        <span class="material-icons text-3xl bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">shopping_cart</span>
+                        <span class="text-2xl font-bold text-white">SuperMart</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed mb-6">Your premium supermarket for fresh groceries and daily essentials delivered to your doorstep.</p>
+                    <div class="social-links flex gap-4">
+                        <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-blue-600 hover:text-white transition-all">
+                            <span class="material-icons">facebook</span>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-blue-400 hover:text-white transition-all">
+                            <span class="material-icons">alternate_email</span>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-pink-600 hover:text-white transition-all">
+                            <span class="material-icons">camera_alt</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4 class="text-lg font-semibold text-white mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-blue-400 transition-colors">Home</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-blue-400 transition-colors">Products</a></li>
+                        <li><a href="cart.html" class="text-gray-400 hover:text-blue-400 transition-colors">Cart</a></li>
+                        <li><a href="profile.html" class="text-gray-400 hover:text-blue-400 transition-colors">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="text-lg font-semibold text-white mb-6">Categories</h4>
+                    <ul class="space-y-3">
+                        <li><a href="products.html?category=fruits" class="text-gray-400 hover:text-blue-400 transition-colors">Fruits</a></li>
+                        <li><a href="products.html?category=vegetables" class="text-gray-400 hover:text-blue-400 transition-colors">Vegetables</a></li>
+                        <li><a href="products.html?category=dairy" class="text-gray-400 hover:text-blue-400 transition-colors">Dairy</a></li>
+                        <li><a href="products.html?category=meat" class="text-gray-400 hover:text-blue-400 transition-colors">Meat</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="text-lg font-semibold text-white mb-6">Contact</h4>
+                    <div class="contact-info space-y-4">
+                        <div class="contact-item flex items-center gap-3">
+                            <span class="material-icons text-blue-400">phone</span>
+                            <span class="text-gray-400">+1 234 567 8900</span>
+                        </div>
+                        <div class="contact-item flex items-center gap-3">
+                            <span class="material-icons text-blue-400">email</span>
+                            <span class="text-gray-400">info@supermart.com</span>
+                        </div>
+                        <div class="contact-item flex items-center gap-3">
+                            <span class="material-icons text-blue-400">location_on</span>
+                            <span class="text-gray-400">123 Market Street, City</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom border-t border-gray-800 pt-8">
+                <div class="footer-bottom-content flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-400 text-center md:text-left">© 2025 SuperMart. All rights reserved.</p>
+                    <div class="footer-links flex gap-6">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors text-sm">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors text-sm">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors text-sm">Support</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
     <!-- Auth Modal -->
-    <div id="authModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-        <div class="bg-gray-800 rounded-lg p-8 max-w-md w-full mx-4">
-            <div class="flex justify-between items-center mb-6">
-                <h2 id="authTitle" class="text-2xl font-bold text-white">Welcome Back</h2>
-                <button class="text-gray-400 hover:text-white" onclick="closeAuthModal()">
-                    <span class="material-icons">close</span>
-                </button>
+    <div id="authModal" class="modal fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="modal-content bg-gray-800 rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto relative">
+            <button class="modal-close absolute top-4 right-4 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-600 transition-all" onclick="closeAuthModal()">
+                <span class="material-icons">close</span>
+            </button>
+            
+            <div class="auth-header text-center mb-8">
+                <h2 id="authTitle" class="text-3xl font-bold text-white mb-2">Welcome Back</h2>
+                <p class="text-gray-400">Sign in to your account</p>
             </div>
             
-            <div class="flex mb-6 bg-gray-700 rounded-lg p-1">
-                <button id="loginTab" class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors bg-gray-600 text-white" onclick="switchAuthTab('login')">
+            <div class="auth-tabs flex bg-gray-700 rounded-xl p-1 mb-8">
+                <button id="loginTab" class="auth-tab flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all bg-gray-600 text-white" onclick="switchAuthTab('login')">
                     Login
                 </button>
-                <button id="registerTab" class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors text-gray-300 hover:text-white" onclick="switchAuthTab('register')">
+                <button id="registerTab" class="auth-tab flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all text-gray-300 hover:text-white" onclick="switchAuthTab('register')">
                     Register
                 </button>
             </div>
             
-            <form id="loginForm" class="space-y-4">
-                <div>
+            <form id="loginForm" class="auth-form space-y-6">
+                <div class="form-group">
                     <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                    <input type="email" id="loginEmail" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <input type="email" id="loginEmail" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
                 </div>
-                <div>
+                <div class="form-group">
                     <label class="block text-sm font-medium text-gray-300 mb-2">Password</label>
-                    <input type="password" id="loginPassword" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <input type="password" id="loginPassword" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
                 </div>
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200">
+                <button type="submit" class="auth-submit-btn w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-4 rounded-xl transition-all transform hover:scale-105">
+                    <span class="material-icons mr-2">login</span>
                     Sign In
                 </button>
             </form>
             
-            <form id="registerForm" class="space-y-4 hidden">
-                <div>
+            <form id="registerForm" class="auth-form space-y-6 hidden">
+                <div class="form-group">
                     <label class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
-                    <input type="text" id="registerName" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <input type="text" id="registerName" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
                 </div>
-                <div>
+                <div class="form-group">
                     <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                    <input type="email" id="registerEmail" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <input type="email" id="registerEmail" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
                 </div>
-                <div>
+                <div class="form-group">
                     <label class="block text-sm font-medium text-gray-300 mb-2">Password</label>
-                    <input type="password" id="registerPassword" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <input type="password" id="registerPassword" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
                 </div>
-                <div>
+                <div class="form-group">
                     <label class="block text-sm font-medium text-gray-300 mb-2">Confirm Password</label>
-                    <input type="password" id="confirmPassword" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <input type="password" id="confirmPassword" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
                 </div>
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200">
+                <button type="submit" class="auth-submit-btn w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-4 rounded-xl transition-all transform hover:scale-105">
+                    <span class="material-icons mr-2">person_add</span>
                     Create Account
                 </button>
             </form>
@@ -280,11 +372,29 @@
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50">
-        <div class="flex items-center">
-            <span class="material-icons mr-2">check_circle</span>
-            <span id="toastMessage">Success!</span>
+    <div id="toast" class="toast fixed bottom-6 right-6 bg-gray-800 border border-gray-700 rounded-xl shadow-2xl transform translate-x-full transition-transform duration-300 z-50 max-w-sm">
+        <div class="toast-content flex items-start gap-4 p-4">
+            <div class="toast-icon w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="material-icons text-green-600">check_circle</span>
+            </div>
+            <div class="toast-message flex-1">
+                <div class="toast-title font-semibold text-white mb-1">Success!</div>
+                <div class="toast-text text-gray-300 text-sm" id="toastMessage">Operation completed successfully</div>
+            </div>
+            <button class="toast-close p-1 text-gray-400 hover:text-white transition-colors">
+                <span class="material-icons text-sm">close</span>
+            </button>
         </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner fixed inset-0 bg-gray-900/90 backdrop-blur-sm z-50 hidden flex-col items-center justify-center">
+        <div class="spinner relative w-16 h-16 mb-4">
+            <div class="spinner-ring absolute inset-0 border-4 border-transparent border-t-blue-500 rounded-full animate-spin"></div>
+            <div class="spinner-ring absolute inset-0 border-4 border-transparent border-t-purple-500 rounded-full animate-spin" style="animation-delay: 0.1s;"></div>
+            <div class="spinner-ring absolute inset-0 border-4 border-transparent border-t-green-500 rounded-full animate-spin" style="animation-delay: 0.2s;"></div>
+        </div>
+        <p class="text-gray-300 font-medium">Loading...</p>
     </div>
 
     <!-- Scripts -->
@@ -292,12 +402,13 @@
     <script src="js/auth.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/modern-interactions.js"></script>
     
     <script>
         // Mobile menu toggle
         document.getElementById('mobileMenuBtn').addEventListener('click', function() {
             const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('show');
+            mobileMenu.classList.toggle('hidden');
         });
 
         // Category navigation
@@ -305,7 +416,11 @@
             const categoryCard = e.target.closest('.category-card');
             if (categoryCard) {
                 const category = categoryCard.dataset.category;
-                window.location.href = `products.html?category=${category}`;
+                if (category === 'all') {
+                    window.location.href = 'products.html';
+                } else {
+                    window.location.href = `products.html?category=${category}`;
+                }
             }
         });
 
@@ -418,54 +533,15 @@
             }
         });
 
-        // Update auth buttons based on login status
-        function updateAuthButtons() {
-            const authBtn = document.getElementById('authBtn');
-            const mobileAuthBtn = document.getElementById('mobileAuthBtn');
-            
-            if (authManager && authManager.isLoggedIn()) {
-                const user = authManager.getCurrentUser();
-                authBtn.innerHTML = `<span class="material-icons mr-2">logout</span>Logout`;
-                mobileAuthBtn.innerHTML = `<span class="material-icons mr-2">logout</span>Logout`;
+        // Newsletter subscription
+        document.getElementById('subscribeBtn').addEventListener('click', function() {
+            const email = document.getElementById('newsletterEmail').value;
+            if (email) {
+                showToast('Thank you for subscribing!', 'success');
+                document.getElementById('newsletterEmail').value = '';
             } else {
-                authBtn.innerHTML = `<span class="material-icons mr-2">login</span>Login`;
-                mobileAuthBtn.innerHTML = `<span class="material-icons mr-2">login</span>Login`;
+                showToast('Please enter your email', 'error');
             }
-        }
-
-        // Update cart count
-        function updateCartCount() {
-            if (cartManager) {
-                const count = cartManager.getItemCount();
-                const cartCounts = document.querySelectorAll('#cartCount, #mobileCartCount');
-                cartCounts.forEach(element => {
-                    if (count > 0) {
-                        element.textContent = count;
-                        element.style.display = 'inline';
-                    } else {
-                        element.style.display = 'none';
-                    }
-                });
-            }
-        }
-
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            updateAuthButtons();
-            updateCartCount();
-            
-            // Listen for auth changes
-            if (window.eventEmitter) {
-                window.eventEmitter.on('userLogin', updateAuthButtons);
-                window.eventEmitter.on('userLogout', updateAuthButtons);
-                window.eventEmitter.on('cartUpdated', updateCartCount);
-            }
-        });
-
-        // Theme toggle (basic implementation)
-        document.getElementById('themeToggle').addEventListener('click', function() {
-            // This is a placeholder for theme toggle functionality
-            showToast('Theme toggle coming soon!', 'info');
         });
 
         // Enhanced toast function
@@ -473,29 +549,32 @@
             const toast = document.getElementById('toast');
             const toastMessage = document.getElementById('toastMessage');
             const icon = toast.querySelector('.material-icons');
+            const iconContainer = toast.querySelector('.toast-icon');
             
             // Update message
             toastMessage.textContent = message;
             
             // Update styling based on type
-            toast.className = 'fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg transform transition-transform duration-300 z-50';
-            
             switch(type) {
                 case 'success':
-                    toast.classList.add('bg-green-600', 'text-white');
+                    iconContainer.className = 'toast-icon w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0';
                     icon.textContent = 'check_circle';
+                    icon.className = 'material-icons text-green-600';
                     break;
                 case 'error':
-                    toast.classList.add('bg-red-600', 'text-white');
+                    iconContainer.className = 'toast-icon w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0';
                     icon.textContent = 'error';
+                    icon.className = 'material-icons text-red-600';
                     break;
                 case 'warning':
-                    toast.classList.add('bg-yellow-600', 'text-white');
+                    iconContainer.className = 'toast-icon w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0';
                     icon.textContent = 'warning';
+                    icon.className = 'material-icons text-yellow-600';
                     break;
                 case 'info':
-                    toast.classList.add('bg-blue-600', 'text-white');
+                    iconContainer.className = 'toast-icon w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0';
                     icon.textContent = 'info';
+                    icon.className = 'material-icons text-blue-600';
                     break;
             }
             
@@ -507,6 +586,50 @@
                 toast.classList.add('translate-x-full');
             }, 3000);
         }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update cart count
+            function updateCartCount() {
+                if (cartManager) {
+                    const count = cartManager.getItemCount();
+                    const cartCounts = document.querySelectorAll('#cartCount, #mobileCartCount');
+                    cartCounts.forEach(element => {
+                        if (count > 0) {
+                            element.textContent = count;
+                            element.classList.remove('hidden');
+                        } else {
+                            element.classList.add('hidden');
+                        }
+                    });
+                }
+            }
+
+            // Update auth buttons
+            function updateAuthButtons() {
+                const authBtn = document.getElementById('authBtn');
+                const mobileAuthBtn = document.getElementById('mobileAuthBtn');
+                
+                if (authManager && authManager.isLoggedIn()) {
+                    const user = authManager.getCurrentUser();
+                    authBtn.innerHTML = `<span class="material-icons mr-2 text-sm">logout</span>Logout`;
+                    mobileAuthBtn.innerHTML = `<span class="material-icons mr-2">logout</span>Logout`;
+                } else {
+                    authBtn.innerHTML = `<span class="material-icons mr-2 text-sm">login</span>Login`;
+                    mobileAuthBtn.innerHTML = `<span class="material-icons mr-2">login</span>Login`;
+                }
+            }
+
+            updateCartCount();
+            updateAuthButtons();
+            
+            // Listen for changes
+            if (window.eventEmitter) {
+                window.eventEmitter.on('userLogin', updateAuthButtons);
+                window.eventEmitter.on('userLogout', updateAuthButtons);
+                window.eventEmitter.on('cartUpdated', updateCartCount);
+            }
+        });
     </script>
 </body>
 </html>
