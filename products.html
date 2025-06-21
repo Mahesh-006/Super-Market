@@ -141,8 +141,8 @@
                     <!-- Price Range -->
                     <div class="filter-group flex items-center gap-2">
                         <span class="text-gray-300 text-sm">Price:</span>
-                        <input type="range" id="priceRange" min="0" max="100" value="100" class="flex-1">
-                        <span id="priceValue" class="text-blue-400 font-medium text-sm">$100</span>
+                        <input type="range" id="priceRange" min="0" max="1000" value="1000" class="flex-1">
+                        <span id="priceValue" class="text-blue-400 font-medium text-sm">₹1000</span>
                     </div>
                 </div>
                 
@@ -185,7 +185,278 @@
             
             <!-- Products Grid -->
             <div class="products-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="productsGrid">
-                <!-- Products will be loaded here -->
+                <!-- Fallback products in case JavaScript doesn't load -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Organic Apples" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">20% OFF</div>
+                        <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn">
+                            <span class="material-icons text-sm">favorite</span>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-white mb-2">Fresh Organic Apples</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm text-gray-600">star_border</span>
+                            </div>
+                            <span class="text-gray-400 text-sm ml-2">(4.5)</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xl font-bold text-green-400">₹200</span>
+                                <span class="text-gray-500 line-through">₹250</span>
+                            </div>
+                            <span class="text-gray-400 text-sm">kg</span>
+                        </div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn">
+                            <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/61127/pexels-photo-61127.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Premium Bananas" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">18% OFF</div>
+                        <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn">
+                            <span class="material-icons text-sm">favorite</span>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-white mb-2">Premium Bananas</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm text-gray-600">star_border</span>
+                            </div>
+                            <span class="text-gray-400 text-sm ml-2">(4.3)</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xl font-bold text-green-400">₹90</span>
+                                <span class="text-gray-500 line-through">₹110</span>
+                            </div>
+                            <span class="text-gray-400 text-sm">dozen</span>
+                        </div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn">
+                            <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Spinach" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">17% OFF</div>
+                        <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn">
+                            <span class="material-icons text-sm">favorite</span>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-white mb-2">Fresh Spinach</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                            </div>
+                            <span class="text-gray-400 text-sm ml-2">(4.7)</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xl font-bold text-green-400">₹50</span>
+                                <span class="text-gray-500 line-through">₹60</span>
+                            </div>
+                            <span class="text-gray-400 text-sm">bunch</span>
+                        </div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn">
+                            <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/236010/pexels-photo-236010.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Organic Milk" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">13% OFF</div>
+                        <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn">
+                            <span class="material-icons text-sm">favorite</span>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-white mb-2">Organic Milk</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                            </div>
+                            <span class="text-gray-400 text-sm ml-2">(4.6)</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xl font-bold text-green-400">₹70</span>
+                                <span class="text-gray-500 line-through">₹80</span>
+                            </div>
+                            <span class="text-gray-400 text-sm">liter</span>
+                        </div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn">
+                            <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/725991/pexels-photo-725991.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Salmon Fillet" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">10% OFF</div>
+                        <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn">
+                            <span class="material-icons text-sm">favorite</span>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-white mb-2">Fresh Salmon Fillet</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                            </div>
+                            <span class="text-gray-400 text-sm ml-2">(4.8)</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xl font-bold text-green-400">₹900</span>
+                                <span class="text-gray-500 line-through">₹1000</span>
+                            </div>
+                            <span class="text-gray-400 text-sm">kg</span>
+                        </div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn">
+                            <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/209206/pexels-photo-209206.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Artisan Bread" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">18% OFF</div>
+                        <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn">
+                            <span class="material-icons text-sm">favorite</span>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-white mb-2">Artisan Bread</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm text-gray-600">star_border</span>
+                            </div>
+                            <span class="text-gray-400 text-sm ml-2">(4.4)</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xl font-bold text-green-400">₹90</span>
+                                <span class="text-gray-500 line-through">₹110</span>
+                            </div>
+                            <span class="text-gray-400 text-sm">loaf</span>
+                        </div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn">
+                            <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Orange Juice" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">17% OFF</div>
+                        <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn">
+                            <span class="material-icons text-sm">favorite</span>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-white mb-2">Orange Juice</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm text-gray-600">star_border</span>
+                            </div>
+                            <span class="text-gray-400 text-sm ml-2">(4.2)</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xl font-bold text-green-400">₹150</span>
+                                <span class="text-gray-500 line-through">₹180</span>
+                            </div>
+                            <span class="text-gray-400 text-sm">liter</span>
+                        </div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn">
+                            <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/533280/pexels-photo-533280.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Cherry Tomatoes" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">20% OFF</div>
+                        <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn">
+                            <span class="material-icons text-sm">favorite</span>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-white mb-2">Cherry Tomatoes</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm">star</span>
+                                <span class="material-icons text-sm text-gray-600">star_border</span>
+                            </div>
+                            <span class="text-gray-400 text-sm ml-2">(4.5)</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xl font-bold text-green-400">₹80</span>
+                                <span class="text-gray-500 line-through">₹100</span>
+                            </div>
+                            <span class="text-gray-400 text-sm">pack</span>
+                        </div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn">
+                            <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
             </div>
             
             <!-- No Products -->
@@ -338,5 +609,65 @@
     <script src="js/main.js"></script>
     <script src="js/products.js"></script>
     <script src="js/modern-interactions.js"></script>
+    
+    <script>
+        // Ensure products are visible immediately
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Products page loaded');
+            
+            // Update products count
+            const productsCount = document.getElementById('productsCount');
+            if (productsCount) {
+                productsCount.textContent = 'Showing 8 products';
+            }
+            
+            // Mobile menu toggle
+            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+                const mobileMenu = document.getElementById('mobileMenu');
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Auth modal functions
+            window.openAuthModal = function() {
+                document.getElementById('authModal').classList.remove('hidden');
+                document.getElementById('authModal').classList.add('flex');
+            };
+
+            window.closeAuthModal = function() {
+                document.getElementById('authModal').classList.add('hidden');
+                document.getElementById('authModal').classList.remove('flex');
+            };
+
+            window.switchAuthTab = function(tab) {
+                const loginTab = document.getElementById('loginTab');
+                const registerTab = document.getElementById('registerTab');
+                const loginForm = document.getElementById('loginForm');
+                const registerForm = document.getElementById('registerForm');
+                const authTitle = document.getElementById('authTitle');
+
+                if (tab === 'login') {
+                    loginTab.classList.add('bg-gray-600', 'text-white');
+                    loginTab.classList.remove('text-gray-300');
+                    registerTab.classList.remove('bg-gray-600', 'text-white');
+                    registerTab.classList.add('text-gray-300');
+                    loginForm.classList.remove('hidden');
+                    registerForm.classList.add('hidden');
+                    authTitle.textContent = 'Welcome Back';
+                } else {
+                    registerTab.classList.add('bg-gray-600', 'text-white');
+                    registerTab.classList.remove('text-gray-300');
+                    loginTab.classList.remove('bg-gray-600', 'text-white');
+                    loginTab.classList.add('text-gray-300');
+                    registerForm.classList.remove('hidden');
+                    loginForm.classList.add('hidden');
+                    authTitle.textContent = 'Create Account';
+                }
+            };
+            
+            // Auth button handlers
+            document.getElementById('authBtn').addEventListener('click', openAuthModal);
+            document.getElementById('mobileAuthBtn').addEventListener('click', openAuthModal);
+        });
+    </script>
 </body>
 </html>
