@@ -286,29 +286,32 @@ class SuperMartApp {
         const isWishlisted = this.isInWishlist(product.id);
         
         return `
-            <div class="product-card" data-product='${JSON.stringify(product)}'>
-                <div class="product-image">
-                    <img src="${product.image}" alt="${product.name}" loading="lazy">
-                    ${discount > 0 ? `<div class="product-badge">${discount}% OFF</div>` : ''}
-                    ${product.stock <= 5 ? '<div class="product-badge" style="background: var(--warning-color);">Low Stock</div>' : ''}
-                    <button class="wishlist-btn ${isWishlisted ? 'active' : ''}" data-id="${product.id}">
-                        <i class="fas fa-heart"></i>
+            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card" data-product='${JSON.stringify(product)}'>
+                <div class="relative">
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                    ${discount > 0 ? `<div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">${discount}% OFF</div>` : ''}
+                    ${product.stock <= 5 ? '<div class="absolute top-2 right-2 bg-yellow-600 text-white px-2 py-1 rounded-full text-xs font-bold">Low Stock</div>' : ''}
+                    <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn ${isWishlisted ? 'text-red-500' : ''}" data-id="${product.id}">
+                        <span class="material-icons text-sm">favorite</span>
                     </button>
                 </div>
-                <div class="product-info">
-                    <h3>${product.name}</h3>
-                    <div class="product-rating">
-                        <div class="stars">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-white mb-2">${product.name}</h3>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400">
                             ${this.generateStars(product.rating)}
                         </div>
-                        <span class="rating-text">(${product.rating})</span>
+                        <span class="text-gray-400 text-sm ml-2">(${product.rating})</span>
                     </div>
-                    <div class="product-price">
-                        <span class="current-price">${formatCurrency(product.price)}</span>
-                        ${product.originalPrice ? `<span class="original-price">${formatCurrency(product.originalPrice)}</span>` : ''}
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xl font-bold text-green-400">$${product.price}</span>
+                            ${product.originalPrice ? `<span class="text-gray-500 line-through">$${product.originalPrice}</span>` : ''}
+                        </div>
+                        <span class="text-gray-400 text-sm">${product.unit}</span>
                     </div>
-                    <button class="add-to-cart-btn" ${product.stock === 0 ? 'disabled' : ''}>
-                        <i class="fas fa-cart-plus"></i>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn ${product.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''}" ${product.stock === 0 ? 'disabled' : ''}>
+                        <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
                         ${product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
                     </button>
                 </div>
@@ -324,15 +327,15 @@ class SuperMartApp {
         let stars = '';
         
         for (let i = 0; i < fullStars; i++) {
-            stars += '<i class="fas fa-star star"></i>';
+            stars += '<span class="material-icons text-sm">star</span>';
         }
         
         if (hasHalfStar) {
-            stars += '<i class="fas fa-star-half-alt star"></i>';
+            stars += '<span class="material-icons text-sm">star_half</span>';
         }
         
         for (let i = 0; i < emptyStars; i++) {
-            stars += '<i class="far fa-star star"></i>';
+            stars += '<span class="material-icons text-sm text-gray-600">star_border</span>';
         }
         
         return stars;
@@ -353,8 +356,8 @@ class SuperMartApp {
         
         // Previous button
         paginationHTML += `
-            <button ${this.currentPage === 1 ? 'disabled' : ''} onclick="app.goToPage(${this.currentPage - 1})">
-                <i class="fas fa-chevron-left"></i> Previous
+            <button class="px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-600 transition-colors ${this.currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}" ${this.currentPage === 1 ? 'disabled' : ''} onclick="app.goToPage(${this.currentPage - 1})">
+                <span class="material-icons">chevron_left</span> Previous
             </button>
         `;
         
@@ -362,23 +365,23 @@ class SuperMartApp {
         for (let i = 1; i <= totalPages; i++) {
             if (i === 1 || i === totalPages || (i >= this.currentPage - 2 && i <= this.currentPage + 2)) {
                 paginationHTML += `
-                    <button class="${i === this.currentPage ? 'active' : ''}" onclick="app.goToPage(${i})">
+                    <button class="px-4 py-2 rounded-md transition-colors ${i === this.currentPage ? 'bg-blue-600 text-white' : 'bg-gray-700 text-white hover:bg-gray-600'}" onclick="app.goToPage(${i})">
                         ${i}
                     </button>
                 `;
             } else if (i === this.currentPage - 3 || i === this.currentPage + 3) {
-                paginationHTML += '<span>...</span>';
+                paginationHTML += '<span class="px-2 text-gray-400">...</span>';
             }
         }
         
         // Next button
         paginationHTML += `
-            <button ${this.currentPage === totalPages ? 'disabled' : ''} onclick="app.goToPage(${this.currentPage + 1})">
-                Next <i class="fas fa-chevron-right"></i>
+            <button class="px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-600 transition-colors ${this.currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}" ${this.currentPage === totalPages ? 'disabled' : ''} onclick="app.goToPage(${this.currentPage + 1})">
+                Next <span class="material-icons">chevron_right</span>
             </button>
         `;
         
-        pagination.innerHTML = paginationHTML;
+        pagination.innerHTML = `<div class="flex items-center justify-center space-x-2">${paginationHTML}</div>`;
     }
     
     goToPage(page) {
@@ -471,18 +474,18 @@ class SuperMartApp {
         document.getElementById('modalProductImage').alt = product.name;
         document.getElementById('modalProductName').textContent = product.name;
         document.getElementById('modalProductRating').innerHTML = `
-            <div class="stars">${this.generateStars(product.rating)}</div>
-            <span class="rating-text">(${product.rating})</span>
+            <div class="flex text-yellow-400">${this.generateStars(product.rating)}</div>
+            <span class="text-gray-400 ml-2">(${product.rating})</span>
         `;
         document.getElementById('modalProductPrice').innerHTML = `
-            <span class="current-price">${formatCurrency(product.price)}</span>
-            ${product.originalPrice ? `<span class="original-price">${formatCurrency(product.originalPrice)}</span>` : ''}
+            <span class="text-2xl font-bold text-green-400">$${product.price}</span>
+            ${product.originalPrice ? `<span class="text-gray-500 line-through ml-2">$${product.originalPrice}</span>` : ''}
         `;
         document.getElementById('modalProductDescription').textContent = product.description;
         
         // Update product details
         const detailsList = document.getElementById('modalProductDetails');
-        detailsList.innerHTML = product.details.map(detail => `<li>${detail}</li>`).join('');
+        detailsList.innerHTML = product.details.map(detail => `<li class="text-gray-300">${detail}</li>`).join('');
         
         // Reset quantity
         document.getElementById('selectedQty').textContent = '1';
@@ -491,13 +494,16 @@ class SuperMartApp {
         const wishlistBtn = document.getElementById('addToWishlist');
         const isWishlisted = this.isInWishlist(product.id);
         wishlistBtn.innerHTML = `
-            <i class="fas fa-heart"></i>
+            <span class="material-icons mr-2">favorite</span>
             ${isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
         `;
-        wishlistBtn.classList.toggle('active', isWishlisted);
+        wishlistBtn.classList.toggle('bg-red-600', isWishlisted);
+        wishlistBtn.classList.toggle('hover:bg-red-700', isWishlisted);
+        wishlistBtn.classList.toggle('bg-gray-600', !isWishlisted);
+        wishlistBtn.classList.toggle('hover:bg-gray-700', !isWishlisted);
         
         // Show modal
-        modal.style.display = 'block';
+        modal.style.display = 'flex';
         Animation.fadeIn(modal);
     }
     
@@ -514,7 +520,9 @@ class SuperMartApp {
     toggleWishlist(product, button) {
         if (!authManager.isLoggedIn()) {
             showToast('Please login to add items to wishlist', 'warning');
-            authManager.showAuthModal();
+            // Open auth modal
+            document.getElementById('authModal').classList.remove('hidden');
+            document.getElementById('authModal').classList.add('flex');
             return;
         }
         
@@ -524,7 +532,7 @@ class SuperMartApp {
         if (existingIndex > -1) {
             // Remove from wishlist
             wishlist.splice(existingIndex, 1);
-            button.classList.remove('active');
+            button.classList.remove('text-red-500');
             showToast(`${product.name} removed from wishlist`, 'success');
         } else {
             // Add to wishlist
@@ -532,7 +540,7 @@ class SuperMartApp {
                 ...product,
                 addedAt: new Date().toISOString()
             });
-            button.classList.add('active');
+            button.classList.add('text-red-500');
             showToast(`${product.name} added to wishlist`, 'success');
         }
         
@@ -543,10 +551,13 @@ class SuperMartApp {
         if (modalWishlistBtn) {
             const isWishlisted = this.isInWishlist(product.id);
             modalWishlistBtn.innerHTML = `
-                <i class="fas fa-heart"></i>
+                <span class="material-icons mr-2">favorite</span>
                 ${isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
             `;
-            modalWishlistBtn.classList.toggle('active', isWishlisted);
+            modalWishlistBtn.classList.toggle('bg-red-600', isWishlisted);
+            modalWishlistBtn.classList.toggle('hover:bg-red-700', isWishlisted);
+            modalWishlistBtn.classList.toggle('bg-gray-600', !isWishlisted);
+            modalWishlistBtn.classList.toggle('hover:bg-gray-700', !isWishlisted);
         }
         
         // Emit wishlist update event

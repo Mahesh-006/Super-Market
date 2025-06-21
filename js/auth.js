@@ -32,7 +32,8 @@ class AuthManager {
         const mobileAuthBtn = document.getElementById('mobileAuthBtn');
         
         if (authBtn) {
-            authBtn.addEventListener('click', () => {
+            authBtn.addEventListener('click', (e) => {
+                e.preventDefault();
                 if (this.currentUser) {
                     this.logout();
                 } else {
@@ -42,7 +43,8 @@ class AuthManager {
         }
         
         if (mobileAuthBtn) {
-            mobileAuthBtn.addEventListener('click', () => {
+            mobileAuthBtn.addEventListener('click', (e) => {
+                e.preventDefault();
                 if (this.currentUser) {
                     this.logout();
                 } else {
@@ -59,9 +61,6 @@ class AuthManager {
             });
         }
         
-        // Modal setup
-        this.setupAuthModal();
-        
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -73,99 +72,23 @@ class AuthManager {
         }
     }
     
-    setupAuthModal() {
-        const authModal = document.getElementById('authModal');
-        if (!authModal) return;
-        
-        const closeBtns = authModal.querySelectorAll('.close-btn');
-        const tabBtns = authModal.querySelectorAll('.tab-btn');
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-        
-        // Close modal
-        closeBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                this.hideAuthModal();
-            });
-        });
-        
-        // Click outside to close
-        authModal.addEventListener('click', (e) => {
-            if (e.target === authModal) {
-                this.hideAuthModal();
-            }
-        });
-        
-        // Tab switching
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tab = btn.dataset.tab;
-                this.switchAuthTab(tab);
-            });
-        });
-        
-        // Form submissions
-        if (loginForm) {
-            loginForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                this.handleLogin(loginForm);
-            });
-        }
-        
-        if (registerForm) {
-            registerForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                this.handleRegister(registerForm);
-            });
-        }
-    }
-    
     showAuthModal() {
         const authModal = document.getElementById('authModal');
         if (authModal) {
-            authModal.style.display = 'block';
-            Animation.fadeIn(authModal);
+            authModal.classList.remove('hidden');
+            authModal.classList.add('flex');
         }
     }
     
     hideAuthModal() {
         const authModal = document.getElementById('authModal');
         if (authModal) {
-            Animation.fadeOut(authModal);
-            setTimeout(() => {
-                authModal.style.display = 'none';
-            }, 300);
+            authModal.classList.add('hidden');
+            authModal.classList.remove('flex');
         }
     }
     
-    switchAuthTab(tab) {
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const forms = document.querySelectorAll('.auth-form');
-        
-        tabBtns.forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.tab === tab);
-        });
-        
-        forms.forEach(form => {
-            form.classList.toggle('active', form.id === `${tab}Form`);
-        });
-    }
-    
-    async handleLogin(form) {
-        const formData = new FormData(form);
-        const email = formData.get('email') || form.querySelector('input[type="email"]').value;
-        const password = formData.get('password') || form.querySelector('input[type="password"]').value;
-        
-        if (!Validation.email(email)) {
-            showToast('Please enter a valid email address', 'error');
-            return;
-        }
-        
-        if (!Validation.required(password)) {
-            showToast('Please enter your password', 'error');
-            return;
-        }
-        
+    async login(email, password) {
         try {
             // Simulate API call
             await API.delay(1000);
@@ -173,7 +96,7 @@ class AuthManager {
             // Check if admin credentials
             if (email === 'admin@supermart.com' && password === 'admin123') {
                 showToast('Admin login not allowed here. Please use admin portal.', 'error');
-                return;
+                return false;
             }
             
             // Get existing users
@@ -201,46 +124,21 @@ class AuthManager {
             
             Storage.set('currentUser', this.currentUser);
             this.updateUI();
-            this.hideAuthModal();
             
             showToast(`Welcome back, ${this.currentUser.name}!`, 'success');
             
             // Emit login event
             window.eventEmitter.emit('userLogin', this.currentUser);
             
+            return true;
+            
         } catch (error) {
             showToast('Login failed. Please try again.', 'error');
+            return false;
         }
     }
     
-    async handleRegister(form) {
-        const formData = new FormData(form);
-        const inputs = form.querySelectorAll('input');
-        const name = inputs[0].value;
-        const email = inputs[1].value;
-        const password = inputs[2].value;
-        const confirmPassword = inputs[3].value;
-        
-        if (!Validation.required(name)) {
-            showToast('Please enter your full name', 'error');
-            return;
-        }
-        
-        if (!Validation.email(email)) {
-            showToast('Please enter a valid email address', 'error');
-            return;
-        }
-        
-        if (!Validation.password(password)) {
-            showToast('Password must be at least 6 characters long', 'error');
-            return;
-        }
-        
-        if (password !== confirmPassword) {
-            showToast('Passwords do not match', 'error');
-            return;
-        }
-        
+    async signup(name, email, password) {
         try {
             // Simulate API call
             await API.delay(1000);
@@ -251,7 +149,7 @@ class AuthManager {
             
             if (existingUser) {
                 showToast('An account with this email already exists', 'error');
-                return;
+                return false;
             }
             
             // Create new user
@@ -272,15 +170,17 @@ class AuthManager {
             Storage.set('currentUser', this.currentUser);
             
             this.updateUI();
-            this.hideAuthModal();
             
             showToast(`Welcome to SuperMart, ${this.currentUser.name}!`, 'success');
             
             // Emit registration event
             window.eventEmitter.emit('userRegister', this.currentUser);
             
+            return true;
+            
         } catch (error) {
             showToast('Registration failed. Please try again.', 'error');
+            return false;
         }
     }
     
@@ -308,19 +208,17 @@ class AuthManager {
         
         if (authBtn) {
             if (this.currentUser) {
-                authBtn.textContent = 'Logout';
-                authBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout';
+                authBtn.innerHTML = '<span class="material-icons mr-2">logout</span>Logout';
             } else {
-                authBtn.textContent = 'Login';
-                authBtn.innerHTML = 'Login';
+                authBtn.innerHTML = '<span class="material-icons mr-2">login</span>Login';
             }
         }
         
         if (mobileAuthBtn) {
             if (this.currentUser) {
-                mobileAuthBtn.textContent = 'Logout';
+                mobileAuthBtn.innerHTML = '<span class="material-icons mr-2">logout</span>Logout';
             } else {
-                mobileAuthBtn.textContent = 'Login';
+                mobileAuthBtn.innerHTML = '<span class="material-icons mr-2">login</span>Login';
             }
         }
         
