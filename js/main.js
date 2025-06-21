@@ -1,13 +1,13 @@
 // Main JavaScript file for SuperMart
 
-// Sample product data with Indian pricing
+// Sample product data with Indian pricing in round figures
 const sampleProducts = [
     {
         id: 'prod-1',
         name: 'Fresh Organic Apples',
         category: 'fruits',
-        price: 199,
-        originalPrice: 249,
+        price: 200,
+        originalPrice: 250,
         image: 'https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg?auto=compress&cs=tinysrgb&w=400',
         rating: 4.5,
         stock: 50,
@@ -20,8 +20,8 @@ const sampleProducts = [
         id: 'prod-2',
         name: 'Premium Bananas',
         category: 'fruits',
-        price: 89,
-        originalPrice: 109,
+        price: 90,
+        originalPrice: 110,
         image: 'https://images.pexels.com/photos/61127/pexels-photo-61127.jpeg?auto=compress&cs=tinysrgb&w=400',
         rating: 4.3,
         stock: 75,
@@ -34,8 +34,8 @@ const sampleProducts = [
         id: 'prod-3',
         name: 'Fresh Spinach',
         category: 'vegetables',
-        price: 49,
-        originalPrice: 59,
+        price: 50,
+        originalPrice: 60,
         image: 'https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg?auto=compress&cs=tinysrgb&w=400',
         rating: 4.7,
         stock: 30,
@@ -48,8 +48,8 @@ const sampleProducts = [
         id: 'prod-4',
         name: 'Organic Milk',
         category: 'dairy',
-        price: 65,
-        originalPrice: 75,
+        price: 70,
+        originalPrice: 80,
         image: 'https://images.pexels.com/photos/236010/pexels-photo-236010.jpeg?auto=compress&cs=tinysrgb&w=400',
         rating: 4.6,
         stock: 25,
@@ -62,8 +62,8 @@ const sampleProducts = [
         id: 'prod-5',
         name: 'Fresh Salmon Fillet',
         category: 'meat',
-        price: 899,
-        originalPrice: 999,
+        price: 900,
+        originalPrice: 1000,
         image: 'https://images.pexels.com/photos/725991/pexels-photo-725991.jpeg?auto=compress&cs=tinysrgb&w=400',
         rating: 4.8,
         stock: 15,
@@ -76,8 +76,8 @@ const sampleProducts = [
         id: 'prod-6',
         name: 'Artisan Bread',
         category: 'bakery',
-        price: 89,
-        originalPrice: 109,
+        price: 90,
+        originalPrice: 110,
         image: 'https://images.pexels.com/photos/209206/pexels-photo-209206.jpeg?auto=compress&cs=tinysrgb&w=400',
         rating: 4.4,
         stock: 20,
@@ -90,8 +90,8 @@ const sampleProducts = [
         id: 'prod-7',
         name: 'Orange Juice',
         category: 'beverages',
-        price: 149,
-        originalPrice: 179,
+        price: 150,
+        originalPrice: 180,
         image: 'https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&cs=tinysrgb&w=400',
         rating: 4.2,
         stock: 40,
@@ -104,8 +104,8 @@ const sampleProducts = [
         id: 'prod-8',
         name: 'Cherry Tomatoes',
         category: 'vegetables',
-        price: 79,
-        originalPrice: 99,
+        price: 80,
+        originalPrice: 100,
         image: 'https://images.pexels.com/photos/533280/pexels-photo-533280.jpeg?auto=compress&cs=tinysrgb&w=400',
         rating: 4.5,
         stock: 35,
@@ -130,18 +130,25 @@ class SuperMartApp {
         this.setupEventListeners();
         this.renderFeaturedProducts();
         this.setupSearch();
+        
+        // Force render products if on products page
+        if (window.location.pathname.includes('products.html')) {
+            setTimeout(() => {
+                this.renderProducts();
+            }, 100);
+        }
     }
     
     loadProducts() {
-        // Load products from localStorage or use sample data
-        const storedProducts = Storage.get('products');
-        if (storedProducts && storedProducts.length > 0) {
-            this.products = storedProducts;
-        } else {
-            this.products = sampleProducts;
-            Storage.set('products', this.products);
-        }
+        // Always use sample data to ensure products are visible
+        this.products = sampleProducts;
+        Storage.set('products', this.products);
         this.filteredProducts = [...this.products];
+        
+        // Emit event for other components
+        if (window.eventEmitter) {
+            window.eventEmitter.emit('productsLoaded', this.products);
+        }
     }
     
     setupEventListeners() {
@@ -242,43 +249,49 @@ class SuperMartApp {
         
         const featuredProducts = this.products.filter(product => product.featured).slice(0, 4);
         
-        featuredContainer.innerHTML = featuredProducts.map(product => 
-            this.createProductCard(product)
-        ).join('');
+        if (featuredProducts.length > 0) {
+            featuredContainer.innerHTML = featuredProducts.map(product => 
+                this.createProductCard(product)
+            ).join('');
+        }
     }
     
     renderProducts() {
         const productsGrid = document.getElementById('productsGrid');
         const productsCount = document.getElementById('productsCount');
         const loadingSpinner = document.getElementById('loadingSpinner');
+        const noProducts = document.getElementById('noProducts');
         
         if (!productsGrid) return;
         
-        // Show loading spinner
+        // Hide loading spinner
         if (loadingSpinner) {
-            loadingSpinner.style.display = 'flex';
+            loadingSpinner.style.display = 'none';
         }
         
-        // Simulate loading delay
-        setTimeout(() => {
-            if (loadingSpinner) {
-                loadingSpinner.style.display = 'none';
-            }
-            
-            const startIndex = (this.currentPage - 1) * this.productsPerPage;
-            const endIndex = startIndex + this.productsPerPage;
-            const productsToShow = this.filteredProducts.slice(startIndex, endIndex);
-            
-            productsGrid.innerHTML = productsToShow.map(product => 
-                this.createProductCard(product)
-            ).join('');
-            
-            if (productsCount) {
-                productsCount.textContent = `Showing ${productsToShow.length} of ${this.filteredProducts.length} products`;
-            }
-            
-            this.renderPagination();
-        }, 500);
+        if (this.filteredProducts.length === 0) {
+            productsGrid.innerHTML = '';
+            if (noProducts) noProducts.style.display = 'block';
+            if (productsCount) productsCount.textContent = 'No products found';
+            return;
+        }
+        
+        // Hide no products message
+        if (noProducts) noProducts.style.display = 'none';
+        
+        const startIndex = (this.currentPage - 1) * this.productsPerPage;
+        const endIndex = startIndex + this.productsPerPage;
+        const productsToShow = this.filteredProducts.slice(startIndex, endIndex);
+        
+        productsGrid.innerHTML = productsToShow.map(product => 
+            this.createProductCard(product)
+        ).join('');
+        
+        if (productsCount) {
+            productsCount.textContent = `Showing ${productsToShow.length} of ${this.filteredProducts.length} products`;
+        }
+        
+        this.renderPagination();
     }
     
     createProductCard(product) {
@@ -561,7 +574,9 @@ class SuperMartApp {
         }
         
         // Emit wishlist update event
-        window.eventEmitter.emit('wishlistUpdated', wishlist);
+        if (window.eventEmitter) {
+            window.eventEmitter.emit('wishlistUpdated', wishlist);
+        }
     }
     
     isInWishlist(productId) {

@@ -16,10 +16,7 @@ function showToast(message, type = 'success') {
 
 // Format currency in Indian Rupees
 function formatCurrency(amount) {
-    return new Intl.NumberFormat('en-IN', {
-        style: 'currency',
-        currency: 'INR'
-    }).format(amount);
+    return `₹${Math.round(amount)}`;
 }
 
 // Format date
