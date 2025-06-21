@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -11,6 +11,72 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="css/modern-style.css">
     <link rel="stylesheet" href="css/components.css">
+    <style>
+        /* Dark mode styles */
+        html.dark {
+            color-scheme: dark;
+        }
+        
+        html.dark body {
+            background-color: #111827;
+            color: #f3f4f6;
+        }
+        
+        html.dark .navbar {
+            background: rgba(17, 24, 39, 0.95);
+            border-bottom: 1px solid rgba(55, 65, 81, 0.2);
+        }
+        
+        html.dark .bg-gray-800 {
+            background-color: #1f2937;
+        }
+        
+        html.dark .bg-gray-700 {
+            background-color: #374151;
+        }
+        
+        html.dark .text-gray-300 {
+            color: #d1d5db;
+        }
+        
+        html.dark .text-gray-400 {
+            color: #9ca3af;
+        }
+        
+        html.dark .border-gray-700 {
+            border-color: #374151;
+        }
+        
+        .theme-toggle {
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        html.dark .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .fruit-logo {
+            width: 32px;
+            height: 32px;
+        }
+    </style>
 </head>
 <body class="bg-gray-900 text-gray-100">
     <!-- Navigation -->
@@ -19,8 +85,10 @@
             <div class="nav-container flex justify-between items-center h-20 px-4">
                 <!-- Brand -->
                 <div class="nav-brand flex items-center gap-3">
-                    <span class="material-icons text-3xl bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">shopping_cart</span>
-                    <span class="text-2xl font-bold text-white">SuperMart</span>
+                    <div class="logo-container">
+                        <img src="https://cdn-icons-png.flaticon.com/512/415/415682.png" alt="Fruit Logo" class="fruit-logo">
+                        <span class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">SuperMart</span>
+                    </div>
                 </div>
 
                 <!-- Desktop Search -->
@@ -55,12 +123,20 @@
                         <span class="material-icons mr-2 text-sm">login</span>
                         Login
                     </button>
+                    <div class="theme-toggle" id="themeToggle">
+                        <span class="material-icons text-gray-300" id="themeIcon">light_mode</span>
+                    </div>
                 </nav>
 
                 <!-- Mobile Menu Button -->
-                <button class="mobile-menu-btn md:hidden p-2 text-gray-400 hover:text-white transition-colors" id="mobileMenuBtn">
-                    <span class="material-icons">menu</span>
-                </button>
+                <div class="md:hidden flex items-center gap-2">
+                    <div class="theme-toggle" id="mobileThemeToggle">
+                        <span class="material-icons text-gray-300" id="mobileThemeIcon">light_mode</span>
+                    </div>
+                    <button class="mobile-menu-btn p-2 text-gray-400 hover:text-white transition-colors" id="mobileMenuBtn">
+                        <span class="material-icons">menu</span>
+                    </button>
+                </div>
             </div>
 
             <!-- Mobile Menu -->
@@ -362,6 +438,12 @@
                     <span class="material-icons mr-2">login</span>
                     Sign In
                 </button>
+                <div class="text-center mt-4">
+                    <button type="button" class="w-full bg-white text-gray-800 font-semibold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" class="w-5 h-5">
+                        Sign in with Google
+                    </button>
+                </div>
             </form>
             
             <form id="registerForm" class="auth-form space-y-6 hidden">
@@ -385,6 +467,12 @@
                     <span class="material-icons mr-2">person_add</span>
                     Create Account
                 </button>
+                <div class="text-center mt-4">
+                    <button type="button" class="w-full bg-white text-gray-800 font-semibold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" class="w-5 h-5">
+                        Sign up with Google
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -411,5 +499,6 @@
     <script src="js/cart.js"></script>
     <script src="js/cart-page.js"></script>
     <script src="js/modern-interactions.js"></script>
+    <script src="js/theme.js"></script>
 </body>
 </html>

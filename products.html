@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -61,39 +61,121 @@
             background: rgba(255, 255, 255, 0.95);
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
+        
+        /* Dark mode styles */
+        html.dark {
+            color-scheme: dark;
+        }
+        
+        html.dark body {
+            background-color: #111827;
+            color: #f3f4f6;
+        }
+        
+        html.dark .navbar-glass {
+            background: rgba(17, 24, 39, 0.95);
+            border-bottom: 1px solid rgba(55, 65, 81, 0.2);
+        }
+        
+        html.dark .product-card {
+            background: rgba(31, 41, 55, 0.95);
+            border: 1px solid rgba(55, 65, 81, 0.2);
+        }
+        
+        html.dark .bg-white {
+            background-color: #1f2937;
+        }
+        
+        html.dark .text-gray-900 {
+            color: #f3f4f6;
+        }
+        
+        html.dark .text-gray-700 {
+            color: #e5e7eb;
+        }
+        
+        html.dark .text-gray-600 {
+            color: #d1d5db;
+        }
+        
+        html.dark .bg-gray-50 {
+            background-color: #111827;
+        }
+        
+        html.dark .bg-gray-100 {
+            background-color: #1f2937;
+        }
+        
+        .theme-toggle {
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        html.dark .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .fruit-logo {
+            width: 32px;
+            height: 32px;
+        }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 dark:bg-gray-900">
     <!-- Navigation -->
     <header class="navbar-glass fixed top-0 w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Brand -->
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center">
-                        <span class="material-icons text-white text-xl">shopping_cart</span>
+                    <div class="logo-container">
+                        <img src="https://cdn-icons-png.flaticon.com/512/415/415682.png" alt="Fruit Logo" class="fruit-logo">
+                        <span class="text-2xl font-bold text-gradient">SuperMart</span>
                     </div>
-                    <span class="text-2xl font-bold text-gradient">SuperMart</span>
                 </div>
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-700 hover:text-purple-600 font-medium transition-colors">Home</a>
+                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-purple-600 font-medium transition-colors">Home</a>
                     <a href="products.html" class="text-purple-600 font-semibold">Products</a>
-                    <a href="cart.html" class="text-gray-700 hover:text-purple-600 font-medium transition-colors relative">
+                    <a href="cart.html" class="text-gray-700 dark:text-gray-300 hover:text-purple-600 font-medium transition-colors relative">
                         Cart
                         <span id="cartCount" class="hidden absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full min-w-5 text-center">0</span>
                     </a>
-                    <a href="profile.html" class="text-gray-700 hover:text-purple-600 font-medium transition-colors">Profile</a>
+                    <a href="profile.html" class="text-gray-700 dark:text-gray-300 hover:text-purple-600 font-medium transition-colors">Profile</a>
                     <button class="btn-primary text-white px-6 py-2 rounded-full font-semibold">
                         Login
                     </button>
+                    <div class="theme-toggle" id="themeToggle">
+                        <span class="material-icons text-gray-700 dark:text-gray-300" id="themeIcon">light_mode</span>
+                    </div>
                 </nav>
 
                 <!-- Mobile Menu Button -->
-                <button class="md:hidden p-2 text-gray-700" id="mobileMenuBtn">
-                    <span class="material-icons">menu</span>
-                </button>
+                <div class="md:hidden flex items-center gap-2">
+                    <div class="theme-toggle" id="mobileThemeToggle">
+                        <span class="material-icons text-gray-700 dark:text-gray-300" id="mobileThemeIcon">light_mode</span>
+                    </div>
+                    <button class="p-2 text-gray-700 dark:text-gray-300" id="mobileMenuBtn">
+                        <span class="material-icons">menu</span>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -109,12 +191,12 @@
     </section>
 
     <!-- Filters Section -->
-    <section class="py-8 bg-white border-b border-gray-200">
+    <section class="py-8 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-4 items-center justify-between">
                 <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
                     <!-- Category Filter -->
-                    <select id="categoryFilter" class="bg-white border border-gray-300 rounded-xl px-4 py-3 text-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all">
+                    <select id="categoryFilter" class="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 text-gray-700 dark:text-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all">
                         <option value="">All Categories</option>
                         <option value="fruits">Fruits</option>
                         <option value="vegetables">Vegetables</option>
@@ -125,7 +207,7 @@
                     </select>
                     
                     <!-- Sort Filter -->
-                    <select id="sortFilter" class="bg-white border border-gray-300 rounded-xl px-4 py-3 text-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all">
+                    <select id="sortFilter" class="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 text-gray-700 dark:text-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all">
                         <option value="name">Sort by Name</option>
                         <option value="price-low">Price: Low to High</option>
                         <option value="price-high">Price: High to Low</option>
@@ -133,20 +215,20 @@
                     </select>
                     
                     <!-- Price Range -->
-                    <div class="flex items-center gap-3 bg-white border border-gray-300 rounded-xl px-4 py-3">
-                        <span class="text-gray-700 text-sm font-medium">Max Price:</span>
+                    <div class="flex items-center gap-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3">
+                        <span class="text-gray-700 dark:text-gray-200 text-sm font-medium">Max Price:</span>
                         <input type="range" id="priceRange" min="0" max="1000" value="1000" class="flex-1">
-                        <span id="priceValue" class="text-purple-600 font-bold text-sm">₹1000</span>
+                        <span id="priceValue" class="text-purple-600 dark:text-purple-400 font-bold text-sm">₹1000</span>
                     </div>
                 </div>
                 
                 <div class="flex items-center gap-4">
                     <!-- View Toggle -->
-                    <div class="flex bg-gray-100 rounded-xl p-1">
-                        <button id="gridView" class="p-3 rounded-lg transition-all bg-white shadow-sm">
-                            <span class="material-icons text-purple-600">grid_view</span>
+                    <div class="flex bg-gray-100 dark:bg-gray-700 rounded-xl p-1">
+                        <button id="gridView" class="p-3 rounded-lg transition-all bg-white dark:bg-gray-600 shadow-sm">
+                            <span class="material-icons text-purple-600 dark:text-purple-400">grid_view</span>
                         </button>
-                        <button id="listView" class="p-3 rounded-lg transition-all hover:bg-white">
+                        <button id="listView" class="p-3 rounded-lg transition-all hover:bg-white dark:hover:bg-gray-600">
                             <span class="material-icons text-gray-400">view_list</span>
                         </button>
                     </div>
@@ -162,11 +244,11 @@
     </section>
 
     <!-- Products Section -->
-    <section class="py-12 bg-gray-50">
+    <section class="py-12 bg-gray-50 dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Products Info -->
             <div class="flex justify-between items-center mb-8">
-                <span id="productsCount" class="text-gray-600 font-medium">Showing all products</span>
+                <span id="productsCount" class="text-gray-600 dark:text-gray-400 font-medium">Showing all products</span>
             </div>
             
             <!-- Products Grid -->
@@ -176,12 +258,12 @@
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Organic Apples" class="w-full h-48 object-cover">
                         <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">20% OFF</div>
-                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-red-500 transition-colors">
                             <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Fresh Organic Apples</h3>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Fresh Organic Apples</h3>
                         <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
@@ -190,14 +272,14 @@
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star_half</span>
                             </div>
-                            <span class="text-gray-500 text-sm ml-2">(4.5)</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">(4.5)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-2xl font-bold text-green-600">₹200</span>
+                                <span class="text-2xl font-bold text-green-600 dark:text-green-400">₹200</span>
                                 <span class="text-gray-400 line-through">₹250</span>
                             </div>
-                            <span class="text-gray-500 text-sm">per kg</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm">per kg</span>
                         </div>
                         <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
                             <span class="material-icons">add_shopping_cart</span>
@@ -211,12 +293,12 @@
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/61127/pexels-photo-61127.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Premium Bananas" class="w-full h-48 object-cover">
                         <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">18% OFF</div>
-                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-red-500 transition-colors">
                             <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Premium Bananas</h3>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Premium Bananas</h3>
                         <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
@@ -225,14 +307,14 @@
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star_border</span>
                             </div>
-                            <span class="text-gray-500 text-sm ml-2">(4.3)</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">(4.3)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-2xl font-bold text-green-600">₹90</span>
+                                <span class="text-2xl font-bold text-green-600 dark:text-green-400">₹90</span>
                                 <span class="text-gray-400 line-through">₹110</span>
                             </div>
-                            <span class="text-gray-500 text-sm">per dozen</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm">per dozen</span>
                         </div>
                         <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
                             <span class="material-icons">add_shopping_cart</span>
@@ -246,12 +328,12 @@
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Spinach" class="w-full h-48 object-cover">
                         <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">17% OFF</div>
-                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-red-500 transition-colors">
                             <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Fresh Spinach</h3>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Fresh Spinach</h3>
                         <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
@@ -260,14 +342,14 @@
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                             </div>
-                            <span class="text-gray-500 text-sm ml-2">(4.7)</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">(4.7)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-2xl font-bold text-green-600">₹50</span>
+                                <span class="text-2xl font-bold text-green-600 dark:text-green-400">₹50</span>
                                 <span class="text-gray-400 line-through">₹60</span>
                             </div>
-                            <span class="text-gray-500 text-sm">per bunch</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm">per bunch</span>
                         </div>
                         <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
                             <span class="material-icons">add_shopping_cart</span>
@@ -281,12 +363,12 @@
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/236010/pexels-photo-236010.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Organic Milk" class="w-full h-48 object-cover">
                         <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">13% OFF</div>
-                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-red-500 transition-colors">
                             <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Organic Milk</h3>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Organic Milk</h3>
                         <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
@@ -295,14 +377,14 @@
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                             </div>
-                            <span class="text-gray-500 text-sm ml-2">(4.6)</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">(4.6)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-2xl font-bold text-green-600">₹70</span>
+                                <span class="text-2xl font-bold text-green-600 dark:text-green-400">₹70</span>
                                 <span class="text-gray-400 line-through">₹80</span>
                             </div>
-                            <span class="text-gray-500 text-sm">per liter</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm">per liter</span>
                         </div>
                         <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
                             <span class="material-icons">add_shopping_cart</span>
@@ -316,12 +398,12 @@
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/725991/pexels-photo-725991.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Salmon Fillet" class="w-full h-48 object-cover">
                         <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">10% OFF</div>
-                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-red-500 transition-colors">
                             <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Fresh Salmon Fillet</h3>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Fresh Salmon Fillet</h3>
                         <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
@@ -330,14 +412,14 @@
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                             </div>
-                            <span class="text-gray-500 text-sm ml-2">(4.8)</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">(4.8)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-2xl font-bold text-green-600">₹900</span>
+                                <span class="text-2xl font-bold text-green-600 dark:text-green-400">₹900</span>
                                 <span class="text-gray-400 line-through">₹1000</span>
                             </div>
-                            <span class="text-gray-500 text-sm">per kg</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm">per kg</span>
                         </div>
                         <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
                             <span class="material-icons">add_shopping_cart</span>
@@ -351,12 +433,12 @@
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/209206/pexels-photo-209206.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Artisan Bread" class="w-full h-48 object-cover">
                         <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">18% OFF</div>
-                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-red-500 transition-colors">
                             <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Artisan Bread</h3>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Artisan Bread</h3>
                         <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
@@ -365,14 +447,14 @@
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star_border</span>
                             </div>
-                            <span class="text-gray-500 text-sm ml-2">(4.4)</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">(4.4)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-2xl font-bold text-green-600">₹90</span>
+                                <span class="text-2xl font-bold text-green-600 dark:text-green-400">₹90</span>
                                 <span class="text-gray-400 line-through">₹110</span>
                             </div>
-                            <span class="text-gray-500 text-sm">per loaf</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm">per loaf</span>
                         </div>
                         <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
                             <span class="material-icons">add_shopping_cart</span>
@@ -386,12 +468,12 @@
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Orange Juice" class="w-full h-48 object-cover">
                         <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">17% OFF</div>
-                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-red-500 transition-colors">
                             <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Orange Juice</h3>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Orange Juice</h3>
                         <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
@@ -400,14 +482,14 @@
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star_border</span>
                             </div>
-                            <span class="text-gray-500 text-sm ml-2">(4.2)</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">(4.2)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-2xl font-bold text-green-600">₹150</span>
+                                <span class="text-2xl font-bold text-green-600 dark:text-green-400">₹150</span>
                                 <span class="text-gray-400 line-through">₹180</span>
                             </div>
-                            <span class="text-gray-500 text-sm">per liter</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm">per liter</span>
                         </div>
                         <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
                             <span class="material-icons">add_shopping_cart</span>
@@ -421,12 +503,12 @@
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/533280/pexels-photo-533280.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Cherry Tomatoes" class="w-full h-48 object-cover">
                         <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">20% OFF</div>
-                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-red-500 transition-colors">
                             <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Cherry Tomatoes</h3>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Cherry Tomatoes</h3>
                         <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
@@ -435,14 +517,14 @@
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star_half</span>
                             </div>
-                            <span class="text-gray-500 text-sm ml-2">(4.5)</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">(4.5)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-2xl font-bold text-green-600">₹80</span>
+                                <span class="text-2xl font-bold text-green-600 dark:text-green-400">₹80</span>
                                 <span class="text-gray-400 line-through">₹100</span>
                             </div>
-                            <span class="text-gray-500 text-sm">per pack</span>
+                            <span class="text-gray-500 dark:text-gray-400 text-sm">per pack</span>
                         </div>
                         <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
                             <span class="material-icons">add_shopping_cart</span>
@@ -454,9 +536,9 @@
             
             <!-- No Products Message -->
             <div id="noProducts" class="text-center py-16 hidden">
-                <span class="material-icons text-6xl text-gray-400 mb-4 block">inventory_2</span>
-                <h3 class="text-2xl font-bold text-gray-600 mb-2">No products found</h3>
-                <p class="text-gray-500">Try adjusting your search or filters</p>
+                <span class="material-icons text-6xl text-gray-400 dark:text-gray-600 mb-4 block">inventory_2</span>
+                <h3 class="text-2xl font-bold text-gray-600 dark:text-gray-300 mb-2">No products found</h3>
+                <p class="text-gray-500 dark:text-gray-400">Try adjusting your search or filters</p>
             </div>
         </div>
     </section>
@@ -468,6 +550,7 @@
     <script src="js/main.js"></script>
     <script src="js/products.js"></script>
     <script src="js/modern-interactions.js"></script>
+    <script src="js/theme.js"></script>
     
     <script>
         // Initialize products page
@@ -489,9 +572,89 @@
             }
             
             // Mobile menu toggle
-            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-                // Add mobile menu functionality here
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.createElement('div');
+            mobileMenu.className = 'mobile-menu hidden md:hidden bg-gray-800 dark:bg-gray-900 border-t border-gray-700 p-4 fixed w-full z-40';
+            mobileMenu.innerHTML = `
+                <div class="flex flex-col gap-2">
+                    <a href="index.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all text-gray-300 hover:bg-gray-700">
+                        <span class="material-icons">home</span>
+                        Home
+                    </a>
+                    <a href="products.html" class="nav-button active flex items-center gap-3 p-3 rounded-lg transition-all bg-gray-700 text-white">
+                        <span class="material-icons">inventory_2</span>
+                        Products
+                    </a>
+                    <a href="cart.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all text-gray-300 hover:bg-gray-700 relative">
+                        <span class="material-icons">shopping_cart</span>
+                        Cart
+                        <span id="mobileCartCount" class="cart-count hidden bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">0</span>
+                    </a>
+                    <a href="profile.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all text-gray-300 hover:bg-gray-700">
+                        <span class="material-icons">account_circle</span>
+                        Profile
+                    </a>
+                    <button id="mobileAuthBtn" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-3 px-4 rounded-lg text-center transition-all">
+                        <span class="material-icons mr-2">login</span>
+                        Login
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(mobileMenu);
+            
+            let isMenuOpen = false;
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenu.style.top = '64px'; // Height of the navbar
+                } else {
+                    mobileMenu.classList.add('hidden');
+                }
             });
+            
+            // View toggle functionality
+            const gridView = document.getElementById('gridView');
+            const listView = document.getElementById('listView');
+            const productsGrid = document.getElementById('productsGrid');
+            
+            if (gridView && listView && productsGrid) {
+                gridView.addEventListener('click', function() {
+                    gridView.classList.add('bg-white', 'dark:bg-gray-600', 'shadow-sm');
+                    listView.classList.remove('bg-white', 'dark:bg-gray-600', 'shadow-sm');
+                    productsGrid.classList.remove('list-view');
+                    productsGrid.classList.add('grid-view');
+                });
+                
+                listView.addEventListener('click', function() {
+                    listView.classList.add('bg-white', 'dark:bg-gray-600', 'shadow-sm');
+                    gridView.classList.remove('bg-white', 'dark:bg-gray-600', 'shadow-sm');
+                    productsGrid.classList.remove('grid-view');
+                    productsGrid.classList.add('list-view');
+                });
+            }
+            
+            // Clear filters
+            const clearFilters = document.getElementById('clearFilters');
+            if (clearFilters) {
+                clearFilters.addEventListener('click', function() {
+                    const categoryFilter = document.getElementById('categoryFilter');
+                    const sortFilter = document.getElementById('sortFilter');
+                    const priceRange = document.getElementById('priceRange');
+                    
+                    if (categoryFilter) categoryFilter.value = '';
+                    if (sortFilter) sortFilter.value = 'name';
+                    if (priceRange) {
+                        priceRange.value = priceRange.max;
+                        priceValue.textContent = `₹${priceRange.max}`;
+                    }
+                    
+                    // Trigger filter change event
+                    // In a real app, you would call your filter function here
+                });
+            }
         });
     </script>
 </body>
