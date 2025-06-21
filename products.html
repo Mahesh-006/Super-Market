@@ -8,157 +8,151 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/modern-style.css">
-    <link rel="stylesheet" href="css/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .navbar-glass {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
 </head>
-<body class="bg-gray-900 text-gray-100">
+<body class="bg-gray-50">
     <!-- Navigation -->
-    <header class="navbar bg-gray-900/95 backdrop-blur-xl border-b border-gray-800 sticky top-0 z-50">
-        <div class="container mx-auto">
-            <div class="nav-container flex justify-between items-center h-20 px-4">
+    <header class="navbar-glass fixed top-0 w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
                 <!-- Brand -->
-                <div class="nav-brand flex items-center gap-3">
-                    <span class="material-icons text-3xl bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">shopping_cart</span>
-                    <span class="text-2xl font-bold text-white">SuperMart</span>
-                </div>
-
-                <!-- Desktop Search -->
-                <div class="nav-search hidden md:flex flex-1 max-w-md mx-8 relative">
-                    <input type="text" id="searchInput" placeholder="Search products..." 
-                           class="w-full h-12 pl-12 pr-4 bg-gray-800 border border-gray-700 rounded-full text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all">
-                    <button class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-500 transition-colors">
-                        <span class="material-icons">search</span>
-                    </button>
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center">
+                        <span class="material-icons text-white text-xl">shopping_cart</span>
+                    </div>
+                    <span class="text-2xl font-bold text-gradient">SuperMart</span>
                 </div>
 
                 <!-- Desktop Navigation -->
-                <nav class="desktop-nav hidden md:flex items-center gap-6">
-                    <a href="index.html" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-800">
-                        <span class="material-icons text-lg">home</span>
-                        Home
-                    </a>
-                    <a href="products.html" class="nav-button active flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all bg-gray-800">
-                        <span class="material-icons text-lg">inventory_2</span>
-                        Products
-                    </a>
-                    <a href="cart.html" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-800 relative">
-                        <span class="material-icons text-lg">shopping_cart</span>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-purple-600 font-medium transition-colors">Home</a>
+                    <a href="products.html" class="text-purple-600 font-semibold">Products</a>
+                    <a href="cart.html" class="text-gray-700 hover:text-purple-600 font-medium transition-colors relative">
                         Cart
-                        <span id="cartCount" class="cart-count hidden absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full min-w-5 text-center">0</span>
+                        <span id="cartCount" class="hidden absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full min-w-5 text-center">0</span>
                     </a>
-                    <a href="profile.html" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-800">
-                        <span class="material-icons text-lg">account_circle</span>
-                        Profile
-                    </a>
-                    <button id="authBtn" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-2 px-6 rounded-full text-sm transition-all transform hover:scale-105">
-                        <span class="material-icons mr-2 text-sm">login</span>
+                    <a href="profile.html" class="text-gray-700 hover:text-purple-600 font-medium transition-colors">Profile</a>
+                    <button class="btn-primary text-white px-6 py-2 rounded-full font-semibold">
                         Login
                     </button>
                 </nav>
 
                 <!-- Mobile Menu Button -->
-                <button class="mobile-menu-btn md:hidden p-2 text-gray-400 hover:text-white transition-colors" id="mobileMenuBtn">
+                <button class="md:hidden p-2 text-gray-700" id="mobileMenuBtn">
                     <span class="material-icons">menu</span>
                 </button>
-            </div>
-
-            <!-- Mobile Menu -->
-            <div class="mobile-menu hidden md:hidden bg-gray-800 border-t border-gray-700 p-4" id="mobileMenu">
-                <!-- Mobile Search -->
-                <div class="mb-4 relative">
-                    <input type="text" id="mobileSearchInput" placeholder="Search products..." 
-                           class="w-full h-12 pl-12 pr-4 bg-gray-700 border border-gray-600 rounded-full text-white placeholder-gray-400 focus:border-blue-500 transition-all">
-                    <span class="material-icons absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">search</span>
-                </div>
-                
-                <!-- Mobile Navigation Links -->
-                <div class="flex flex-col gap-2">
-                    <a href="index.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all">
-                        <span class="material-icons">home</span>
-                        Home
-                    </a>
-                    <a href="products.html" class="nav-button active flex items-center gap-3 p-3 rounded-lg transition-all bg-gray-700">
-                        <span class="material-icons">inventory_2</span>
-                        Products
-                    </a>
-                    <a href="cart.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all relative">
-                        <span class="material-icons">shopping_cart</span>
-                        Cart
-                        <span id="mobileCartCount" class="cart-count hidden bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">0</span>
-                    </a>
-                    <a href="profile.html" class="nav-button flex items-center gap-3 p-3 rounded-lg transition-all">
-                        <span class="material-icons">account_circle</span>
-                        Profile
-                    </a>
-                    <button id="mobileAuthBtn" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-3 px-4 rounded-lg text-center transition-all">
-                        <span class="material-icons mr-2">login</span>
-                        Login
-                    </button>
-                </div>
             </div>
         </div>
     </header>
 
     <!-- Products Header -->
-    <section class="bg-gradient-to-r from-gray-800 to-gray-900 py-16">
-        <div class="container mx-auto px-4">
+    <section class="pt-20 pb-12 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Products</h1>
-                <p class="text-xl text-gray-300">Fresh quality products at your fingertips</p>
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">Our Products</h1>
+                <p class="text-xl text-white/90">Fresh quality products at your fingertips</p>
             </div>
         </div>
     </section>
 
     <!-- Filters Section -->
-    <section class="bg-gray-800 border-b border-gray-700 py-6">
-        <div class="container mx-auto px-4">
+    <section class="py-8 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-4 items-center justify-between">
                 <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
                     <!-- Category Filter -->
-                    <div class="filter-group">
-                        <select id="categoryFilter" class="bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all">
-                            <option value="">All Categories</option>
-                            <option value="fruits">Fruits</option>
-                            <option value="vegetables">Vegetables</option>
-                            <option value="dairy">Dairy</option>
-                            <option value="meat">Meat</option>
-                            <option value="bakery">Bakery</option>
-                            <option value="beverages">Beverages</option>
-                        </select>
-                    </div>
+                    <select id="categoryFilter" class="bg-white border border-gray-300 rounded-xl px-4 py-3 text-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all">
+                        <option value="">All Categories</option>
+                        <option value="fruits">Fruits</option>
+                        <option value="vegetables">Vegetables</option>
+                        <option value="dairy">Dairy</option>
+                        <option value="meat">Meat</option>
+                        <option value="bakery">Bakery</option>
+                        <option value="beverages">Beverages</option>
+                    </select>
                     
                     <!-- Sort Filter -->
-                    <div class="filter-group">
-                        <select id="sortFilter" class="bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all">
-                            <option value="name">Sort by Name</option>
-                            <option value="price-low">Price: Low to High</option>
-                            <option value="price-high">Price: High to Low</option>
-                            <option value="rating">Rating</option>
-                        </select>
-                    </div>
+                    <select id="sortFilter" class="bg-white border border-gray-300 rounded-xl px-4 py-3 text-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all">
+                        <option value="name">Sort by Name</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Rating</option>
+                    </select>
                     
                     <!-- Price Range -->
-                    <div class="filter-group flex items-center gap-2">
-                        <span class="text-gray-300 text-sm">Price:</span>
+                    <div class="flex items-center gap-3 bg-white border border-gray-300 rounded-xl px-4 py-3">
+                        <span class="text-gray-700 text-sm font-medium">Max Price:</span>
                         <input type="range" id="priceRange" min="0" max="1000" value="1000" class="flex-1">
-                        <span id="priceValue" class="text-blue-400 font-medium text-sm">₹1000</span>
+                        <span id="priceValue" class="text-purple-600 font-bold text-sm">₹1000</span>
                     </div>
                 </div>
                 
                 <div class="flex items-center gap-4">
                     <!-- View Toggle -->
-                    <div class="view-toggle flex bg-gray-700 rounded-lg p-1">
-                        <button id="gridView" class="view-btn active p-2 rounded-md transition-all bg-gray-600">
-                            <span class="material-icons">grid_view</span>
+                    <div class="flex bg-gray-100 rounded-xl p-1">
+                        <button id="gridView" class="p-3 rounded-lg transition-all bg-white shadow-sm">
+                            <span class="material-icons text-purple-600">grid_view</span>
                         </button>
-                        <button id="listView" class="view-btn p-2 rounded-md transition-all hover:bg-gray-600">
-                            <span class="material-icons">view_list</span>
+                        <button id="listView" class="p-3 rounded-lg transition-all hover:bg-white">
+                            <span class="material-icons text-gray-400">view_list</span>
                         </button>
                     </div>
                     
                     <!-- Clear Filters -->
-                    <button id="clearFilters" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-all">
+                    <button id="clearFilters" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl font-semibold transition-all">
                         <span class="material-icons mr-2">clear</span>
                         Clear
                     </button>
@@ -168,103 +162,97 @@
     </section>
 
     <!-- Products Section -->
-    <section class="py-12 bg-gray-900">
-        <div class="container mx-auto px-4">
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Products Info -->
             <div class="flex justify-between items-center mb-8">
-                <span id="productsCount" class="text-gray-400">Loading products...</span>
-            </div>
-            
-            <!-- Loading Spinner -->
-            <div id="loadingSpinner" class="text-center py-12 hidden">
-                <div class="inline-flex items-center gap-3">
-                    <div class="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-                    <span class="text-gray-400">Loading products...</span>
-                </div>
+                <span id="productsCount" class="text-gray-600 font-medium">Showing all products</span>
             </div>
             
             <!-- Products Grid -->
-            <div class="products-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="productsGrid">
-                <!-- Fallback products in case JavaScript doesn't load -->
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="productsGrid">
+                <!-- Product 1: Fresh Organic Apples -->
+                <div class="product-card card-hover rounded-2xl overflow-hidden shadow-lg">
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Organic Apples" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">20% OFF</div>
-                        <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn">
-                            <span class="material-icons text-sm">favorite</span>
+                        <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">20% OFF</div>
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                            <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-white mb-2">Fresh Organic Apples</h3>
-                        <div class="flex items-center mb-2">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Fresh Organic Apples</h3>
+                        <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
-                                <span class="material-icons text-sm text-gray-600">star_border</span>
+                                <span class="material-icons text-sm">star_half</span>
                             </div>
-                            <span class="text-gray-400 text-sm ml-2">(4.5)</span>
+                            <span class="text-gray-500 text-sm ml-2">(4.5)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-xl font-bold text-green-400">₹200</span>
-                                <span class="text-gray-500 line-through">₹250</span>
+                                <span class="text-2xl font-bold text-green-600">₹200</span>
+                                <span class="text-gray-400 line-through">₹250</span>
                             </div>
-                            <span class="text-gray-400 text-sm">kg</span>
+                            <span class="text-gray-500 text-sm">per kg</span>
                         </div>
-                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn">
-                            <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
-                            Add to Cart
+                        <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
+                            <span class="material-icons">add_shopping_cart</span>
+                            <span>Add to Cart</span>
                         </button>
                     </div>
                 </div>
 
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card">
+                <!-- Product 2: Premium Bananas -->
+                <div class="product-card card-hover rounded-2xl overflow-hidden shadow-lg">
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/61127/pexels-photo-61127.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Premium Bananas" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">18% OFF</div>
-                        <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn">
-                            <span class="material-icons text-sm">favorite</span>
+                        <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">18% OFF</div>
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                            <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-white mb-2">Premium Bananas</h3>
-                        <div class="flex items-center mb-2">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Premium Bananas</h3>
+                        <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
-                                <span class="material-icons text-sm text-gray-600">star_border</span>
+                                <span class="material-icons text-sm">star_border</span>
                             </div>
-                            <span class="text-gray-400 text-sm ml-2">(4.3)</span>
+                            <span class="text-gray-500 text-sm ml-2">(4.3)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-xl font-bold text-green-400">₹90</span>
-                                <span class="text-gray-500 line-through">₹110</span>
+                                <span class="text-2xl font-bold text-green-600">₹90</span>
+                                <span class="text-gray-400 line-through">₹110</span>
                             </div>
-                            <span class="text-gray-400 text-sm">dozen</span>
+                            <span class="text-gray-500 text-sm">per dozen</span>
                         </div>
-                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn">
-                            <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
-                            Add to Cart
+                        <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
+                            <span class="material-icons">add_shopping_cart</span>
+                            <span>Add to Cart</span>
                         </button>
                     </div>
                 </div>
 
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card">
+                <!-- Product 3: Fresh Spinach -->
+                <div class="product-card card-hover rounded-2xl overflow-hidden shadow-lg">
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Spinach" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">17% OFF</div>
-                        <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn">
-                            <span class="material-icons text-sm">favorite</span>
+                        <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">17% OFF</div>
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                            <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-white mb-2">Fresh Spinach</h3>
-                        <div class="flex items-center mb-2">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Fresh Spinach</h3>
+                        <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
@@ -272,33 +260,34 @@
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                             </div>
-                            <span class="text-gray-400 text-sm ml-2">(4.7)</span>
+                            <span class="text-gray-500 text-sm ml-2">(4.7)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-xl font-bold text-green-400">₹50</span>
-                                <span class="text-gray-500 line-through">₹60</span>
+                                <span class="text-2xl font-bold text-green-600">₹50</span>
+                                <span class="text-gray-400 line-through">₹60</span>
                             </div>
-                            <span class="text-gray-400 text-sm">bunch</span>
+                            <span class="text-gray-500 text-sm">per bunch</span>
                         </div>
-                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn">
-                            <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
-                            Add to Cart
+                        <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
+                            <span class="material-icons">add_shopping_cart</span>
+                            <span>Add to Cart</span>
                         </button>
                     </div>
                 </div>
 
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card">
+                <!-- Product 4: Organic Milk -->
+                <div class="product-card card-hover rounded-2xl overflow-hidden shadow-lg">
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/236010/pexels-photo-236010.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Organic Milk" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">13% OFF</div>
-                        <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn">
-                            <span class="material-icons text-sm">favorite</span>
+                        <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">13% OFF</div>
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                            <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-white mb-2">Organic Milk</h3>
-                        <div class="flex items-center mb-2">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Organic Milk</h3>
+                        <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
@@ -306,33 +295,34 @@
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                             </div>
-                            <span class="text-gray-400 text-sm ml-2">(4.6)</span>
+                            <span class="text-gray-500 text-sm ml-2">(4.6)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-xl font-bold text-green-400">₹70</span>
-                                <span class="text-gray-500 line-through">₹80</span>
+                                <span class="text-2xl font-bold text-green-600">₹70</span>
+                                <span class="text-gray-400 line-through">₹80</span>
                             </div>
-                            <span class="text-gray-400 text-sm">liter</span>
+                            <span class="text-gray-500 text-sm">per liter</span>
                         </div>
-                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn">
-                            <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
-                            Add to Cart
+                        <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
+                            <span class="material-icons">add_shopping_cart</span>
+                            <span>Add to Cart</span>
                         </button>
                     </div>
                 </div>
 
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card">
+                <!-- Product 5: Fresh Salmon Fillet -->
+                <div class="product-card card-hover rounded-2xl overflow-hidden shadow-lg">
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/725991/pexels-photo-725991.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Fresh Salmon Fillet" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">10% OFF</div>
-                        <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn">
-                            <span class="material-icons text-sm">favorite</span>
+                        <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">10% OFF</div>
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                            <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-white mb-2">Fresh Salmon Fillet</h3>
-                        <div class="flex items-center mb-2">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Fresh Salmon Fillet</h3>
+                        <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
@@ -340,267 +330,136 @@
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                             </div>
-                            <span class="text-gray-400 text-sm ml-2">(4.8)</span>
+                            <span class="text-gray-500 text-sm ml-2">(4.8)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-xl font-bold text-green-400">₹900</span>
-                                <span class="text-gray-500 line-through">₹1000</span>
+                                <span class="text-2xl font-bold text-green-600">₹900</span>
+                                <span class="text-gray-400 line-through">₹1000</span>
                             </div>
-                            <span class="text-gray-400 text-sm">kg</span>
+                            <span class="text-gray-500 text-sm">per kg</span>
                         </div>
-                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn">
-                            <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
-                            Add to Cart
+                        <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
+                            <span class="material-icons">add_shopping_cart</span>
+                            <span>Add to Cart</span>
                         </button>
                     </div>
                 </div>
 
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card">
+                <!-- Product 6: Artisan Bread -->
+                <div class="product-card card-hover rounded-2xl overflow-hidden shadow-lg">
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/209206/pexels-photo-209206.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Artisan Bread" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">18% OFF</div>
-                        <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn">
-                            <span class="material-icons text-sm">favorite</span>
+                        <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">18% OFF</div>
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                            <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-white mb-2">Artisan Bread</h3>
-                        <div class="flex items-center mb-2">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Artisan Bread</h3>
+                        <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
-                                <span class="material-icons text-sm text-gray-600">star_border</span>
+                                <span class="material-icons text-sm">star_border</span>
                             </div>
-                            <span class="text-gray-400 text-sm ml-2">(4.4)</span>
+                            <span class="text-gray-500 text-sm ml-2">(4.4)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-xl font-bold text-green-400">₹90</span>
-                                <span class="text-gray-500 line-through">₹110</span>
+                                <span class="text-2xl font-bold text-green-600">₹90</span>
+                                <span class="text-gray-400 line-through">₹110</span>
                             </div>
-                            <span class="text-gray-400 text-sm">loaf</span>
+                            <span class="text-gray-500 text-sm">per loaf</span>
                         </div>
-                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn">
-                            <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
-                            Add to Cart
+                        <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
+                            <span class="material-icons">add_shopping_cart</span>
+                            <span>Add to Cart</span>
                         </button>
                     </div>
                 </div>
 
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card">
+                <!-- Product 7: Orange Juice -->
+                <div class="product-card card-hover rounded-2xl overflow-hidden shadow-lg">
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Orange Juice" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">17% OFF</div>
-                        <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn">
-                            <span class="material-icons text-sm">favorite</span>
+                        <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">17% OFF</div>
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                            <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-white mb-2">Orange Juice</h3>
-                        <div class="flex items-center mb-2">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Orange Juice</h3>
+                        <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
-                                <span class="material-icons text-sm text-gray-600">star_border</span>
+                                <span class="material-icons text-sm">star_border</span>
                             </div>
-                            <span class="text-gray-400 text-sm ml-2">(4.2)</span>
+                            <span class="text-gray-500 text-sm ml-2">(4.2)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-xl font-bold text-green-400">₹150</span>
-                                <span class="text-gray-500 line-through">₹180</span>
+                                <span class="text-2xl font-bold text-green-600">₹150</span>
+                                <span class="text-gray-400 line-through">₹180</span>
                             </div>
-                            <span class="text-gray-400 text-sm">liter</span>
+                            <span class="text-gray-500 text-sm">per liter</span>
                         </div>
-                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn">
-                            <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
-                            Add to Cart
+                        <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
+                            <span class="material-icons">add_shopping_cart</span>
+                            <span>Add to Cart</span>
                         </button>
                     </div>
                 </div>
 
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 product-card">
+                <!-- Product 8: Cherry Tomatoes -->
+                <div class="product-card card-hover rounded-2xl overflow-hidden shadow-lg">
                     <div class="relative">
                         <img src="https://images.pexels.com/photos/533280/pexels-photo-533280.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Cherry Tomatoes" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs font-bold">20% OFF</div>
-                        <button class="absolute top-2 right-2 w-8 h-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors wishlist-btn">
-                            <span class="material-icons text-sm">favorite</span>
+                        <div class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">20% OFF</div>
+                        <button class="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+                            <span class="material-icons text-lg">favorite_border</span>
                         </button>
                     </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-white mb-2">Cherry Tomatoes</h3>
-                        <div class="flex items-center mb-2">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Cherry Tomatoes</h3>
+                        <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400">
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
                                 <span class="material-icons text-sm">star</span>
-                                <span class="material-icons text-sm text-gray-600">star_border</span>
+                                <span class="material-icons text-sm">star_half</span>
                             </div>
-                            <span class="text-gray-400 text-sm ml-2">(4.5)</span>
+                            <span class="text-gray-500 text-sm ml-2">(4.5)</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center space-x-2">
-                                <span class="text-xl font-bold text-green-400">₹80</span>
-                                <span class="text-gray-500 line-through">₹100</span>
+                                <span class="text-2xl font-bold text-green-600">₹80</span>
+                                <span class="text-gray-400 line-through">₹100</span>
                             </div>
-                            <span class="text-gray-400 text-sm">pack</span>
+                            <span class="text-gray-500 text-sm">per pack</span>
                         </div>
-                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 add-to-cart-btn">
-                            <span class="material-icons mr-2 text-sm">add_shopping_cart</span>
-                            Add to Cart
+                        <button class="w-full btn-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2">
+                            <span class="material-icons">add_shopping_cart</span>
+                            <span>Add to Cart</span>
                         </button>
                     </div>
                 </div>
             </div>
             
-            <!-- No Products -->
+            <!-- No Products Message -->
             <div id="noProducts" class="text-center py-16 hidden">
-                <span class="material-icons text-6xl text-gray-600 mb-4 block">inventory_2</span>
-                <h3 class="text-xl font-semibold text-gray-400 mb-2">No products found</h3>
+                <span class="material-icons text-6xl text-gray-400 mb-4 block">inventory_2</span>
+                <h3 class="text-2xl font-bold text-gray-600 mb-2">No products found</h3>
                 <p class="text-gray-500">Try adjusting your search or filters</p>
-            </div>
-            
-            <!-- Pagination -->
-            <div class="pagination flex justify-center mt-12" id="pagination">
-                <!-- Pagination will be generated here -->
             </div>
         </div>
     </section>
-
-    <!-- Product Detail Modal -->
-    <div id="productModal" class="modal fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-        <div class="modal-content bg-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
-            <button class="modal-close absolute top-4 right-4 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-600 transition-all z-10">
-                <span class="material-icons">close</span>
-            </button>
-            
-            <div class="product-detail grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
-                <div class="product-image">
-                    <img id="modalProductImage" src="" alt="" class="w-full h-96 object-cover rounded-xl">
-                </div>
-                <div class="product-info space-y-6">
-                    <div>
-                        <h2 id="modalProductName" class="text-3xl font-bold text-white mb-4"></h2>
-                        <div id="modalProductRating" class="flex items-center gap-2 mb-4"></div>
-                        <div id="modalProductPrice" class="text-2xl font-bold text-green-400 mb-4"></div>
-                        <p id="modalProductDescription" class="text-gray-300 leading-relaxed"></p>
-                    </div>
-                    
-                    <div class="product-details">
-                        <h4 class="text-lg font-semibold text-white mb-3">Product Details</h4>
-                        <ul id="modalProductDetails" class="space-y-2 text-gray-300"></ul>
-                    </div>
-                    
-                    <div class="quantity-selector">
-                        <label class="block text-sm font-medium text-gray-300 mb-2">Quantity:</label>
-                        <div class="flex items-center gap-3">
-                            <button id="decreaseQty" class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center text-white hover:bg-gray-600 transition-all">
-                                <span class="material-icons">remove</span>
-                            </button>
-                            <span id="selectedQty" class="text-xl font-semibold text-white min-w-8 text-center">1</span>
-                            <button id="increaseQty" class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center text-white hover:bg-gray-600 transition-all">
-                                <span class="material-icons">add</span>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="modal-actions flex gap-4">
-                        <button id="addToCartModal" class="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center gap-2">
-                            <span class="material-icons">add_shopping_cart</span>
-                            Add to Cart
-                        </button>
-                        <button id="addToWishlist" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2">
-                            <span class="material-icons">favorite</span>
-                            Wishlist
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Auth Modal -->
-    <div id="authModal" class="modal fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-        <div class="modal-content bg-gray-800 rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto relative">
-            <button class="modal-close absolute top-4 right-4 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-600 transition-all" onclick="closeAuthModal()">
-                <span class="material-icons">close</span>
-            </button>
-            
-            <div class="auth-header text-center mb-8">
-                <h2 id="authTitle" class="text-3xl font-bold text-white mb-2">Welcome Back</h2>
-                <p class="text-gray-400">Sign in to your account</p>
-            </div>
-            
-            <div class="auth-tabs flex bg-gray-700 rounded-xl p-1 mb-8">
-                <button id="loginTab" class="auth-tab flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all bg-gray-600 text-white" onclick="switchAuthTab('login')">
-                    Login
-                </button>
-                <button id="registerTab" class="auth-tab flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all text-gray-300 hover:text-white" onclick="switchAuthTab('register')">
-                    Register
-                </button>
-            </div>
-            
-            <form id="loginForm" class="auth-form space-y-6">
-                <div class="form-group">
-                    <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                    <input type="email" id="loginEmail" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
-                </div>
-                <div class="form-group">
-                    <label class="block text-sm font-medium text-gray-300 mb-2">Password</label>
-                    <input type="password" id="loginPassword" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
-                </div>
-                <button type="submit" class="auth-submit-btn w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-4 rounded-xl transition-all transform hover:scale-105">
-                    <span class="material-icons mr-2">login</span>
-                    Sign In
-                </button>
-            </form>
-            
-            <form id="registerForm" class="auth-form space-y-6 hidden">
-                <div class="form-group">
-                    <label class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
-                    <input type="text" id="registerName" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
-                </div>
-                <div class="form-group">
-                    <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                    <input type="email" id="registerEmail" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
-                </div>
-                <div class="form-group">
-                    <label class="block text-sm font-medium text-gray-300 mb-2">Password</label>
-                    <input type="password" id="registerPassword" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
-                </div>
-                <div class="form-group">
-                    <label class="block text-sm font-medium text-gray-300 mb-2">Confirm Password</label>
-                    <input type="password" id="confirmPassword" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
-                </div>
-                <button type="submit" class="auth-submit-btn w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-4 rounded-xl transition-all transform hover:scale-105">
-                    <span class="material-icons mr-2">person_add</span>
-                    Create Account
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="toast fixed bottom-6 right-6 bg-gray-800 border border-gray-700 rounded-xl shadow-2xl transform translate-x-full transition-transform duration-300 z-50 max-w-sm">
-        <div class="toast-content flex items-start gap-4 p-4">
-            <div class="toast-icon w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <span class="material-icons text-green-600">check_circle</span>
-            </div>
-            <div class="toast-message flex-1">
-                <div class="toast-title font-semibold text-white mb-1">Success!</div>
-                <div class="toast-text text-gray-300 text-sm" id="toastMessage">Operation completed successfully</div>
-            </div>
-            <button class="toast-close p-1 text-gray-400 hover:text-white transition-colors">
-                <span class="material-icons text-sm">close</span>
-            </button>
-        </div>
-    </div>
 
     <!-- Scripts -->
     <script src="js/utils.js"></script>
@@ -611,62 +470,28 @@
     <script src="js/modern-interactions.js"></script>
     
     <script>
-        // Ensure products are visible immediately
+        // Initialize products page
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Products page loaded');
-            
             // Update products count
             const productsCount = document.getElementById('productsCount');
             if (productsCount) {
                 productsCount.textContent = 'Showing 8 products';
             }
             
+            // Price range functionality
+            const priceRange = document.getElementById('priceRange');
+            const priceValue = document.getElementById('priceValue');
+            
+            if (priceRange && priceValue) {
+                priceRange.addEventListener('input', function() {
+                    priceValue.textContent = `₹${this.value}`;
+                });
+            }
+            
             // Mobile menu toggle
             document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-                const mobileMenu = document.getElementById('mobileMenu');
-                mobileMenu.classList.toggle('hidden');
+                // Add mobile menu functionality here
             });
-            
-            // Auth modal functions
-            window.openAuthModal = function() {
-                document.getElementById('authModal').classList.remove('hidden');
-                document.getElementById('authModal').classList.add('flex');
-            };
-
-            window.closeAuthModal = function() {
-                document.getElementById('authModal').classList.add('hidden');
-                document.getElementById('authModal').classList.remove('flex');
-            };
-
-            window.switchAuthTab = function(tab) {
-                const loginTab = document.getElementById('loginTab');
-                const registerTab = document.getElementById('registerTab');
-                const loginForm = document.getElementById('loginForm');
-                const registerForm = document.getElementById('registerForm');
-                const authTitle = document.getElementById('authTitle');
-
-                if (tab === 'login') {
-                    loginTab.classList.add('bg-gray-600', 'text-white');
-                    loginTab.classList.remove('text-gray-300');
-                    registerTab.classList.remove('bg-gray-600', 'text-white');
-                    registerTab.classList.add('text-gray-300');
-                    loginForm.classList.remove('hidden');
-                    registerForm.classList.add('hidden');
-                    authTitle.textContent = 'Welcome Back';
-                } else {
-                    registerTab.classList.add('bg-gray-600', 'text-white');
-                    registerTab.classList.remove('text-gray-300');
-                    loginTab.classList.remove('bg-gray-600', 'text-white');
-                    loginTab.classList.add('text-gray-300');
-                    registerForm.classList.remove('hidden');
-                    loginForm.classList.add('hidden');
-                    authTitle.textContent = 'Create Account';
-                }
-            };
-            
-            // Auth button handlers
-            document.getElementById('authBtn').addEventListener('click', openAuthModal);
-            document.getElementById('mobileAuthBtn').addEventListener('click', openAuthModal);
         });
     </script>
 </body>
