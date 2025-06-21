@@ -74,16 +74,22 @@ class ModernInteractions {
     setupHoverEffects() {
         // Enhanced hover effects for cards
         document.addEventListener('mouseenter', (e) => {
-            const card = e.target.closest('.product-card, .category-card, .feature-card, .offer-card');
-            if (card) {
-                this.enhanceCardHover(card, true);
+            // Check if e.target is an Element and has the closest method
+            if (e.target && typeof e.target.closest === 'function') {
+                const card = e.target.closest('.product-card, .category-card, .feature-card, .offer-card');
+                if (card) {
+                    this.enhanceCardHover(card, true);
+                }
             }
         }, true);
         
         document.addEventListener('mouseleave', (e) => {
-            const card = e.target.closest('.product-card, .category-card, .feature-card, .offer-card');
-            if (card) {
-                this.enhanceCardHover(card, false);
+            // Check if e.target is an Element and has the closest method
+            if (e.target && typeof e.target.closest === 'function') {
+                const card = e.target.closest('.product-card, .category-card, .feature-card, .offer-card');
+                if (card) {
+                    this.enhanceCardHover(card, false);
+                }
             }
         }, true);
         
