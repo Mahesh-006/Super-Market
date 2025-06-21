@@ -29,6 +29,9 @@
                     Cart <span id="cartCount" class="cart-count">0</span>
                 </a>
                 <a href="profile.html" class="nav-link">Profile</a>
+                <a href="admin/login.html" class="nav-link admin-access">
+                    <i class="fas fa-shield-alt"></i> Admin
+                </a>
                 <button id="themeToggle" class="theme-toggle">
                     <i class="fas fa-moon"></i>
                 </button>
@@ -45,6 +48,9 @@
             <a href="products.html" class="mobile-link">Products</a>
             <a href="cart.html" class="mobile-link">Cart</a>
             <a href="profile.html" class="mobile-link">Profile</a>
+            <a href="admin/login.html" class="mobile-link admin-access">
+                <i class="fas fa-shield-alt"></i> Admin Portal
+            </a>
             <button id="mobileAuthBtn" class="mobile-auth-btn">Login</button>
         </div>
     </nav>
@@ -125,6 +131,32 @@
         </div>
     </section>
 
+    <!-- Admin Access Section -->
+    <section class="admin-access-section">
+        <div class="container">
+            <div class="admin-access-card">
+                <div class="admin-access-content">
+                    <div class="admin-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="admin-info">
+                        <h3>Store Management</h3>
+                        <p>Access admin dashboard to manage products, orders, and store settings</p>
+                        <div class="admin-credentials">
+                            <small><strong>Demo Login:</strong> admin@supermart.com / admin123</small>
+                        </div>
+                    </div>
+                    <div class="admin-actions">
+                        <a href="admin/login.html" class="admin-login-btn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Admin Login
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -143,6 +175,7 @@
                         <li><a href="products.html">Products</a></li>
                         <li><a href="cart.html">Cart</a></li>
                         <li><a href="profile.html">Profile</a></li>
+                        <li><a href="admin/login.html">Admin Portal</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -203,5 +236,161 @@
     <script src="js/auth.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/main.js"></script>
-</body>
-</html>
+
+    <style>
+    /* Admin Access Styles */
+    .admin-access-section {
+        padding: var(--space-xl) 0;
+        background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+        border-top: 1px solid var(--border-color);
+    }
+
+    .admin-access-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+        transition: all var(--transition-normal);
+    }
+
+    .admin-access-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-xl);
+    }
+
+    .admin-access-content {
+        display: flex;
+        align-items: center;
+        gap: var(--space-xl);
+        padding: var(--space-xl);
+    }
+
+    .admin-icon {
+        flex-shrink: 0;
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2rem;
+        box-shadow: var(--shadow-md);
+    }
+
+    .admin-info {
+        flex: 1;
+    }
+
+    .admin-info h3 {
+        color: var(--text-primary);
+        font-size: var(--font-size-xl);
+        font-weight: 700;
+        margin-bottom: var(--space-sm);
+    }
+
+    .admin-info p {
+        color: var(--text-secondary);
+        margin-bottom: var(--space-md);
+        line-height: 1.6;
+    }
+
+    .admin-credentials {
+        background: var(--bg-tertiary);
+        padding: var(--space-sm) var(--space-md);
+        border-radius: var(--radius-md);
+        border-left: 4px solid var(--primary-color);
+    }
+
+    .admin-credentials small {
+        color: var(--text-muted);
+        font-size: var(--font-size-sm);
+    }
+
+    .admin-actions {
+        flex-shrink: 0;
+    }
+
+    .admin-login-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-sm);
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+        color: white;
+        text-decoration: none;
+        padding: var(--space-md) var(--space-lg);
+        border-radius: var(--radius-lg);
+        font-weight: 600;
+        transition: all var(--transition-normal);
+        box-shadow: var(--shadow-md);
+    }
+
+    .admin-login-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        background: linear-gradient(135deg, var(--primary-hover), var(--primary-color));
+    }
+
+    .admin-login-btn i {
+        font-size: 1.1rem;
+    }
+
+    /* Navigation Admin Link Styles */
+    .nav-link.admin-access {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+        color: white !important;
+        border-radius: var(--radius-md);
+        padding: var(--space-sm) var(--space-md);
+        font-weight: 600;
+        transition: all var(--transition-fast);
+    }
+
+    .nav-link.admin-access:hover {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .mobile-link.admin-access {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+        color: white !important;
+        border-radius: var(--radius-md);
+        margin: var(--space-sm) 0;
+        font-weight: 600;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .admin-access-content {
+            flex-direction: column;
+            text-align: center;
+            gap: var(--space-lg);
+        }
+
+        .admin-icon {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+        }
+
+        .admin-info h3 {
+            font-size: var(--font-size-lg);
+        }
+
+        .admin-login-btn {
+            padding: var(--space-sm) var(--space-md);
+            font-size: var(--font-size-sm);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .admin-access-section {
+            padding: var(--space-lg) 0;
+        }
+
+        .admin-access-content {
+            padding: var(--space-lg);
+        }
+    }
+    </style>
