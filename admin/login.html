@@ -1,3 +1,4 @@
+<!-- admin/login.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,8 +129,27 @@
         </div>
     </div>
 
-    <script src="../js/utils.js"></script>
-    <script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBfMNyQwkSWeGw28ojygiVQwwfXnwXoOYk",
+            authDomain: "supermarket-b930f.firebaseapp.com",
+            projectId: "supermarket-b930f",
+            storageBucket: "supermarket-b930f.firebasestorage.app",
+            messagingSenderId: "916317111235",
+            appId: "1:916317111235:web:e82d5c11f39eadb3947376",
+            measurementId: "G-2H6SZ8MB3Y"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const analytics = getAnalytics(app);
+
         // Admin login functionality
         document.getElementById('adminLoginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -160,7 +180,7 @@
                     
                     localStorage.setItem('currentAdmin', JSON.stringify(adminData));
                     
-                    showToast('Login successful! Redirecting...', 'success');
+                    showToast('Login successful! Redirecting...');
                     
                     setTimeout(() => {
                         window.location.href = 'dashboard.html';
@@ -191,17 +211,14 @@
             
             toastMessage.textContent = message;
             
-            switch(type) {
-                case 'success':
-                    iconContainer.className = 'w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0';
-                    icon.textContent = 'check_circle';
-                    icon.className = 'material-icons text-green-600';
-                    break;
-                case 'error':
-                    iconContainer.className = 'w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0';
-                    icon.textContent = 'error';
-                    icon.className = 'material-icons text-red-600';
-                    break;
+            if (type === 'success') {
+                iconContainer.className = 'w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0';
+                icon.textContent = 'check_circle';
+                icon.className = 'material-icons text-green-600';
+            } else {
+                iconContainer.className = 'w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0';
+                icon.textContent = 'error';
+                icon.className = 'material-icons text-red-600';
             }
             
             toast.classList.remove('translate-x-full');
