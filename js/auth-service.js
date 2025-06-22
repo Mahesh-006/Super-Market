@@ -1,9 +1,5 @@
 // js/auth-service.js
 import { 
-  auth,
-} from './firebase-config.js';
-
-import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -16,7 +12,9 @@ import {
   RecaptchaVerifier,
   signInWithPhoneNumber,
   onAuthStateChanged
-} from "firebase/auth";
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+import { auth } from './firebase-config.js';
 
 // Initialize providers
 const googleProvider = new GoogleAuthProvider();
@@ -75,59 +73,4 @@ export const signInAsGuest = async () => {
 };
 
 // Phone Sign In
-export const setupRecaptcha = (containerID) => {
-  window.recaptchaVerifier = new RecaptchaVerifier(auth, containerID, {
-    'size': 'invisible',
-  });
-  return window.recaptchaVerifier;
-};
-
-export const signInWithPhone = async (phoneNumber, recaptchaVerifier) => {
-  try {
-    const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, recaptchaVerifier);
-    window.confirmationResult = confirmationResult;
-    return { success: true };
-  } catch (error) {
-    return { success: false, error: error.message };
-  }
-};
-
-export const verifyOTP = async (otp) => {
-  try {
-    const result = await window.confirmationResult.confirm(otp);
-    return { success: true, user: result.user };
-  } catch (error) {
-    return { success: false, error: error.message };
-  }
-};
-
-// Password Reset
-export const resetPassword = async (email) => {
-  try {
-    await sendPasswordResetEmail(auth, email);
-    return { success: true };
-  } catch (error) {
-    return { success: false, error: error.message };
-  }
-};
-
-// Sign Out
-export const logOut = async () => {
-  try {
-    await signOut(auth);
-    return { success: true };
-  } catch (error) {
-    return { success: false, error: error.message };
-  }
-};
-
-// Get Current User
-export const getCurrentUser = () => {
-  return auth.currentUser;
-};
-
-// Check if user is verified
-export const isEmailVerified = () => {
-  const user = getCurrentUser();
-  return user ? user.emailVerified : false;
-};
+export const setup
