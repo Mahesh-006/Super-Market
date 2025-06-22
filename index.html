@@ -448,32 +448,184 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="js/utils.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/modern-interactions.js"></script>
-    
-    <script>
-        // Mobile menu toggle
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            // Add mobile menu functionality here
-        });
+    <!-- Auth Modal (Add this to index.html) -->
+<div id="authModal" class="modal fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="modal-content bg-gray-800 rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto relative">
+        <button class="modal-close absolute top-4 right-4 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-600 transition-all" onclick="closeAuthModal()">
+            <span class="material-icons">close</span>
+        </button>
+        
+        <div class="auth-header text-center mb-6">
+            <h2 id="authTitle" class="text-2xl font-bold text-white mb-2">Welcome Back</h2>
+            <p class="text-gray-400 text-sm">Sign in to your account</p>
+        </div>
+        
+        <div class="auth-tabs flex bg-gray-700 rounded-xl p-1 mb-6">
+            <button id="loginTab" class="auth-tab flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all bg-gray-600 text-white" onclick="switchAuthTab('login')">
+                Login
+            </button>
+            <button id="registerTab" class="auth-tab flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all text-gray-300 hover:text-white" onclick="switchAuthTab('register')">
+                Register
+            </button>
+            <button id="phoneTab" class="auth-tab flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all text-gray-300 hover:text-white" onclick="switchAuthTab('phone')">
+                Phone
+            </button>
+        </div>
+        
+        <!-- Login Form -->
+        <div id="loginContainer">
+            <form id="loginForm" class="auth-form space-y-4">
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                    <input type="email" id="loginEmail" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Password</label>
+                    <input type="password" id="loginPassword" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="••••••••" required>
+                    <div class="flex justify-end mt-1">
+                        <a href="#" id="forgotPasswordLink" class="text-xs text-blue-400 hover:text-blue-300">Forgot password?</a>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-2 px-4 rounded-xl transition-all transform hover:scale-105 text-sm">
+                    <span class="material-icons text-sm mr-1">login</span>
+                    Sign In
+                </button>
+            </form>
+            
+            <div class="mt-4 text-center">
+                <p class="text-gray-400 text-xs mb-4">Or continue with</p>
+                <div class="flex justify-center gap-3">
+                    <button id="googleLoginBtn" class="flex items-center justify-center gap-2 bg-white text-gray-800 px-4 py-2 rounded-xl hover:bg-gray-100 transition-all text-sm font-medium">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" class="w-5 h-5">
+                        Google
+                    </button>
+                    <button id="guestLoginBtn" class="flex items-center justify-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-xl hover:bg-gray-500 transition-all text-sm font-medium">
+                        <span class="material-icons text-sm">person_outline</span>
+                        Guest
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Reset Password Form -->
+        <div id="resetPasswordContainer" class="hidden">
+            <form id="resetPasswordForm" class="auth-form space-y-4">
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                    <input type="email" id="resetEmail" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="your@email.com" required>
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-2 px-4 rounded-xl transition-all transform hover:scale-105 text-sm">
+                    <span class="material-icons text-sm mr-1">send</span>
+                    Send Reset Link
+                </button>
+                <div class="text-center mt-2">
+                    <a href="#" id="backToLoginLink" class="text-xs text-blue-400 hover:text-blue-300">Back to login</a>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Register Form -->
+        <form id="registerForm" class="auth-form space-y-4 hidden">
+            <div class="form-group">
+                <label class="block text-sm font-medium text-gray-300 mb-1">Full Name</label>
+                <input type="text" id="registerName" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+                <label class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                <input type="email" id="registerEmail" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+                <label class="block text-sm font-medium text-gray-300 mb-1">Password</label>
+                <input type="password" id="registerPassword" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="••••••••" required>
+            </div>
+            <div class="form-group">
+                <label class="block text-sm font-medium text-gray-300 mb-1">Confirm Password</label>
+                <input type="password" id="confirmPassword" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="••••••••" required>
+            </div>
+            <div class="form-group">
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" required class="rounded text-blue-500 focus:ring-blue-500">
+                    <span class="text-xs text-gray-300">I agree to the <a href="#" class="text-blue-400 hover:text-blue-300">Terms of Service</a> and <a href="#" class="text-blue-400 hover:text-blue-300">Privacy Policy</a></span>
+                </label>
+            </div>
+            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-2 px-4 rounded-xl transition-all transform hover:scale-105 text-sm">
+                <span class="material-icons text-sm mr-1">person_add</span>
+                Create Account
+            </button>
+        </form>
+        
+        <!-- Phone Login -->
+        <div id="phoneLoginContainer" class="hidden">
+            <div id="phoneStep1">
+                <form id="phoneLoginForm" class="auth-form space-y-4">
+                    <div class="form-group">
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Phone Number</label>
+                        <div class="flex">
+                            <span class="inline-flex items-center px-3 bg-gray-600 border border-r-0 border-gray-600 rounded-l-xl text-gray-300 text-sm">
+                                +91
+                            </span>
+                            <input type="tel" id="phoneNumber" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-r-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="9876543210" required>
+                        </div>
+                    </div>
+                    <div id="recaptcha-container"></div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-2 px-4 rounded-xl transition-all transform hover:scale-105 text-sm">
+                        <span class="material-icons text-sm mr-1">sms</span>
+                        Send OTP
+                    </button>
+                </form>
+            </div>
+            
+            <div id="phoneStep2" class="hidden">
+                <form id="otpForm" class="auth-form space-y-4">
+                    <div class="form-group">
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Enter OTP</label>
+                        <input type="text" id="otpInput" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="123456" required>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-2 px-4 rounded-xl transition-all transform hover:scale-105 text-sm">
+                        <span class="material-icons text-sm mr-1">check</span>
+                        Verify OTP
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Scripts -->
+<script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
 
-        // Initialize cart count
-        function updateCartCount() {
-            const count = 0; // This will be updated by cart.js
-            const cartCountElements = document.querySelectorAll('#cartCount');
-            cartCountElements.forEach(element => {
-                if (count > 0) {
-                    element.textContent = count;
-                    element.classList.remove('hidden');
-                } else {
-                    element.classList.add('hidden');
-                }
-            });
-        }
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyBfMNyQwkSWeGw28ojygiVQwwfXnwXoOYk",
+        authDomain: "supermarket-b930f.firebaseapp.com",
+        projectId: "supermarket-b930f",
+        storageBucket: "supermarket-b930f.firebasestorage.app",
+        messagingSenderId: "916317111235",
+        appId: "1:916317111235:web:e82d5c11f39eadb3947376",
+        measurementId: "G-2H6SZ8MB3Y"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const analytics = getAnalytics(app);
+
+    // Make Firebase auth available to other scripts
+    window.firebaseAuth = auth;
+</script>
+<script src="js/utils.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/auth-service.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script src="js/modern-interactions.js"></script>
+
+
+
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
