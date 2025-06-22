@@ -1,0 +1,201 @@
+<!-- verify-email.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Verify Email - SuperMart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/modern-style.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <!-- Navigation -->
+    <header class="navbar bg-gray-900/95 backdrop-blur-xl border-b border-gray-800 sticky top-0 z-50">
+        <div class="container mx-auto">
+            <div class="nav-container flex justify-between items-center h-20 px-4">
+                <!-- Brand -->
+                <div class="nav-brand flex items-center gap-3">
+                    <span class="material-icons text-3xl bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">shopping_cart</span>
+                    <span class="text-2xl font-bold text-white">SuperMart</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="desktop-nav hidden md:flex items-center gap-6">
+                    <a href="index.html" class="nav-button flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-800">
+                        <span class="material-icons text-lg">home</span>
+                        Home
+                    </a>
+                    <button id="authBtn" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-2 px-6 rounded-full text-sm transition-all transform hover:scale-105">
+                        <span class="material-icons mr-2 text-sm">login</span>
+                        Login
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn md:hidden p-2 text-gray-400 hover:text-white transition-colors" id="mobileMenuBtn">
+                    <span class="material-icons">menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Verification Content -->
+    <section class="py-20 bg-gray-900 min-h-screen">
+        <div class="container mx-auto px-4">
+            <div class="max-w-md mx-auto bg-gray-800 rounded-2xl p-8 border border-gray-700">
+                <div id="verificationLoading" class="text-center py-8">
+                    <div class="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Verifying your email...</h3>
+                    <p class="text-gray-400 text-sm">Please wait while we verify your email address.</p>
+                </div>
+                
+                <div id="verificationSuccess" class="text-center py-8 hidden">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="material-icons text-3xl text-green-600">check_circle</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Email Verified!</h3>
+                    <p class="text-gray-400 text-sm mb-6">Your email has been successfully verified. You can now login to your account.</p>
+                    <a href="index.html" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-2 px-6 rounded-xl transition-all transform hover:scale-105 text-sm">
+                        <span class="material-icons text-sm mr-1">home</span>
+                        Go to Homepage
+                    </a>
+                </div>
+                
+                <div id="verificationError" class="text-center py-8 hidden">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="material-icons text-3xl text-red-600">error</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Verification Failed</h3>
+                    <p class="text-gray-400 text-sm mb-2" id="errorMessage">The verification link is invalid or has expired.</p>
+                    <p class="text-gray-400 text-sm mb-6">Please try again or request a new verification email.</p>
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                        <button id="resendVerificationBtn" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-2 px-6 rounded-xl transition-all transform hover:scale-105 text-sm">
+                            <span class="material-icons text-sm mr-1">send</span>
+                            Resend Email
+                        </button>
+                        <a href="index.html" class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-6 rounded-xl transition-all text-sm">
+                            <span class="material-icons text-sm mr-1">home</span>
+                            Go to Homepage
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast fixed bottom-6 right-6 bg-gray-800 border border-gray-700 rounded-xl shadow-2xl transform translate-x-full transition-transform duration-300 z-50 max-w-sm">
+        <div class="toast-content flex items-start gap-4 p-4">
+            <div class="toast-icon w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="material-icons text-green-600">check_circle</span>
+            </div>
+            <div class="toast-message flex-1">
+                <div class="toast-title font-semibold text-white mb-1">Success!</div>
+                <div class="toast-text text-gray-300 text-sm" id="toastMessage">Operation completed successfully</div>
+            </div>
+            <button class="toast-close p-1 text-gray-400 hover:text-white transition-colors">
+                <span class="material-icons text-sm">close</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, applyActionCode, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBfMNyQwkSWeGw28ojygiVQwwfXnwXoOYk",
+            authDomain: "supermarket-b930f.firebaseapp.com",
+            projectId: "supermarket-b930f",
+            storageBucket: "supermarket-b930f.firebasestorage.app",
+            messagingSenderId: "916317111235",
+            appId: "1:916317111235:web:e82d5c11f39eadb3947376",
+            measurementId: "G-2H6SZ8MB3Y"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const analytics = getAnalytics(app);
+
+        // Get verification code from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const mode = urlParams.get('mode');
+        const actionCode = urlParams.get('oobCode');
+
+        // Function to show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = toast.querySelector('.toast-icon');
+            const toastTitle = toast.querySelector('.toast-title');
+            
+            if (type === 'success') {
+                toastIcon.className = 'toast-icon w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0';
+                toastIcon.innerHTML = '<span class="material-icons text-green-600">check_circle</span>';
+                toastTitle.textContent = 'Success!';
+            } else {
+                toastIcon.className = 'toast-icon w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0';
+                toastIcon.innerHTML = '<span class="material-icons text-red-600">error</span>';
+                toastTitle.textContent = 'Error!';
+            }
+            
+            toastMessage.textContent = message;
+            toast.classList.remove('translate-x-full');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-x-full');
+            }, 3000);
+        }
+
+        // Handle email verification
+        if (mode === 'verifyEmail' && actionCode) {
+            applyActionCode(auth, actionCode)
+                .then(() => {
+                    // Email verified successfully
+                    document.getElementById('verificationLoading').classList.add('hidden');
+                    document.getElementById('verificationSuccess').classList.remove('hidden');
+                })
+                .catch((error) => {
+                    // Error occurred during verification
+                    document.getElementById('verificationLoading').classList.add('hidden');
+                    document.getElementById('verificationError').classList.remove('hidden');
+                    document.getElementById('errorMessage').textContent = error.message;
+                });
+        } else {
+            // Invalid or missing parameters
+            document.getElementById('verificationLoading').classList.add('hidden');
+            document.getElementById('verificationError').classList.remove('hidden');
+            document.getElementById('errorMessage').textContent = 'Invalid verification link.';
+        }
+
+        // Resend verification email
+        document.getElementById('resendVerificationBtn').addEventListener('click', async () => {
+            const user = auth.currentUser;
+            
+            if (user) {
+                try {
+                    await sendEmailVerification(user);
+                    showToast('Verification email sent!', 'success');
+                } catch (error) {
+                    showToast(error.message, 'error');
+                }
+            } else {
+                showToast('Please login first to resend verification email', 'error');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }
+        });
+    </script>
+    <script src="js/utils.js"></script>
+</body>
+</html>
