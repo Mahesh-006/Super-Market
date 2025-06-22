@@ -1,5 +1,4 @@
-// Admin authentication management
-
+// js/admin-auth.js
 class AdminAuthManager {
     constructor() {
         this.currentAdmin = null;
